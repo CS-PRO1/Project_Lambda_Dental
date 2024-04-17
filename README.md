@@ -1,4 +1,4 @@
-# flutter_application_3_getx
+# Project Lambda Dental Lab
 
 A new Flutter project.
 

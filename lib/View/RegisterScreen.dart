@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_3_getx/Controller/register_controller.dart';
+import 'package:project_lambda_dental/Controller/register_controller.dart';
 import 'package:get/get.dart';
 
 class RegisterScreen extends GetView {

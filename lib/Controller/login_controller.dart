@@ -2,9 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 
-import 'package:flutter_application_3_getx/Cache/CacheHelper.dart';
-import 'package:flutter_application_3_getx/Model/LoginModel.dart';
-import 'package:flutter_application_3_getx/Services/dio.dart';
+import 'package:project_lambda_dental/Cache/CacheHelper.dart';
+import 'package:project_lambda_dental/Model/LoginModel.dart';
+import 'package:project_lambda_dental/Services/dio.dart';
 
 class LoginController extends GetxController {
   bool loginsuccess = false;

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_3_getx/Cache/CacheHelper.dart';
-import 'package:flutter_application_3_getx/Services/dio.dart';
-import 'package:flutter_application_3_getx/View/LoginScreen.dart';
-import 'package:flutter_application_3_getx/View/RegisterScreen.dart';
+import 'package:project_lambda_dental/Cache/CacheHelper.dart';
+import 'package:project_lambda_dental/Services/dio.dart';
+import 'package:project_lambda_dental/View/LoginScreen.dart';
+import 'package:project_lambda_dental/View/RegisterScreen.dart';
 import 'package:get/get.dart';
 
 void main() async {

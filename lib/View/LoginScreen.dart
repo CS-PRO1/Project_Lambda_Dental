@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_3_getx/Controller/login_controller.dart';
+import 'package:project_lambda_dental/Controller/login_controller.dart';
 import 'package:get/get.dart';
 
 class LoginScreen extends GetView {

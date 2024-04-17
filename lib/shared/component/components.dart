@@ -8,12 +8,11 @@ import 'package:image_picker/image_picker.dart';
 import 'package:project_lambda_dental/shared/component/constants.dart';
 
 Widget defaultButton({
-  required double width,
-  Color background = cyan100,
-  double radius = 20.0,
+  double width = 150,
+  Color background = cyan400,
   required String text,
   required Function function,
-  required double heigh,
+  double heigh = 60,
 }) =>
     Container(
       width: width,
@@ -26,7 +25,7 @@ Widget defaultButton({
           backgroundColor: MaterialStateProperty.all(background),
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(radius),
+              borderRadius: StandardBorderRadius,
               side: BorderSide(color: Colors.white),
             ),
           ),
@@ -42,10 +41,10 @@ Widget genderRadio({
       children: [
         Text(
           'Male'.tr,
-          style: TextStyle(color: Colors.blueAccent),
+          style: TextStyle(color: cyan300),
         ),
         Radio(
-            activeColor: Colors.blue,
+            activeColor: cyan400,
             value: (true),
             groupValue: isMale,
             onChanged: (val) {
@@ -68,13 +67,42 @@ Widget genderRadio({
       ],
     );
 
+class statefull extends StatefulWidget {
+  const statefull({super.key});
+
+  @override
+  State<statefull> createState() => check();
+}
+
+class check extends State<statefull> {
+  bool checked = false;
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Checkbox(
+            activeColor: cyan400,
+            value: checked,
+            onChanged: (value) {
+              setState(() {
+                checked = value!;
+              });
+            }),
+        //Text(text.tr, style: TextStyle(color: Theme.of(context).primaryColor)),
+      ],
+    );
+  }
+}
+
 Widget checkBox(BuildContext context, {var checked, required String text}) =>
     Row(
       children: [
         Checkbox(
             activeColor: Colors.deepPurple,
             value: checked,
-            onChanged: (value) {}),
+            onChanged: (value) {
+              //setState(() {});
+            }),
         Text(text.tr, style: TextStyle(color: Theme.of(context).primaryColor)),
       ],
     );
@@ -95,20 +123,27 @@ Widget datePicker(BuildContext context) {
   return Column(
     children: [
       Text(
-        _dateTime.year.toString(),
-        style: TextStyle(fontSize: 30),
+        'Expected Delivery day:',
+        style: TextStyle(fontSize: 18),
+        textAlign: TextAlign.center,
+      ),
+      SizedBox(
+        height: 30,
       ),
       MaterialButton(
         onPressed: _showDatePpcker,
         child: Padding(
           padding: EdgeInsets.all(20),
           child: Text(
-            "Choose Date".tr,
-            style:
-                TextStyle(color: Theme.of(context).primaryColor, fontSize: 25),
+            _dateTime.year.toString() +
+                '/' +
+                _dateTime.month.toString() +
+                '/' +
+                _dateTime.day.toString(),
+            style: TextStyle(color: white, fontSize: 15),
           ),
         ),
-        color: Colors.purple,
+        color: cyan400,
       )
     ],
   );
@@ -132,13 +167,48 @@ Widget imagePicker() {
   return ElevatedButton(
     onPressed: () => pickImage(ImageSource.camera),
     child: Text(
-      'Pick Camera'.tr,
+      'Pick Image'.tr,
       style: TextStyle(
         fontWeight: FontWeight.bold,
         color: Colors.white,
       ),
     ),
-    // style: ElevatedButton.styleFrom(primary: Colors.purple[400],onPrimary: Colors.purple[100],
-    // shape: StadiumBorder(),
+    style: ElevatedButton.styleFrom(
+      backgroundColor: cyan400,
+      shape: StadiumBorder(),
+    ),
+  );
+}
+
+Widget myTextField(TextEditingController controller, BuildContext context,
+    String label, Icon icon,
+    {int height = 1}) {
+  return TextFormField(
+    minLines: height,
+    maxLines: 50,
+    controller: controller,
+    validator: (value) {
+      if (value!.isEmpty) {
+        return 'Please Enter your email address';
+      }
+      return null;
+    },
+    keyboardType: TextInputType.emailAddress,
+    decoration: InputDecoration(
+      label: Text(label),
+      prefixIcon: icon,
+      enabledBorder: OutlineInputBorder(
+          borderSide: const BorderSide(color: Colors.grey, width: 2.0),
+          borderRadius: StandardBorderRadius),
+      focusedBorder: OutlineInputBorder(
+        borderSide:
+            BorderSide(color: Theme.of(context).primaryColor, width: 3.0),
+        borderRadius: ActiveBorderRadius,
+      ),
+      errorBorder: OutlineInputBorder(
+        borderSide: const BorderSide(color: Colors.redAccent, width: 2.0),
+        borderRadius: ActiveBorderRadius,
+      ),
+    ),
   );
 }

@@ -15,8 +15,10 @@ const Color cyan600 = Color.fromARGB(255, 11, 71, 65);
 
 //Backgrounds
 const Color bgdark = Color.fromARGB(255, 14, 16, 30);
-const Color bglight = Color.fromARGB(255, 217, 255, 250);
+const Color bglight = Color.fromARGB(255, 241, 255, 253);
 
-
+//Radius
+BorderRadius StandardBorderRadius = BorderRadius.circular(30.0);
+BorderRadius ActiveBorderRadius = BorderRadius.circular(10.0);
 
 //String baseUrl = "http://192.168.34.100:8000/api";

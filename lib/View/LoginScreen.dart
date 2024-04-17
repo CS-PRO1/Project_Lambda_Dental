@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project_lambda_dental/Controller/login_controller.dart';
 import 'package:get/get.dart';
+import 'package:project_lambda_dental/shared/component/components.dart';
+import 'package:project_lambda_dental/shared/component/constants.dart';
 
 class LoginScreen extends GetView {
   var formkey = GlobalKey<FormState>();
@@ -33,7 +35,7 @@ class LoginScreen extends GetView {
                       ),
                       child: Container(
                         decoration: BoxDecoration(
-                            color: Colors.white,
+                            color: bglight,
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(50.0),
                                 topRight: Radius.circular(50.0))),
@@ -51,41 +53,8 @@ class LoginScreen extends GetView {
                                       const SizedBox(
                                         height: 0,
                                       ),
-                                      TextFormField(
-                                        controller: emailcontroller,
-                                        validator: (value) {
-                                          if (value!.isEmpty) {
-                                            return 'Please Enter your email address';
-                                          }
-                                          return null;
-                                        },
-                                        keyboardType:
-                                            TextInputType.emailAddress,
-                                        decoration: InputDecoration(
-                                          label: const Text('Email'),
-                                          prefixIcon: const Icon(Icons.mail),
-                                          enabledBorder: OutlineInputBorder(
-                                              borderSide: const BorderSide(
-                                                  color: Colors.grey,
-                                                  width: 2.0),
-                                              borderRadius:
-                                                  BorderRadius.circular(30.0)),
-                                          focusedBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                  color: Theme.of(context)
-                                                      .primaryColor,
-                                                  width: 3.0),
-                                              borderRadius:
-                                                  BorderRadius.circular(10.0)),
-                                          errorBorder: OutlineInputBorder(
-                                            borderSide: const BorderSide(
-                                                color: Colors.redAccent,
-                                                width: 2.0),
-                                            borderRadius:
-                                                BorderRadius.circular(10.0),
-                                          ),
-                                        ),
-                                      ),
+                                      myTextField(emailcontroller, context,
+                                          'email', Icon(Icons.mail)),
                                       const SizedBox(
                                         height: 30.0,
                                       ),
@@ -148,6 +117,7 @@ class LoginScreen extends GetView {
                                                 emailcontroller.text,
                                                 passwordcontroller.text);
                                           }
+                                          Get.toNamed('/addorder');
                                         },
                                         child: Container(
                                           decoration: BoxDecoration(
@@ -231,7 +201,5 @@ class LoginScreen extends GetView {
             ),
           );
         });
-        
-        
   }
 }

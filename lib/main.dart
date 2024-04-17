@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project_lambda_dental/Cache/CacheHelper.dart';
 import 'package:project_lambda_dental/Services/dio.dart';
+import 'package:project_lambda_dental/View/AddOrderScreen.dart';
 import 'package:project_lambda_dental/View/LoginScreen.dart';
 import 'package:project_lambda_dental/View/RegisterScreen.dart';
 import 'package:get/get.dart';
@@ -30,7 +31,8 @@ class MyApp extends StatelessWidget {
       ),
       getPages: [
         GetPage(name: '/', page: () => LoginScreen()),
-        GetPage(name: '/register', page: () => RegisterScreen())
+        GetPage(name: '/register', page: () => RegisterScreen()),
+        GetPage(name: '/addorder', page: () => AddOrderScreen()),
       ],
     );
   }

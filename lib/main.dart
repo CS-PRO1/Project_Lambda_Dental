@@ -7,6 +7,7 @@ import 'package:project_lambda_dental/View/LoginScreen.dart';
 import 'package:project_lambda_dental/View/RegisterScreen.dart';
 import 'package:get/get.dart';
 
+import 'View/OrderListScreen.dart';
 import 'View/TeethSelectionScreen.dart';
 
 void main() async {
@@ -38,7 +39,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Emall-GetX',
+      title: 'Project Lambda',
       theme: ThemeData(
         colorScheme:
             ColorScheme.fromSeed(seedColor: Color.fromARGB(1, 17, 124, 111)),
@@ -47,6 +48,7 @@ class MyApp extends StatelessWidget {
       getPages: [
         GetPage(name: '/', page: () => LoginScreen()),
         GetPage(name: '/register', page: () => RegisterScreen()),
+        GetPage(name: '/orderlist', page: () => OrderListScreen()),
         GetPage(name: '/addorder', page: () => AddOrderScreen()),
         GetPage(
             name: '/teethselect',

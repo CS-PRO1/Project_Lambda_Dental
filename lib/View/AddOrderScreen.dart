@@ -15,6 +15,7 @@ class AddOrderScreen extends GetView {
       child: Scaffold(
         backgroundColor: bglight,
         appBar: AppBar(
+          scrolledUnderElevation: 0.0,
           leading: PopupMenuButton(
               icon: const Icon(Icons.menu),
               itemBuilder: (context) => [
@@ -161,7 +162,12 @@ class AddOrderScreen extends GetView {
                   height: 30,
                 ),
                 defaultButton(
-                    width: 150, text: 'Next', function: () {}, heigh: 50)
+                    width: 150,
+                    text: 'Next',
+                    function: () {
+                      Get.toNamed('/teethselect');
+                    },
+                    heigh: 50)
               ],
             ),
           ),

@@ -1,3 +1,4 @@
+import 'dart:ffi';
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
@@ -11,27 +12,28 @@ Widget defaultButton({
   double width = 150,
   Color background = cyan400,
   required String text,
-  required Function function,
+  required VoidCallback function,
   double heigh = 60,
-}) =>
-    Container(
-      width: width,
-      height: heigh,
-      child: TextButton(
-        onPressed: () {},
-        child: Text(text),
-        style: ButtonStyle(
-          foregroundColor: MaterialStateProperty.all(Colors.white),
-          backgroundColor: MaterialStateProperty.all(background),
-          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-            RoundedRectangleBorder(
-              borderRadius: StandardBorderRadius,
-              side: BorderSide(color: Colors.white),
-            ),
+}) {
+  return Container(
+    width: width,
+    height: heigh,
+    child: TextButton(
+      onPressed: function,
+      child: Text(text),
+      style: ButtonStyle(
+        foregroundColor: MaterialStateProperty.all(Colors.white),
+        backgroundColor: MaterialStateProperty.all(background),
+        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+          RoundedRectangleBorder(
+            borderRadius: StandardBorderRadius,
+            side: BorderSide(color: Colors.white),
           ),
         ),
       ),
-    );
+    ),
+  );
+}
 
 Widget genderRadio({
   bool isMale = true,

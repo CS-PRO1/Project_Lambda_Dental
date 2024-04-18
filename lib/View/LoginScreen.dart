@@ -111,13 +111,13 @@ class LoginScreen extends GetView {
                                       ),
                                       TextButton(
                                         onPressed: () {
-                                          if (formkey.currentState!
-                                              .validate()) {
-                                            controller.requestLogin(
-                                                emailcontroller.text,
-                                                passwordcontroller.text);
-                                          }
-                                          Get.toNamed('/addorder');
+                                          // if (formkey.currentState!
+                                          //     .validate()) {
+                                          //   controller.requestLogin(
+                                          //       emailcontroller.text,
+                                          //       passwordcontroller.text);
+                                          // }
+                                          Get.toNamed('/orderlist');
                                         },
                                         child: Container(
                                           decoration: BoxDecoration(

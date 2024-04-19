@@ -56,7 +56,7 @@ class LoginScreen extends GetView {
                                         height: 0,
                                       ),
                                       myTextField(emailcontroller, context,
-                                          'email', Icon(Icons.mail)),
+                                          'Email', Icon(Icons.mail)),
                                       const SizedBox(
                                         height: 30.0,
                                       ),
@@ -152,7 +152,7 @@ class LoginScreen extends GetView {
                                                 Get.toNamed('/reset-password');
                                               },
                                               child: const Text(
-                                                'Forgot Password',
+                                                'Forgot Password ? ',
                                                 style: TextStyle(
                                                     fontSize: 15,
                                                     fontWeight:

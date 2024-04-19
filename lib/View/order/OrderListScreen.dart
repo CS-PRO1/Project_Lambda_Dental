@@ -48,7 +48,9 @@ class OrderListScreen extends GetView {
     return Padding(
       padding: const EdgeInsets.all(15.0),
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          Get.toNamed('/orderdetails');
+        },
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

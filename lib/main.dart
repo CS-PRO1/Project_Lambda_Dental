@@ -10,6 +10,7 @@ import 'package:get/get.dart';
 import 'package:project_lambda_dental/View/bill/bill_details.dart';
 import 'package:project_lambda_dental/View/bill/bills.dart';
 
+import 'View/order/OrderDetailsScreen.dart';
 import 'View/order/OrderListScreen.dart';
 import 'View/order/TeethSelectionScreen.dart';
 
@@ -54,6 +55,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/register', page: () => RegisterScreen()),
         GetPage(name: '/orderlist', page: () => OrderListScreen()),
         GetPage(name: '/addorder', page: () => AddOrderScreen()),
+        GetPage(name: '/orderdetails', page: () => OrderDetailsScreen()),
         GetPage(name: '/bills', page: () => Bills()),
         GetPage(name: '/billdetails', page: () => BillDetails()),
         GetPage(

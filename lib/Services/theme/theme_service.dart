@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
+import 'package:project_lambda_dental/Cache/CacheHelper.dart';
 import 'package:project_lambda_dental/shared/component/constants.dart';
 //import 'package:testp1/shared/component/constants.dart';
 
@@ -22,15 +22,14 @@ class ThemeService {
   );
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  final _getStorage = GetStorage();
   final _darkThemeKey = 'isDarkTheme';
 
   void saveThemeData(bool isDarkMode) {
-    _getStorage.write(_darkThemeKey, isDarkMode);
+    CacheHelper.setBool(_darkThemeKey, isDarkMode);
   }
 
   bool isSavedDarkMode() {
-    return _getStorage.read(_darkThemeKey) ?? false;
+    return CacheHelper.get(_darkThemeKey) ?? false;
   }
 
   ThemeMode getThemeMode() {

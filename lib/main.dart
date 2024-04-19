@@ -9,14 +9,17 @@ import 'package:project_lambda_dental/View/basics/RegisterScreen.dart';
 import 'package:get/get.dart';
 import 'package:project_lambda_dental/View/bill/bill_details.dart';
 import 'package:project_lambda_dental/View/bill/bills.dart';
+import 'package:project_lambda_dental/locale/dictionary.dart';
 
 import 'View/order/OrderDetailsScreen.dart';
 import 'View/order/OrderListScreen.dart';
 import 'View/order/TeethSelectionScreen.dart';
+import 'locale/LocaleController.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await CacheHelper.init();
+  //await StorageHandler.init();
   //var token = CacheHelper.get('token') ?? '';
   DioHelper.init();
   SystemChrome.setPreferredOrientations([
@@ -41,9 +44,13 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    LocaleController localeController = Get.put(LocaleController());
+
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Project Lambda',
+      locale: localeController.initialLocale,
+      translations: Dictionary(),
       theme: ThemeData(
         colorScheme:
             ColorScheme.fromSeed(seedColor: Color.fromARGB(1, 17, 124, 111)),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:project_lambda_dental/View/theme/theme_service.dart';
-import 'package:project_lambda_dental/locale/change_language.dart';
+import 'package:project_lambda_dental/Services/theme/theme_service.dart';
+import 'package:project_lambda_dental/locale/LocaleController.dart';
 import 'package:project_lambda_dental/shared/component/components.dart';
 import 'package:project_lambda_dental/shared/component/constants.dart';
 //import 'package:testp1/shared/component/components.dart';
@@ -19,7 +19,7 @@ class Settings extends StatefulWidget {
 
 class _SettingsState extends State<Settings> {
   var emailController = TextEditingController();
-
+  LocaleController localeController = Get.find();
   var passwordController = TextEditingController();
   bool notify = false;
   var language;
@@ -69,7 +69,7 @@ class _SettingsState extends State<Settings> {
                         setState(() {
                           language = val;
                           print(language);
-                          ChangeLanguage.toArabic();
+                          localeController.changelocale('ar');
                         });
                       }),
                   SizedBox(
@@ -90,7 +90,7 @@ class _SettingsState extends State<Settings> {
                           language = val;
                           print(language);
                           //controllerlang.changelange("en");
-                          ChangeLanguage.toEnglish();
+                          localeController.changelocale('en');
                         });
                       }),
                 ],

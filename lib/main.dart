@@ -10,7 +10,7 @@ import 'package:get/get.dart';
 import 'package:project_lambda_dental/View/bill/bill_details.dart';
 import 'package:project_lambda_dental/View/bill/bills.dart';
 
-import 'View/OrderDetailsScreen.dart';
+import 'View/order/OrderDetailsScreen.dart';
 import 'View/order/OrderListScreen.dart';
 import 'View/order/TeethSelectionScreen.dart';
 

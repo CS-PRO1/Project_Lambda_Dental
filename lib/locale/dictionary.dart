@@ -56,7 +56,26 @@ class Dictionary extends Translations {
           "LOGIN": "تسجبل الدخول",
           "Don\'t have an account ?": "لا تملك حسابا",
           "Register": "انشاء حساب",
-          /*---------------------------------------------------- */
+          /*Bill details---------------------------------------------------- */
+          "Bill": "الفاتورة",
+          "Material": "نوع المادة",
+          "pieces": "عدد القطع",
+          "Final Bill": "الفاتورة الاجمالية",
+          /*Bills------------------------------------------------------------*/
+          "Bills": "الفواتير",
+          "date to :": "من يوم",
+          "date from :": "الى يوم",
+          /* */
+          "": "",
+          "": "",
+          "": "",
+          "": "",
+          "": "",
+          "": "",
+          "": "",
+          "": "",
+          "": "",
+          "": "",
           "": "",
           "": "",
           "": "",
@@ -117,7 +136,17 @@ class Dictionary extends Translations {
           "LOGIN": "LOGIN",
           "Don\'t have an account ?": "Don\'t have an account ?",
           "Register": "Register",
-          /*------------------------------------------------------- */
+          /*Bill details------------------------------------------------------- */
+          "Bill": "Bill",
+          "Material": "Material",
+          "pieces": "pieces",
+          "Final Bill": "Final Bill",
+          /* Bills-------------------------------------------------------------*/
+          "Bills": "Bills",
+          "date to :": "date to :",
+          "date from :": "date from :",
+          /* */
+          "": "",
           "": "",
           "": "",
           "": "",

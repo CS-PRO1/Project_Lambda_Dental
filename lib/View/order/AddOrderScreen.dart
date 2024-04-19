@@ -1,8 +1,10 @@
+// ignore: file_names
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:project_lambda_dental/shared/component/components.dart';
 import 'package:project_lambda_dental/shared/component/constants.dart';
 
+// ignore: must_be_immutable
 class AddOrderScreen extends GetView {
   AddOrderScreen({super.key});
   var patientnamecontroller = TextEditingController();

@@ -6,7 +6,7 @@ import 'package:path_drawing/path_drawing.dart';
 import 'package:project_lambda_dental/shared/component/components.dart';
 import 'package:xml/xml.dart';
 
-import '../shared/component/constants.dart';
+import '../../shared/component/constants.dart';
 
 typedef Data = ({Size size, Map<int, Tooth> teeth});
 

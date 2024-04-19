@@ -1,3 +1,4 @@
+// ignore: file_names
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project_lambda_dental/Controller/login_controller.dart';
@@ -5,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:project_lambda_dental/shared/component/components.dart';
 import 'package:project_lambda_dental/shared/component/constants.dart';
 
+// ignore: must_be_immutable
 class LoginScreen extends GetView {
   var formkey = GlobalKey<FormState>();
   var emailcontroller = TextEditingController();

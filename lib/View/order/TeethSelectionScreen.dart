@@ -99,7 +99,7 @@ class _TeethState extends State<TeethSelectionScreen> {
       context: context,
       builder: (BuildContext context) => CupertinoAlertDialog(
         //title: const Text('Alert'),
-        content: const Text('Choose the treatment :'),
+        content: const Text('Choose the material :'),
         actions: <CupertinoDialogAction>[
           CupertinoDialogAction(
             isDefaultAction: true,

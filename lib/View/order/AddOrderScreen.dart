@@ -25,15 +25,15 @@ class AddOrderScreen extends GetView {
                         child: Row(
                           children: [
                             Icon(
-                              Icons.account_circle,
+                              Icons.settings,
                               color: Colors.black,
                             ),
                             SizedBox(
                               width: 10,
                             ),
                             Container(
-                              child: const Text(
-                                "Modify profile",
+                              child: Text(
+                                'Settings'.tr,
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 19,
@@ -42,7 +42,7 @@ class AddOrderScreen extends GetView {
                             ),
                           ],
                         ),
-                        onTap: () => ()),
+                        onTap: () => Get.toNamed('/settings')),
                   ]),
           elevation: 0,
           backgroundColor: cyan200,

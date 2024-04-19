@@ -16,7 +16,7 @@ class Bills extends GetView {
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
         centerTitle: true,
-        title: Text('Bills'),
+        title: Text('Bills'.tr),
         actions: [
           IconButton(onPressed: () {}, icon: Icon(Icons.search_rounded))
         ],
@@ -54,15 +54,15 @@ class Bills extends GetView {
           children: [
             Flexible(
               child: Text(
-                'Bill 1',
+                'Bill'.tr + ' 001',
                 style: Theme.of(context).textTheme.headline6,
                 overflow: TextOverflow.ellipsis,
               ),
             ),
             Column(
               children: [
-                Text('date from : 18/4/2024'),
-                Text('date to :20/4/2024'),
+                Text('date from:' + ' 18/4/2024'),
+                Text('date to:' + ' 20/4/2024'),
               ],
             ),
             Icon(Icons.arrow_forward_ios_rounded),

@@ -16,7 +16,7 @@ class OrderListScreen extends GetView {
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
         centerTitle: true,
-        title: Text('Categories'),
+        title: Text('Orders'.tr),
         actions: [
           IconButton(onPressed: () {}, icon: Icon(Icons.search_rounded))
         ],
@@ -56,20 +56,20 @@ class OrderListScreen extends GetView {
           children: [
             Flexible(
               child: Text(
-                'Patient Name',
+                'Patient Name'.tr,
                 style: Theme.of(context).textTheme.headline6,
                 overflow: TextOverflow.ellipsis,
               ),
             ),
             Column(
               children: [
-                Text('Number'),
+                Text('Number'.tr),
                 Container(
                     // color: Colors.grey,
                     // width: double.infinity,
                     // height: 1,
                     ),
-                Text('Status'),
+                Text('Status'.tr),
               ],
             ),
             Icon(Icons.arrow_forward_ios_rounded),

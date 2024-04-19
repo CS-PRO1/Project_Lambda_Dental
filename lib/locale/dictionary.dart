@@ -20,7 +20,7 @@ class Dictionary extends Translations {
           "Age": "العمر",
           "Gender": "الجنس",
           "Creation Date": "تاريخ ارسال الطلب",
-          "Expected Delivery Date": "التاريخ المتوقع للاستلام",
+          "Expected Delivery date:": "التاريخ المتوقع للاستلام",
           "Order Status": "حالة الطلب",
           "Notes": "ملاحظات",
           /*New Order----------------------------------------*/
@@ -30,7 +30,7 @@ class Dictionary extends Translations {
           "Repeat": "اعادة",
           "Need Trial": "يتطلب تجربة",
           "Shade": "اللون",
-          "Pick an image": "اختر صورة",
+          "Add Images": "أضف صوراً",
           "Next": "التالي",
           /*Teeth Selection Screen----------------------------------------*/
           "Choose the treatment": "اختر نوع المعالجة",
@@ -58,8 +58,8 @@ class Dictionary extends Translations {
           "Register": "انشاء حساب",
           /*Bill details---------------------------------------------------- */
           "Bill": "الفاتورة",
-          "Material": "نوع المادة",
-          "pieces": "عدد القطع",
+          "Material: ": "نوع المادة",
+          "Pieces: ": "عدد القطع",
           "Final Bill": "الفاتورة الاجمالية",
           /*Bills------------------------------------------------------------*/
           "Bills": "الفواتير",

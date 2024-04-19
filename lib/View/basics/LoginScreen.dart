@@ -56,7 +56,7 @@ class LoginScreen extends GetView {
                                         height: 0,
                                       ),
                                       myTextField(emailcontroller, context,
-                                          'Email', Icon(Icons.mail)),
+                                          'Email'.tr, Icon(Icons.mail)),
                                       const SizedBox(
                                         height: 30.0,
                                       ),
@@ -65,7 +65,9 @@ class LoginScreen extends GetView {
                                         obscureText: !controller.showpassword,
                                         validator: (value) {
                                           if (value!.isEmpty) {
-                                            return 'Please Enter your password';
+                                            return 'Please Enter your password'
+                                                .tr
+                                                .tr;
                                           }
                                           return null;
                                         },
@@ -73,7 +75,7 @@ class LoginScreen extends GetView {
                                             TextInputType.visiblePassword,
                                         onFieldSubmitted: (value) {},
                                         decoration: InputDecoration(
-                                          label: const Text('Password'),
+                                          label: Text('Password'.tr),
                                           prefixIcon: const Icon(
                                               Icons.password_rounded),
                                           suffixIcon: IconButton(
@@ -131,8 +133,8 @@ class LoginScreen extends GetView {
                                           //height: 60,
                                           width: 150,
                                           padding: const EdgeInsets.all(15),
-                                          child: const Text(
-                                            'Login',
+                                          child: Text(
+                                            'Login'.tr,
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
                                                 fontSize: 16,
@@ -151,8 +153,8 @@ class LoginScreen extends GetView {
                                               onPressed: () {
                                                 Get.toNamed('/reset-password');
                                               },
-                                              child: const Text(
-                                                'Forgot Password ? ',
+                                              child: Text(
+                                                'Forgot Password ? '.tr,
                                                 style: TextStyle(
                                                     fontSize: 15,
                                                     fontWeight:
@@ -162,8 +164,8 @@ class LoginScreen extends GetView {
                                             onPressed: () {
                                               Get.toNamed('/register');
                                             },
-                                            child: const Text(
-                                              'Register',
+                                            child: Text(
+                                              'Register'.tr,
                                               style: TextStyle(
                                                   fontSize: 15,
                                                   fontWeight: FontWeight.w700),
@@ -187,8 +189,8 @@ class LoginScreen extends GetView {
                             size: 50,
                             color: Colors.white,
                           ),
-                          const Text(
-                            'Login',
+                          Text(
+                            'Login'.tr,
                             style: TextStyle(
                                 fontSize: 35,
                                 fontWeight: FontWeight.w700,

@@ -39,7 +39,7 @@ class _TeethState extends State<TeethSelectionScreen> {
       context: context,
       builder: (BuildContext context) => CupertinoAlertDialog(
         //title: const Text('Alert'),
-        content: const Text('Choose the treatment :'),
+        content: Text('Choose the treatment'.tr),
         actions: <CupertinoDialogAction>[
           CupertinoDialogAction(
             isDefaultAction: true,
@@ -47,7 +47,7 @@ class _TeethState extends State<TeethSelectionScreen> {
               Navigator.pop(context);
               _showAlertDialog2(context, tooth);
             },
-            child: const Text('Crown'),
+            child: Text('Crown'.tr),
           ),
           CupertinoDialogAction(
             isDefaultAction: true,
@@ -55,7 +55,7 @@ class _TeethState extends State<TeethSelectionScreen> {
               Navigator.pop(context);
               _showAlertDialog2(context, tooth);
             },
-            child: const Text('Pontic'),
+            child: Text('Pontic'.tr),
           ),
           CupertinoDialogAction(
             isDefaultAction: true,
@@ -63,7 +63,7 @@ class _TeethState extends State<TeethSelectionScreen> {
               Navigator.pop(context);
               _showAlertDialog2(context, tooth);
             },
-            child: const Text('Implant'),
+            child: Text('Implant'.tr),
           ),
           CupertinoDialogAction(
             isDefaultAction: true,
@@ -71,7 +71,7 @@ class _TeethState extends State<TeethSelectionScreen> {
               Navigator.pop(context);
               _showAlertDialog2(context, tooth);
             },
-            child: const Text('Veneer'),
+            child: Text('Veneer'.tr),
           ),
           CupertinoDialogAction(
             isDefaultAction: true,
@@ -79,7 +79,7 @@ class _TeethState extends State<TeethSelectionScreen> {
               Navigator.pop(context);
               _showAlertDialog2(context, tooth);
             },
-            child: const Text('Inlay'),
+            child: Text('Inlay'.tr),
           ),
           CupertinoDialogAction(
             isDefaultAction: true,
@@ -87,7 +87,7 @@ class _TeethState extends State<TeethSelectionScreen> {
               Navigator.pop(context);
               _showAlertDialog2(context, tooth);
             },
-            child: const Text('Denture'),
+            child: Text('Denture'.tr),
           ),
         ],
       ),
@@ -98,8 +98,7 @@ class _TeethState extends State<TeethSelectionScreen> {
     showCupertinoModalPopup<void>(
       context: context,
       builder: (BuildContext context) => CupertinoAlertDialog(
-        //title: const Text('Alert'),
-        content: const Text('Choose the material :'),
+        content: Text('Choose the material:'.tr),
         actions: <CupertinoDialogAction>[
           CupertinoDialogAction(
             isDefaultAction: true,
@@ -107,7 +106,7 @@ class _TeethState extends State<TeethSelectionScreen> {
               Navigator.pop(context);
               setState(() => tooth.selected = !tooth.selected);
             },
-            child: const Text('Zircon'),
+            child: Text('Zircon'.tr),
           ),
           CupertinoDialogAction(
             isDefaultAction: true,
@@ -115,7 +114,7 @@ class _TeethState extends State<TeethSelectionScreen> {
               Navigator.pop(context);
               setState(() => tooth.selected = !tooth.selected);
             },
-            child: const Text('Metal'),
+            child: Text('Metal'.tr),
           ),
           CupertinoDialogAction(
             isDefaultAction: true,
@@ -123,7 +122,7 @@ class _TeethState extends State<TeethSelectionScreen> {
               Navigator.pop(context);
               setState(() => tooth.selected = !tooth.selected);
             },
-            child: const Text('Wax'),
+            child: Text('Wax'.tr),
           ),
           CupertinoDialogAction(
             isDefaultAction: true,
@@ -131,7 +130,7 @@ class _TeethState extends State<TeethSelectionScreen> {
               Navigator.pop(context);
               setState(() => tooth.selected = !tooth.selected);
             },
-            child: const Text('Acrylic PMMA'),
+            child: Text('Acrylic PMMA'.tr),
           ),
           // CupertinoDialogAction(
           //   isDestructiveAction: true,

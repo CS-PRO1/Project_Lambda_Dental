@@ -111,7 +111,7 @@ Widget checkBox(BuildContext context, {var checked, required String text}) =>
 
 Widget datePicker(BuildContext context) {
   DateTime _dateTime = DateTime.now();
-  void _showDatePpcker() {
+  void _showDatePicker() {
     showDatePicker(
       context: context,
       initialDate: DateTime.now(),
@@ -122,32 +122,34 @@ Widget datePicker(BuildContext context) {
     });
   }
 
-  return Column(
-    children: [
-      Text(
-        'Expected Delivery day:',
-        style: TextStyle(fontSize: 18),
-        textAlign: TextAlign.center,
-      ),
-      SizedBox(
-        height: 30,
-      ),
-      MaterialButton(
-        onPressed: _showDatePpcker,
+  return SizedBox(
+    width: 200,
+    child: Card(
+      color: bglight,
+      elevation: 1,
+      shape:
+          LinearBorder.bottom(side: BorderSide(color: cyan400, width: 2)),
+      child: InkWell(
+        onTap: _showDatePicker,
         child: Padding(
-          padding: EdgeInsets.all(20),
-          child: Text(
-            _dateTime.year.toString() +
-                '/' +
-                _dateTime.month.toString() +
-                '/' +
-                _dateTime.day.toString(),
-            style: TextStyle(color: white, fontSize: 15),
+          padding: EdgeInsets.all(10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                _dateTime.year.toString() +
+                    '/' +
+                    _dateTime.month.toString() +
+                    '/' +
+                    _dateTime.day.toString(),
+                style: TextStyle(fontSize: 20),
+              ),
+              Icon(Icons.calendar_month_outlined),
+            ],
           ),
         ),
-        color: cyan400,
-      )
-    ],
+      ),
+    ),
   );
 }
 
@@ -169,7 +171,7 @@ Widget imagePicker() {
   return ElevatedButton(
     onPressed: () => pickImage(ImageSource.camera),
     child: Text(
-      'Pick Image'.tr,
+      'Add Images'.tr,
       style: TextStyle(
         fontWeight: FontWeight.bold,
         color: Colors.white,

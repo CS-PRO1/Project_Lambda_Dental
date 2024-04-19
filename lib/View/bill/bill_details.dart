@@ -16,7 +16,7 @@ class BillDetails extends GetView {
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
         centerTitle: true,
-        title: Text('Bill 1'),
+        title: Text('Bill'.tr + '001'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(25.0),
@@ -40,7 +40,7 @@ class BillDetails extends GetView {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('Final Bill'),
+                  Text('Final Bill'.tr),
                   Text('16.000.000 '),
                 ],
               ),
@@ -68,8 +68,8 @@ class BillDetails extends GetView {
             ),
             Column(
               children: [
-                Text('Material : Zircon'),
-                Text('pieces :5'),
+                Text('Material:'.tr + ' ' + 'Zircon'.tr),
+                Text('Pieces:'.tr + ' ' + '5'),
               ],
             ),
             // Icon(Icons.arrow_forward_ios_rounded),

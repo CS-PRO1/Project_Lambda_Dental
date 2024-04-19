@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 import 'package:project_lambda_dental/shared/component/constants.dart';
 
 class OrderDetailsScreen extends StatelessWidget {
@@ -10,7 +11,7 @@ class OrderDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Order Details'),
+        title: Text('Order Details'.tr),
         backgroundColor: cyan200,
         centerTitle: true,
       ),
@@ -22,12 +23,12 @@ class OrderDetailsScreen extends StatelessWidget {
             //mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Case ID: ' + '00005'),
+              Text('Case ID: '.tr + '00005'),
               SizedBox(
                 height: 10,
               ),
               Text(
-                'Patient Name: ' + 'Leen Mashlah',
+                'Patient Name: '.tr + 'Leen Mashlah',
                 style: TextStyle(
                   fontSize: 24,
                 ),
@@ -35,11 +36,11 @@ class OrderDetailsScreen extends StatelessWidget {
               SizedBox(
                 height: 10,
               ),
-              Text('Age:' + '22'),
+              Text('Age:'.tr + '22'),
               SizedBox(
                 height: 10,
               ),
-              Text('Gender: ' + 'Female'),
+              Text('Gender: '.tr + 'Female'.tr),
               SizedBox(
                 height: 10,
               ),
@@ -53,9 +54,9 @@ class OrderDetailsScreen extends StatelessWidget {
               ),
               Row(
                 children: [
-                  Text('Order Status: '),
+                  Text('Order Status: '.tr),
                   Text(
-                    'In Progress..',
+                    'In Progress..'.tr,
                     style: TextStyle(
                       color: Colors.amber[700],
                     ),
@@ -78,7 +79,7 @@ class OrderDetailsScreen extends StatelessWidget {
                 height: 10,
               ),
               Text(
-                'Notes: ',
+                'Notes:'.tr,
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
               ),
               Padding(
@@ -90,7 +91,7 @@ class OrderDetailsScreen extends StatelessWidget {
                 height: 10,
               ),
               Text(
-                'Images: ',
+                'Images:'.tr,
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
               SingleChildScrollView(
@@ -139,7 +140,7 @@ class OrderDetailsScreen extends StatelessWidget {
                 height: 15,
               ),
               Text(
-                'Comments: ',
+                'Comments:'.tr,
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
               SingleChildScrollView(

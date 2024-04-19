@@ -70,12 +70,12 @@ class AddOrderScreen extends GetView {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                myTextField(patientnamecontroller, context, 'Patient Name',
+                myTextField(patientnamecontroller, context, 'Patient Name'.tr,
                     Icon(Icons.person)),
                 SizedBox(
                   height: 30,
                 ),
-                myTextField(agecontroller, context, 'Age',
+                myTextField(agecontroller, context, 'Age'.tr,
                     Icon(Icons.hourglass_full_outlined)),
                 SizedBox(
                   height: 30,
@@ -95,9 +95,9 @@ class AddOrderScreen extends GetView {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('Need Trial'),
+                    Text('Need Trial'.tr),
                     statefull(),
-                    Text('Rpeat'),
+                    Text('Repeat'.tr),
                     statefull(),
                   ],
                 ),
@@ -133,7 +133,7 @@ class AddOrderScreen extends GetView {
                   menuHeight: 260,
                   width: 150,
                   label: Text(
-                    'Shade',
+                    'Shade'.tr,
                     style: TextStyle(fontSize: 15),
                   ),
                 ),
@@ -149,12 +149,19 @@ class AddOrderScreen extends GetView {
                 SizedBox(
                   height: 30,
                 ),
+                Text(
+                  'Expected Delivery date:'.tr,
+                  style: TextStyle(fontSize: 18),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
                 datePicker(context),
                 SizedBox(
                   height: 30,
                 ),
                 myTextField(
-                    notecontroller, context, 'Notes', Icon(Icons.edit_note),
+                    notecontroller, context, 'Notes'.tr, Icon(Icons.edit_note),
                     height: 5),
                 SizedBox(
                   height: 30,
@@ -165,7 +172,7 @@ class AddOrderScreen extends GetView {
                 ),
                 defaultButton(
                     width: 150,
-                    text: 'Next',
+                    text: 'Next'.tr,
                     function: () {
                       Get.toNamed('/teethselect');
                     },

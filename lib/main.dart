@@ -4,6 +4,7 @@ import 'package:project_lambda_dental/Cache/CacheHelper.dart';
 import 'package:project_lambda_dental/Services/dio.dart';
 import 'package:project_lambda_dental/View/AddOrderScreen.dart';
 import 'package:project_lambda_dental/View/LoginScreen.dart';
+import 'package:project_lambda_dental/View/OrderDetailsScreen.dart';
 import 'package:project_lambda_dental/View/RegisterScreen.dart';
 import 'package:get/get.dart';
 
@@ -50,6 +51,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/register', page: () => RegisterScreen()),
         GetPage(name: '/orderlist', page: () => OrderListScreen()),
         GetPage(name: '/addorder', page: () => AddOrderScreen()),
+        GetPage(name: '/orderdetails', page: () => OrderDetailsScreen()),
         GetPage(
             name: '/teethselect',
             page: () => TeethSelectionScreen(

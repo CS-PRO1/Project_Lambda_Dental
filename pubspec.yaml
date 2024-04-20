@@ -43,6 +43,7 @@ dependencies:
   xml:
   path_drawing:
   get_storage:
+  timelines: ^0.1.0
 
 dev_dependencies:
   flutter_test:

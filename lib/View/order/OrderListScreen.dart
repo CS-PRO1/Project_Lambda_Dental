@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:project_lambda_dental/shared/component/constants.dart';
 
 class OrderListScreen extends GetView {
   const OrderListScreen({super.key});
@@ -13,16 +14,42 @@ class OrderListScreen extends GetView {
     //   builder: (context, state) => Scaffold(
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.black,
+        leading: PopupMenuButton(
+            icon: const Icon(Icons.menu),
+            itemBuilder: (context) => [
+                  PopupMenuItem(
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.monetization_on_outlined,
+                            color: Colors.black,
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Container(
+                            child: Text(
+                              'Bills'.tr,
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 19,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      onTap: () => Get.toNamed('/bills')),
+                ]),
+        backgroundColor: cyan200,
+        scrolledUnderElevation: 0,
         centerTitle: true,
-        title: Text('Orders'.tr),
+        title: Text('Cases'.tr),
         actions: [
           IconButton(onPressed: () {}, icon: Icon(Icons.search_rounded))
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(10),
         child: ListView.separated(
             physics: BouncingScrollPhysics(),
             shrinkWrap: true,
@@ -35,7 +62,7 @@ class OrderListScreen extends GetView {
                 )),
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.cyan[200],
+        backgroundColor: cyan200,
         child: Icon(Icons.add),
         onPressed: () {
           Get.toNamed('/addorder');
@@ -45,35 +72,31 @@ class OrderListScreen extends GetView {
   }
 
   catItemBuilder(context, index) {
-    return Padding(
-      padding: const EdgeInsets.all(15.0),
-      child: InkWell(
-        onTap: () {
-          Get.toNamed('/orderdetails');
-        },
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Flexible(
-              child: Text(
-                'Patient Name'.tr,
-                style: Theme.of(context).textTheme.headline6,
-                overflow: TextOverflow.ellipsis,
+    return InkWell(
+      onTap: () => Get.toNamed('/orderdetails'),
+      child: Card(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        child: Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Flexible(
+                child: Text(
+                  'Patient Name'.tr,
+                  style: Theme.of(context).textTheme.headline6,
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
-            ),
-            Column(
-              children: [
-                Text('Number'.tr),
-                Container(
-                    // color: Colors.grey,
-                    // width: double.infinity,
-                    // height: 1,
-                    ),
-                Text('Status'.tr),
-              ],
-            ),
-            Icon(Icons.arrow_forward_ios_rounded),
-          ],
+              Column(
+                children: [
+                  Text('2024/12/9'.tr),
+                  Text('Status: Ready'.tr),
+                ],
+              ),
+              Icon(Icons.arrow_forward_ios_rounded),
+            ],
+          ),
         ),
       ),
     );

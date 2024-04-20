@@ -1,4 +1,3 @@
-import 'dart:ffi';
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
@@ -127,8 +126,7 @@ Widget datePicker(BuildContext context) {
     child: Card(
       color: bglight,
       elevation: 1,
-      shape:
-          LinearBorder.bottom(side: BorderSide(color: cyan400, width: 2)),
+      shape: LinearBorder.bottom(side: BorderSide(color: cyan400, width: 2)),
       child: InkWell(
         onTap: _showDatePicker,
         child: Padding(
@@ -212,6 +210,55 @@ Widget myTextField(TextEditingController controller, BuildContext context,
       errorBorder: OutlineInputBorder(
         borderSide: const BorderSide(color: Colors.redAccent, width: 2.0),
         borderRadius: ActiveBorderRadius,
+      ),
+    ),
+  );
+}
+
+Widget orderdetailsCard({
+  required String title,
+  required String description,
+  Icon? icon,
+  bool centertitle = true,
+}) {
+  return Card(
+    shape: RoundedRectangleBorder(
+        side: BorderSide(width: .1, color: cyan400),
+        borderRadius: BorderRadius.all(Radius.circular(10))),
+    child: Padding(
+      padding: const EdgeInsets.all(12.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          Row(
+            mainAxisAlignment: centertitle
+                ? MainAxisAlignment.center
+                : MainAxisAlignment.start,
+            children: [
+              Text(
+                title,
+                style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xff5e6172)),
+              ),
+            ],
+          ),
+          Container(
+            height: 1,
+            width: double.infinity,
+            color: cyan400,
+            margin: EdgeInsets.only(bottom: 5),
+          ),
+          Text(
+            description,
+            style: TextStyle(
+              fontSize: 18,
+              color: Color(0xff5e6172),
+            ),
+          ),
+        ],
       ),
     ),
   );

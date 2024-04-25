@@ -1,3 +1,4 @@
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
@@ -39,5 +40,23 @@ class LoginController extends GetxController {
     }).catchError((error) {
       Fluttertoast.showToast(msg: error.toString());
     });
+  }
+
+  void allow_notifications() {
+    //TODO: Add this later to settings
+    AwesomeNotifications().isNotificationAllowed().then((isAllowed) {
+      if (!isAllowed) {
+        AwesomeNotifications().requestPermissionToSendNotifications();
+      }
+    });
+  }
+
+  void triggerNotifications() {
+    AwesomeNotifications().createNotification(
+        content: NotificationContent(
+            id: 10,
+            channelKey: 'basic_channel',
+            title: 'Al_Hamwi Lab',
+            body: 'Your case is Ready!'));
   }
 }

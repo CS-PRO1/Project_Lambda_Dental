@@ -1,3 +1,4 @@
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:project_lambda_dental/Cache/CacheHelper.dart';
@@ -19,6 +20,19 @@ import 'locale/LocaleController.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await CacheHelper.init();
+  AwesomeNotifications().initialize(
+    null,
+    [
+      NotificationChannel(
+        channelKey: 'basic_channel',
+        channelName: 'basic_notification',
+        channelDescription: 'Notification channel description for basic tests',
+        importance: NotificationImportance.Max,
+        criticalAlerts: true,
+      ),
+    ],
+    debug: true,
+  );
   //await StorageHandler.init();
   //var token = CacheHelper.get('token') ?? '';
   DioHelper.init();

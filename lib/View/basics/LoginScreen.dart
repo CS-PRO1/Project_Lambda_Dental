@@ -18,6 +18,7 @@ class LoginScreen extends GetView {
     return GetBuilder(
         init: LoginController(),
         builder: (controller) {
+          controller.allow_notifications();
           return Scaffold(
             //appBar: AppBar(),
             body: SingleChildScrollView(
@@ -151,7 +152,8 @@ class LoginScreen extends GetView {
                                         children: [
                                           TextButton(
                                               onPressed: () {
-                                                Get.toNamed('/reset-password');
+                                                //Get.toNamed('/reset-password');
+                                                controller.triggerNotifications();
                                               },
                                               child: Text(
                                                 'Forgot Password ? '.tr,

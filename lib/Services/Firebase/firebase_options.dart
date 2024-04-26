@@ -17,17 +17,29 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      return web;
+      throw UnsupportedError(
+        'DefaultFirebaseOptions have not been configured for web - '
+        'you can reconfigure this by running the FlutterFire CLI again.',
+      );
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        return ios;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for ios - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.macOS:
-        return macos;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for macos - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.windows:
-        return windows;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for windows - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.linux:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for linux - '
@@ -40,49 +52,11 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyB1Q5ZMZvv1C0tTwRPXft3wl7BlBTXpfcA',
-    appId: '1:483607190618:web:b02647b35c78978bd10c63',
-    messagingSenderId: '483607190618',
-    projectId: 'project-lambdadent',
-    authDomain: 'project-lambdadent.firebaseapp.com',
-    storageBucket: 'project-lambdadent.appspot.com',
-    measurementId: 'G-9NNLER6L8G',
-  );
-
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAGXHyPSSRSoH4pwypSWtIa03v-FDVmo9A',
-    appId: '1:483607190618:android:a6e13abb037958d7d10c63',
-    messagingSenderId: '483607190618',
-    projectId: 'project-lambdadent',
-    storageBucket: 'project-lambdadent.appspot.com',
-  );
-
-  static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyCgL8eb3lult8U9eW_hedMF0RIe6zeplR8',
-    appId: '1:483607190618:ios:cc5c536978dab820d10c63',
-    messagingSenderId: '483607190618',
-    projectId: 'project-lambdadent',
-    storageBucket: 'project-lambdadent.appspot.com',
-    iosBundleId: 'com.example.flutterApplication3Getx',
-  );
-
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyCgL8eb3lult8U9eW_hedMF0RIe6zeplR8',
-    appId: '1:483607190618:ios:cc5c536978dab820d10c63',
-    messagingSenderId: '483607190618',
-    projectId: 'project-lambdadent',
-    storageBucket: 'project-lambdadent.appspot.com',
-    iosBundleId: 'com.example.flutterApplication3Getx',
-  );
-
-  static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyB1Q5ZMZvv1C0tTwRPXft3wl7BlBTXpfcA',
-    appId: '1:483607190618:web:1f7befa11d005c07d10c63',
-    messagingSenderId: '483607190618',
-    projectId: 'project-lambdadent',
-    authDomain: 'project-lambdadent.firebaseapp.com',
-    storageBucket: 'project-lambdadent.appspot.com',
-    measurementId: 'G-3ZS4Q2NNJJ',
+    apiKey: 'AIzaSyA_sJHXflbVQmXhfJ8JUp55ta8fKRLoxA4',
+    appId: '1:1066153834160:android:19cece635c34b33644ad75',
+    messagingSenderId: '1066153834160',
+    projectId: 'project-lambdadental',
+    storageBucket: 'project-lambdadental.appspot.com',
   );
 }

@@ -1,8 +1,9 @@
 import 'package:awesome_notifications/awesome_notifications.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:project_lambda_dental/Cache/CacheHelper.dart';
-import 'package:project_lambda_dental/Services/dio.dart';
+import 'package:project_lambda_dental/Services/theme/dio.dart';
 import 'package:project_lambda_dental/View/basics/settings.dart';
 import 'package:project_lambda_dental/View/order/AddOrderScreen.dart';
 import 'package:project_lambda_dental/View/basics/LoginScreen.dart';
@@ -12,6 +13,8 @@ import 'package:project_lambda_dental/View/bill/bill_details.dart';
 import 'package:project_lambda_dental/View/bill/bills.dart';
 import 'package:project_lambda_dental/locale/dictionary.dart';
 
+import 'Services/Firebase/firebase_api.dart';
+import 'Services/Firebase/firebase_options.dart';
 import 'View/order/OrderDetailsScreen.dart';
 import 'View/order/OrderListScreen.dart';
 import 'View/order/TeethSelectionScreen.dart';
@@ -20,7 +23,11 @@ import 'locale/LocaleController.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await CacheHelper.init();
-  
+    await Firebase.initializeApp(
+    name: 'LambdaDent',
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  await FirebaseApi().initNotifications(); 
   AwesomeNotifications().initialize(
     null,
     [

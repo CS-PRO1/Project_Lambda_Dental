@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 
 import 'package:project_lambda_dental/Cache/CacheHelper.dart';
 import 'package:project_lambda_dental/Model/LoginModel.dart';
-import 'package:project_lambda_dental/Services/dio.dart';
+import 'package:project_lambda_dental/Services/theme/dio.dart';
 
 class LoginController extends GetxController {
   bool loginsuccess = false;

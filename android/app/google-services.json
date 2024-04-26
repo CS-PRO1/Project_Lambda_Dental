@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1066153834160",
+    "project_id": "project-lambdadental",
+    "storage_bucket": "project-lambdadental.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1066153834160:android:19cece635c34b33644ad75",
+        "android_client_info": {
+          "package_name": "com.example.flutter_application_3_getx"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_sJHXflbVQmXhfJ8JUp55ta8fKRLoxA4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

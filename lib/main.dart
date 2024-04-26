@@ -20,6 +20,7 @@ import 'locale/LocaleController.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await CacheHelper.init();
+  
   AwesomeNotifications().initialize(
     null,
     [

@@ -45,6 +45,8 @@ dependencies:
   get_storage:
   timelines: ^0.1.0
   awesome_notifications:
+  firebase_core:
+  firebase_messaging:
 
 dev_dependencies:
   flutter_test:

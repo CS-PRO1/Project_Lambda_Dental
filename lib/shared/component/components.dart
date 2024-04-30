@@ -183,22 +183,24 @@ Widget imagePicker() {
 }
 
 Widget myTextField(TextEditingController controller, BuildContext context,
-    String label, Icon icon,
-    {int height = 1}) {
+    String label, Icon prefixIcon,
+    {int height = 1,
+    int maxLines = 1,
+    Widget? postfixicon,
+    bool obscureText = false,
+    String? Function(String?)? validator,
+    TextInputType? keyboardType}) {
   return TextFormField(
     minLines: height,
-    maxLines: 50,
+    maxLines: maxLines,
     controller: controller,
-    validator: (value) {
-      if (value!.isEmpty) {
-        return 'Please Enter your email address';
-      }
-      return null;
-    },
-    keyboardType: TextInputType.emailAddress,
+    validator: validator,
+    keyboardType: keyboardType,
+    obscureText: obscureText,
     decoration: InputDecoration(
       label: Text(label),
-      prefixIcon: icon,
+      prefixIcon: prefixIcon,
+      suffixIcon: postfixicon,
       enabledBorder: OutlineInputBorder(
           borderSide: const BorderSide(color: Colors.grey, width: 2.0),
           borderRadius: StandardBorderRadius),
@@ -262,11 +264,7 @@ Widget orderdetailsCard({
       ),
     ),
   );
-
-  
 }
-
-
 
 Widget NumInput(BuildContext context) {
   return SizedBox(

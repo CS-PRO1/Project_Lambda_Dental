@@ -64,60 +64,44 @@ class LoginScreen extends GetView {
                                         const SizedBox(
                                           height: 0,
                                         ),
-                                        myTextField(emailcontroller, context,
-                                            'Email'.tr, Icon(Icons.mail)),
+                                        myTextField(
+                                          emailcontroller,
+                                          context,
+                                          'Email'.tr,
+                                          Icon(Icons.mail),
+                                          keyboardType:
+                                              TextInputType.emailAddress,
+                                          validator: (value) {
+                                            if (value!.isEmpty) {
+                                              return 'Please Enter your Email'
+                                                  .tr;
+                                            }
+                                            return null;
+                                          },
+                                        ),
                                         const SizedBox(
                                           height: 30.0,
                                         ),
-                                        TextFormField(
-                                          controller: passwordcontroller,
+                                        myTextField(
+                                          passwordcontroller,
+                                          context,
+                                          'Password',
+                                          Icon(Icons.password),
                                           obscureText: !controller.showpassword,
                                           validator: (value) {
                                             if (value!.isEmpty) {
                                               return 'Please Enter your password'
-                                                  .tr
                                                   .tr;
                                             }
                                             return null;
                                           },
                                           keyboardType:
                                               TextInputType.visiblePassword,
-                                          onFieldSubmitted: (value) {},
-                                          decoration: InputDecoration(
-                                            label: Text('Password'.tr),
-                                            prefixIcon: const Icon(
-                                                Icons.password_rounded),
-                                            suffixIcon: IconButton(
-                                              icon: controller.passeyeicon,
-                                              onPressed: () {
-                                                controller.controlPassword();
-                                                if (controller.loginsuccess) {
-                                                  Get.toNamed('/home');
-                                                }
-                                              },
-                                            ),
-                                            enabledBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                    color: Colors.grey,
-                                                    width: 2.0),
-                                                borderRadius:
-                                                    BorderRadius.circular(
-                                                        30.0)),
-                                            focusedBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                    color: Theme.of(context)
-                                                        .primaryColor,
-                                                    width: 3.0),
-                                                borderRadius:
-                                                    BorderRadius.circular(
-                                                        10.0)),
-                                            errorBorder: OutlineInputBorder(
-                                              borderSide: const BorderSide(
-                                                  color: Colors.redAccent,
-                                                  width: 2.0),
-                                              borderRadius:
-                                                  BorderRadius.circular(10.0),
-                                            ),
+                                          postfixicon: IconButton(
+                                            icon: controller.passeyeicon,
+                                            onPressed: () {
+                                              controller.controlPassword();
+                                            },
                                           ),
                                         ),
                                         const SizedBox(

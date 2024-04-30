@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:project_lambda_dental/Cache/CacheHelper.dart';
 import 'package:project_lambda_dental/Services/theme/dio.dart';
+import 'package:project_lambda_dental/View/basics/Register.dart';
 import 'package:project_lambda_dental/View/basics/settings.dart';
 import 'package:project_lambda_dental/View/basics/verify_screen.dart';
 import 'package:project_lambda_dental/View/order/AddOrderScreen.dart';
 import 'package:project_lambda_dental/View/basics/LoginScreen.dart';
-import 'package:project_lambda_dental/View/basics/RegisterScreen.dart';
 import 'package:get/get.dart';
 import 'package:project_lambda_dental/View/bill/bill_details.dart';
 import 'package:project_lambda_dental/View/bill/bills.dart';
@@ -82,7 +82,7 @@ class MyApp extends StatelessWidget {
       getPages: [
         GetPage(name: '/', page: () => LoginScreen()),
         GetPage(name: '/settings', page: () => Settings()),
-        GetPage(name: '/register', page: () => RegisterScreen()),
+        GetPage(name: '/register', page: () => Register()),
         GetPage(name: '/orderlist', page: () => OrderListScreen()),
         GetPage(name: '/addorder', page: () => AddOrderScreen()),
         GetPage(name: '/orderdetails', page: () => OrderDetailsScreen()),

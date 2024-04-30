@@ -50,7 +50,7 @@ class Dictionary extends Translations {
           "Send": "ارسال",
           /*Login--------------------------------------------*/
           "Login": "تسجيل الدخول",
-          "Email": "البريد الالكنروني",
+          "Email": "البريد الالكتروني",
           "Password": "كلمة المرور",
           "Forgot Password ? ": "نسيت كلمة المرور؟",
           "LOGIN": "تسجبل الدخول",

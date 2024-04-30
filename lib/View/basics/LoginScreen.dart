@@ -232,7 +232,7 @@ class LoginScreen extends GetView {
                                                 )),
                                             TextButton(
                                               onPressed: () {
-                                                Get.toNamed('/verify-email');
+                                                Get.toNamed('/register');
                                               },
                                               child: Text(
                                                 'Register'.tr,

@@ -107,34 +107,47 @@ class LoginScreen extends GetView {
                                         const SizedBox(
                                           height: 30,
                                         ),
-                                        TextButton(
-                                          onPressed: () {
-                                            // if (formkey.currentState!
-                                            //     .validate()) {
-                                            //   controller.requestLogin(
-                                            //       emailcontroller.text,
-                                            //       passwordcontroller.text);
-                                            // }
+                                        // TextButton(
+                                        //   onPressed: () {
+                                        //     // if (formkey.currentState!
+                                        //     //     .validate()) {
+                                        //     //   controller.requestLogin(
+                                        //     //       emailcontroller.text,
+                                        //     //       passwordcontroller.text);
+                                        //     // }
+                                        //     Get.offAndToNamed('/home');
+                                        //   },
+                                        //   child: Container(
+                                        //     decoration: BoxDecoration(
+                                        //       color: Theme.of(context)
+                                        //           .primaryColor,
+                                        //       borderRadius:
+                                        //           BorderRadius.circular(30.0),
+                                        //     ),
+                                        //     //height: 60,
+                                        //     width: 150,
+                                        //     padding: const EdgeInsets.all(15),
+                                        //     child: Text(
+                                        //       'Login'.tr,
+                                        //       textAlign: TextAlign.center,
+                                        //       style: TextStyle(
+                                        //           fontSize: 16,
+                                        //           color: Colors.white),
+                                        //     ),
+                                        //   ),
+                                        // ),
+                                        defaultButton(
+                                          text: 'Login',
+                                          textsize: 16,
+                                          function: () {
+                                            if (formkey.currentState!
+                                                .validate()) {
+                                              controller.requestLogin(
+                                                  emailcontroller.text,
+                                                  passwordcontroller.text);
+                                            }
                                             Get.offAndToNamed('/home');
                                           },
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                              color: Theme.of(context)
-                                                  .primaryColor,
-                                              borderRadius:
-                                                  BorderRadius.circular(30.0),
-                                            ),
-                                            //height: 60,
-                                            width: 150,
-                                            padding: const EdgeInsets.all(15),
-                                            child: Text(
-                                              'Login'.tr,
-                                              textAlign: TextAlign.center,
-                                              style: TextStyle(
-                                                  fontSize: 16,
-                                                  color: Colors.white),
-                                            ),
-                                          ),
                                         ),
                                         SizedBox(
                                           height: 25,

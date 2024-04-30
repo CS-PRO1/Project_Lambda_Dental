@@ -162,7 +162,7 @@ class AddOrderScreen extends GetView {
                 ),
                 myTextField(
                     notecontroller, context, 'Notes'.tr, Icon(Icons.edit_note),
-                    height: 5),
+                    height: 5, maxLines: 50),
                 SizedBox(
                   height: 30,
                 ),

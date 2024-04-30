@@ -80,7 +80,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       getPages: [
-        GetPage(name: '/', page: () => VerifyScreen()),
+        GetPage(name: '/', page: () => LoginScreen()),
         GetPage(name: '/settings', page: () => Settings()),
         GetPage(name: '/register', page: () => RegisterScreen()),
         GetPage(name: '/orderlist', page: () => OrderListScreen()),

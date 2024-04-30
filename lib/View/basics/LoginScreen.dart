@@ -164,7 +164,6 @@ class LoginScreen extends GetView {
                                                   showModalBottomSheet(
                                                       context: context,
                                                       isDismissible: true,
-                                                      
                                                       shape: RoundedRectangleBorder(
                                                           borderRadius:
                                                               BorderRadius.only(
@@ -174,70 +173,9 @@ class LoginScreen extends GetView {
                                                                   topRight: Radius
                                                                       .circular(
                                                                           50))),
-                                                      builder: (context) {
-                                                        return Container(
-                                                          height: 400,
-                                                          width:
-                                                              double.infinity,
-                                                          child: Padding(
-                                                            padding:
-                                                                EdgeInsets.all(
-                                                                    30),
-                                                            child: Column(
-                                                              children: [
-                                                                Text(
-                                                                  'Forgot Password?',
-                                                                  style: TextStyle(
-                                                                      fontSize:
-                                                                          25,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .bold),
-                                                                ),
-                                                                SizedBox(
-                                                                  height: 30,
-                                                                ),
-                                                                Text(
-                                                                  'Enter your email for the verification process, \nwe will send a 6 digit code to your email',
-                                                                  style: TextStyle(
-                                                                      color: Colors
-                                                                              .grey[
-                                                                          600],
-                                                                      fontSize:
-                                                                          16),
-                                                                ),
-                                                                SizedBox(
-                                                                  height: 35,
-                                                                ),
-                                                                myTextField(
-                                                                  emailcontroller,
-                                                                  context,
-                                                                  'Email',
-                                                                  Icon(Icons
-                                                                      .mail_lock),
-                                                                ),
-                                                                SizedBox(
-                                                                  height: 45,
-                                                                ),
-                                                                defaultButton(
-                                                                    text:
-                                                                        'Continue',
-                                                                    function:
-                                                                        () {
-                                                                          
-                                                                      showModalBottomSheet(
-                                                                          context:
-                                                                              context,
-                                                                          builder:
-                                                                              (context) {
-                                                                            return Container();
-                                                                          });
-                                                                    })
-                                                              ],
-                                                            ),
-                                                          ),
-                                                        );
-                                                      });
+                                                      builder: (context) =>
+                                                          forgotPasswordEmailBuilder(
+                                                              context));
                                                 },
                                                 child: Text(
                                                   'Forgot Password ? '.tr,
@@ -293,5 +231,119 @@ class LoginScreen extends GetView {
             ),
           );
         });
+  }
+
+  Widget forgotPasswordEmailBuilder(context) {
+    return Container(
+      height: 400,
+      width: double.infinity,
+      child: Padding(
+        padding: EdgeInsets.all(30),
+        child: Column(
+          children: [
+            Text(
+              'Forgot Password?',
+              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            Text(
+              'Enter your email for the verification process, \nwe will send a 6 digit code to your email',
+              style: TextStyle(color: Colors.grey[600], fontSize: 16),
+            ),
+            SizedBox(
+              height: 35,
+            ),
+            myTextField(
+              emailcontroller,
+              context,
+              'Email',
+              Icon(Icons.mail_lock),
+            ),
+            SizedBox(
+              height: 45,
+            ),
+            defaultButton(
+                text: 'Continue',
+                function: () {
+                  Navigator.pop(context);
+
+                  showModalBottomSheet(
+                      context: context,
+                      builder: (context) => forgotPasswordCodeBuilder(context));
+                })
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget forgotPasswordCodeBuilder(context) {
+    return Container(
+      height: 400,
+      width: double.infinity,
+      child: Padding(
+        padding: EdgeInsets.all(30),
+        child: Column(
+          children: [
+            Text(
+              'Enter 6-Digit Code',
+              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            Text(
+              'Enter the 6-Digit code that you\'ve received on your Email.',
+              style: TextStyle(color: Colors.grey[600], fontSize: 16),
+            ),
+            SizedBox(
+              height: 35,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                NumInput(context),
+                SizedBox(
+                  width: 10,
+                ),
+                NumInput(context),
+                SizedBox(
+                  width: 10,
+                ),
+                NumInput(context),
+                SizedBox(
+                  width: 10,
+                ),
+                NumInput(context),
+                SizedBox(
+                  width: 10,
+                ),
+                NumInput(context),
+                SizedBox(
+                  width: 10,
+                ),
+                NumInput(context),
+              ],
+            ),
+            SizedBox(
+              height: 45,
+            ),
+            defaultButton(
+                text: 'Continue',
+                function: () {
+                  Navigator.pop(context);
+
+                  showModalBottomSheet(
+                      context: context,
+                      builder: (context) {
+                        return Container();
+                      });
+                })
+          ],
+        ),
+      ),
+    );
   }
 }

@@ -158,6 +158,7 @@ class LoginScreen extends GetView {
                                                   showModalBottomSheet(
                                                       context: context,
                                                       isDismissible: true,
+                                                      
                                                       shape: RoundedRectangleBorder(
                                                           borderRadius:
                                                               BorderRadius.only(
@@ -216,7 +217,16 @@ class LoginScreen extends GetView {
                                                                     text:
                                                                         'Continue',
                                                                     function:
-                                                                        () {})
+                                                                        () {
+                                                                          
+                                                                      showModalBottomSheet(
+                                                                          context:
+                                                                              context,
+                                                                          builder:
+                                                                              (context) {
+                                                                            return Container();
+                                                                          });
+                                                                    })
                                                               ],
                                                             ),
                                                           ),

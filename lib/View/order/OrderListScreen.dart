@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:project_lambda_dental/shared/component/components.dart';
 import 'package:project_lambda_dental/shared/component/constants.dart';
 
 class OrderListScreen extends GetView {
@@ -13,68 +14,9 @@ class OrderListScreen extends GetView {
     //   listener: (context, state) {},
     //   builder: (context, state) => Scaffold(
     return Scaffold(
-      appBar: AppBar(
-        leading: PopupMenuButton(
-            icon: const Icon(Icons.menu),
-            itemBuilder: (context) => [
-                  PopupMenuItem(
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.settings,
-                            color: cyan500,
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Container(
-                            child: Text(
-                              'Settings'.tr,
-                              style: TextStyle(
-                                color: cyan600,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 19,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      onTap: () => Get.toNamed('/settings')),
-                  PopupMenuItem(
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.info_outline_rounded,
-                            color: cyan500,
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Container(
-                            child: Text(
-                              'About'.tr,
-                              style: TextStyle(
-                                color: cyan600,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 19,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      onTap: () => Get.toNamed('/about')),
-                ]),
-        flexibleSpace: Container(
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: <Color>[cyan400, cyan100]),
-          ),
-        ),
-        scrolledUnderElevation: 0,
-        centerTitle: true,
-        title: Text('Cases'.tr),
+      appBar: MyAppBar(
+        title: 'Cases',
+        leading: AppBarPopupMenu(),
         actions: [
           IconButton(onPressed: () {}, icon: Icon(Icons.search_rounded))
         ],

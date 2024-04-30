@@ -299,3 +299,75 @@ Widget NumInput(BuildContext context) {
 void nextFocus(BuildContext context) {
   FocusScope.of(context).nextFocus();
 }
+
+AppBar MyAppBar(
+    {required String title, List<Widget>? actions, Widget? leading}) {
+  return AppBar(
+    leading: leading,
+    flexibleSpace: Container(
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: <Color>[cyan400, cyan100]),
+      ),
+    ),
+    scrolledUnderElevation: 0,
+    centerTitle: true,
+    title: Text(title.tr),
+    actions: actions,
+  );
+}
+
+Widget AppBarPopupMenu() {
+  return PopupMenuButton(
+      icon: const Icon(Icons.menu),
+      itemBuilder: (context) => [
+            PopupMenuItem(
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.settings,
+                      color: cyan500,
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Container(
+                      child: Text(
+                        'Settings'.tr,
+                        style: TextStyle(
+                          color: cyan600,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 19,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                onTap: () => Get.toNamed('/settings')),
+            PopupMenuItem(
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.info_outline_rounded,
+                      color: cyan500,
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Container(
+                      child: Text(
+                        'About'.tr,
+                        style: TextStyle(
+                          color: cyan600,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 19,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                onTap: () => Get.toNamed('/about')),
+          ]);
+}

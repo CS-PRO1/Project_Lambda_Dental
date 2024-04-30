@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:project_lambda_dental/shared/component/components.dart';
 import 'package:project_lambda_dental/shared/component/constants.dart';
 
 class OrderListScreen extends GetView {
@@ -13,37 +14,9 @@ class OrderListScreen extends GetView {
     //   listener: (context, state) {},
     //   builder: (context, state) => Scaffold(
     return Scaffold(
-      appBar: AppBar(
-        leading: PopupMenuButton(
-            icon: const Icon(Icons.menu),
-            itemBuilder: (context) => [
-                  PopupMenuItem(
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.monetization_on_outlined,
-                            color: Colors.black,
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Container(
-                            child: Text(
-                              'Bills'.tr,
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 19,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      onTap: () => Get.toNamed('/bills')),
-                ]),
-        backgroundColor: cyan200,
-        scrolledUnderElevation: 0,
-        centerTitle: true,
-        title: Text('Cases'.tr),
+      appBar: MyAppBar(
+        title: 'Cases',
+        leading: AppBarPopupMenu(),
         actions: [
           IconButton(onPressed: () {}, icon: Icon(Icons.search_rounded))
         ],

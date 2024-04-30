@@ -65,13 +65,13 @@ class Dictionary extends Translations {
           "Bills": "الفواتير",
           "date to :": "من يوم",
           "date from :": "الى يوم",
+          /*Register*/
+          "User Name": "اسم المستخدم",
+          "Phone Number": "رقم الهاتف",
+          "Address": "العنوان",
+          "Confirm Password": "تأكيد كلمة المرور",
+          "Already had an account ?": "لديك حساب مسبقا؟",
           /* */
-          "": "",
-          "": "",
-          "": "",
-          "": "",
-          "": "",
-          "": "",
           "": "",
           "": "",
           "": "",
@@ -145,6 +145,12 @@ class Dictionary extends Translations {
           "Bills": "Bills",
           "date to :": "date to :",
           "date from :": "date from :",
+          /*Register*/
+          "User Name": "User Name",
+          "Phone Number": "Phone Number",
+          "Address": "Address",
+          "Confirm Password": "Confirm Password",
+          "Already had an account ?": "Already had an account ?",
           /* */
           "": "",
           "": "",

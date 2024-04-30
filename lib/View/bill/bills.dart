@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:project_lambda_dental/shared/component/components.dart';
 
 class Bills extends GetView {
   const Bills({super.key});
@@ -12,11 +13,9 @@ class Bills extends GetView {
     //   listener: (context, state) {},
     //   builder: (context, state) => Scaffold(
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.black,
-        centerTitle: true,
-        title: Text('Bills'.tr),
+      appBar: MyAppBar(
+        title: 'Bills',
+        leading: AppBarPopupMenu(),
         actions: [
           IconButton(onPressed: () {}, icon: Icon(Icons.search_rounded))
         ],

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:project_lambda_dental/Cache/CacheHelper.dart';
 import 'package:project_lambda_dental/Services/theme/dio.dart';
+import 'package:project_lambda_dental/View/basics/LandingScreen.dart';
 import 'package:project_lambda_dental/View/basics/Register.dart';
 import 'package:project_lambda_dental/View/basics/settings.dart';
 import 'package:project_lambda_dental/View/basics/verify_screen.dart';
@@ -81,6 +82,7 @@ class MyApp extends StatelessWidget {
       ),
       getPages: [
         GetPage(name: '/', page: () => LoginScreen()),
+        GetPage(name: '/home', page: () => LandingScreen()),
         GetPage(name: '/settings', page: () => Settings()),
         GetPage(name: '/register', page: () => Register()),
         GetPage(name: '/orderlist', page: () => OrderListScreen()),

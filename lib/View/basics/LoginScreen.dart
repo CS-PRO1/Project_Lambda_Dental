@@ -115,7 +115,7 @@ class LoginScreen extends GetView {
                                             //       emailcontroller.text,
                                             //       passwordcontroller.text);
                                             // }
-                                            Get.offAndToNamed('/orderlist');
+                                            Get.offAndToNamed('/home');
                                           },
                                           child: Container(
                                             decoration: BoxDecoration(

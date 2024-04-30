@@ -9,8 +9,13 @@ import 'package:project_lambda_dental/shared/component/constants.dart';
 // ignore: must_be_immutable
 class Register extends GetView {
   var formkey = GlobalKey<FormState>();
+
+  var usernamecontroller = TextEditingController();
   var emailcontroller = TextEditingController();
   var passwordcontroller = TextEditingController();
+  var phonenumbercontroller = TextEditingController();
+  var addresscontroller = TextEditingController();
+  var confirmpasswordcontroller = TextEditingController();
 
   Register({super.key});
   @override
@@ -61,34 +66,42 @@ class Register extends GetView {
                                         horizontal: 10.0),
                                     child: Column(
                                       children: [
-                                        myTextField(emailcontroller, context,
+                                        myTextField(usernamecontroller, context,
                                             'User Name'.tr, Icon(Icons.person)),
                                         const SizedBox(
                                           height: 25,
                                         ),
                                         myTextField(
-                                            emailcontroller,
+                                            phonenumbercontroller,
                                             context,
                                             'Phone Number'.tr,
-                                            Icon(Icons.phone)),
+                                            Icon(Icons.phone),
+                                            keyboardType: TextInputType.phone),
                                         const SizedBox(
                                           height: 25,
                                         ),
                                         myTextField(
-                                            emailcontroller,
+                                            addresscontroller,
                                             context,
                                             'Address'.tr,
-                                            Icon(Icons.pin_drop_rounded)),
+                                            Icon(Icons.pin_drop_rounded),
+                                            keyboardType:
+                                                TextInputType.streetAddress),
                                         const SizedBox(
                                           height: 25,
                                         ),
                                         myTextField(emailcontroller, context,
-                                            'Email'.tr, Icon(Icons.mail)),
+                                            'Email'.tr, Icon(Icons.mail),
+                                            keyboardType:
+                                                TextInputType.emailAddress),
                                         const SizedBox(
                                           height: 25.0,
                                         ),
-                                        TextFormField(
-                                          controller: passwordcontroller,
+                                        myTextField(
+                                          passwordcontroller,
+                                          context,
+                                          'Password',
+                                          Icon(Icons.lock_rounded),
                                           obscureText: !controller.showpassword,
                                           validator: (value) {
                                             if (value!.isEmpty) {
@@ -99,96 +112,39 @@ class Register extends GetView {
                                           },
                                           keyboardType:
                                               TextInputType.visiblePassword,
-                                          onFieldSubmitted: (value) {},
-                                          decoration: InputDecoration(
-                                            label: Text('Password'.tr),
-                                            prefixIcon: const Icon(Icons.lock),
-                                            suffixIcon: IconButton(
-                                              icon: controller.passeyeicon,
-                                              onPressed: () {
-                                                controller.controlPassword();
-                                                if (controller.loginsuccess) {
-                                                  Get.toNamed('/home');
-                                                }
-                                              },
-                                            ),
-                                            enabledBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                    color: Theme.of(context)
-                                                        .primaryColor,
-                                                    width: 2.0),
-                                                borderRadius:
-                                                    BorderRadius.circular(
-                                                        30.0)),
-                                            focusedBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                    color: Theme.of(context)
-                                                        .primaryColor,
-                                                    width: 3.0),
-                                                borderRadius:
-                                                    BorderRadius.circular(
-                                                        10.0)),
-                                            errorBorder: OutlineInputBorder(
-                                              borderSide: const BorderSide(
-                                                  color: Colors.redAccent,
-                                                  width: 2.0),
-                                              borderRadius:
-                                                  BorderRadius.circular(10.0),
-                                            ),
+                                          postfixicon: IconButton(
+                                            icon: controller.passeyeicon,
+                                            onPressed: () {
+                                              controller.controlPassword();
+                                            },
                                           ),
                                         ),
                                         SizedBox(
                                           height: 25,
                                         ),
-                                        TextFormField(
-                                          controller: passwordcontroller,
+                                        myTextField(
+                                          confirmpasswordcontroller,
+                                          context,
+                                          'Confirm Password',
+                                          Icon(Icons.lock_reset_rounded),
                                           obscureText: !controller.showpassword,
                                           validator: (value) {
                                             if (value!.isEmpty) {
                                               return 'Please Enter your password'
                                                   .tr;
                                             }
+                                            if (value !=
+                                                passwordcontroller.text)
+                                              return 'Passwords do not match. Please try again.';
                                             return null;
                                           },
                                           keyboardType:
                                               TextInputType.visiblePassword,
-                                          onFieldSubmitted: (value) {},
-                                          decoration: InputDecoration(
-                                            label: Text('Confirm Password'.tr),
-                                            prefixIcon:
-                                                const Icon(Icons.lock_reset),
-                                            suffixIcon: IconButton(
-                                              icon: controller.passeyeicon,
-                                              onPressed: () {
-                                                controller.controlPassword();
-                                                if (controller.loginsuccess) {
-                                                  Get.toNamed('/home');
-                                                }
-                                              },
-                                            ),
-                                            enabledBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                    color: Theme.of(context)
-                                                        .primaryColor,
-                                                    width: 2.0),
-                                                borderRadius:
-                                                    BorderRadius.circular(
-                                                        30.0)),
-                                            focusedBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                    color: Theme.of(context)
-                                                        .primaryColor,
-                                                    width: 3.0),
-                                                borderRadius:
-                                                    BorderRadius.circular(
-                                                        10.0)),
-                                            errorBorder: OutlineInputBorder(
-                                              borderSide: const BorderSide(
-                                                  color: Colors.redAccent,
-                                                  width: 2.0),
-                                              borderRadius:
-                                                  BorderRadius.circular(10.0),
-                                            ),
+                                          postfixicon: IconButton(
+                                            icon: controller.passeyeicon,
+                                            onPressed: () {
+                                              controller.controlPassword();
+                                            },
                                           ),
                                         ),
                                         const SizedBox(

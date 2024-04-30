@@ -183,22 +183,24 @@ Widget imagePicker() {
 }
 
 Widget myTextField(TextEditingController controller, BuildContext context,
-    String label, Icon icon,
-    {int height = 1}) {
+    String label, Icon prefixIcon,
+    {int height = 1,
+    int maxLines = 1,
+    Widget? postfixicon,
+    bool obscureText = false,
+    String? Function(String?)? validator,
+    TextInputType? keyboardType}) {
   return TextFormField(
     minLines: height,
-    maxLines: 50,
+    maxLines: maxLines,
     controller: controller,
-    validator: (value) {
-      if (value!.isEmpty) {
-        return 'Please Enter your email address';
-      }
-      return null;
-    },
-    keyboardType: TextInputType.emailAddress,
+    validator: validator,
+    keyboardType: keyboardType,
+    obscureText: obscureText,
     decoration: InputDecoration(
       label: Text(label),
-      prefixIcon: icon,
+      prefixIcon: prefixIcon,
+      suffixIcon: postfixicon,
       enabledBorder: OutlineInputBorder(
           borderSide: const BorderSide(color: Colors.grey, width: 2.0),
           borderRadius: StandardBorderRadius),
@@ -262,4 +264,38 @@ Widget orderdetailsCard({
       ),
     ),
   );
+}
+
+Widget NumInput(BuildContext context) {
+  return SizedBox(
+    width: 35,
+    height: 70,
+    child: TextFormField(
+      textAlign: TextAlign.center,
+      style: TextStyle(fontSize: 15),
+      maxLength: 1,
+      maxLines: 1,
+      keyboardType: TextInputType.number,
+      decoration: InputDecoration(
+        contentPadding: EdgeInsets.all(5),
+        counterText: '',
+        enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.grey, width: 2.0),
+            borderRadius: BorderRadius.circular(10.0)),
+        focusedBorder: OutlineInputBorder(
+            borderSide:
+                BorderSide(color: Theme.of(context).primaryColor, width: 3.0),
+            borderRadius: BorderRadius.circular(10.0)),
+        errorBorder: OutlineInputBorder(
+          borderSide: const BorderSide(color: Colors.redAccent, width: 2.0),
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+      ),
+      onChanged: (value) => nextFocus(context),
+    ),
+  );
+}
+
+void nextFocus(BuildContext context) {
+  FocusScope.of(context).nextFocus();
 }

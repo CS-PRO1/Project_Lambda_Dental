@@ -153,7 +153,8 @@ class LoginScreen extends GetView {
                                           TextButton(
                                               onPressed: () {
                                                 //Get.toNamed('/reset-password');
-                                                controller.triggerNotifications();
+                                                controller
+                                                    .triggerNotifications();
                                               },
                                               child: Text(
                                                 'Forgot Password ? '.tr,
@@ -164,7 +165,7 @@ class LoginScreen extends GetView {
                                               )),
                                           TextButton(
                                             onPressed: () {
-                                              Get.toNamed('/register');
+                                              Get.toNamed('/verify-email');
                                             },
                                             child: Text(
                                               'Register'.tr,

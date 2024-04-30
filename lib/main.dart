@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:project_lambda_dental/Cache/CacheHelper.dart';
 import 'package:project_lambda_dental/Services/theme/dio.dart';
 import 'package:project_lambda_dental/View/basics/settings.dart';
+import 'package:project_lambda_dental/View/basics/verify_screen.dart';
 import 'package:project_lambda_dental/View/order/AddOrderScreen.dart';
 import 'package:project_lambda_dental/View/basics/LoginScreen.dart';
 import 'package:project_lambda_dental/View/basics/RegisterScreen.dart';
@@ -23,11 +24,11 @@ import 'locale/LocaleController.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await CacheHelper.init();
-    await Firebase.initializeApp(
+  await Firebase.initializeApp(
     name: 'LambdaDent',
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  await FirebaseApi().initNotifications(); 
+  await FirebaseApi().initNotifications();
   AwesomeNotifications().initialize(
     null,
     [
@@ -79,7 +80,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       getPages: [
-        GetPage(name: '/', page: () => LoginScreen()),
+        GetPage(name: '/', page: () => VerifyScreen()),
         GetPage(name: '/settings', page: () => Settings()),
         GetPage(name: '/register', page: () => RegisterScreen()),
         GetPage(name: '/orderlist', page: () => OrderListScreen()),
@@ -87,6 +88,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/orderdetails', page: () => OrderDetailsScreen()),
         GetPage(name: '/bills', page: () => Bills()),
         GetPage(name: '/billdetails', page: () => BillDetails()),
+        GetPage(name: '/verify-email', page: () => VerifyScreen()),
         GetPage(
             name: '/teethselect',
             page: () => TeethSelectionScreen(

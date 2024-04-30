@@ -23,7 +23,13 @@ class Register extends GetView {
             //appBar: AppBar(),
             body: SingleChildScrollView(
               child: Container(
-                color: cyan500,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [cyan600, cyan100, cyan500],
+                  ),
+                ),
                 child: Column(
                   children: [
                     Stack(children: [

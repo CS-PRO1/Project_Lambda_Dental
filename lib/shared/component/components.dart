@@ -9,20 +9,29 @@ import 'package:project_lambda_dental/shared/component/constants.dart';
 
 Widget defaultButton({
   double width = 150,
-  Color background = cyan400,
   required String text,
   required VoidCallback function,
   double heigh = 60,
+  double? textsize,
 }) {
   return Container(
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(30),
+      gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: <Color>[cyan500, cyan400, cyan300]),
+    ),
     width: width,
     height: heigh,
     child: TextButton(
       onPressed: function,
-      child: Text(text),
+      child: Text(
+        text,
+        style: TextStyle(fontSize: textsize),
+      ),
       style: ButtonStyle(
         foregroundColor: MaterialStateProperty.all(Colors.white),
-        backgroundColor: MaterialStateProperty.all(background),
         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
           RoundedRectangleBorder(
             borderRadius: StandardBorderRadius,
@@ -370,4 +379,26 @@ Widget AppBarPopupMenu() {
                 ),
                 onTap: () => Get.toNamed('/about')),
           ]);
+}
+
+Widget MyFloatButton({VoidCallback? onTap}) {
+  return Container(
+    child: InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(15),
+      child: Container(
+        width: 52.0,
+        height: 52.0,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15),
+          color: cyan200,
+        ),
+        child: Icon(
+          Icons.add,
+          color: cyan500,
+          size: 25.0,
+        ),
+      ),
+    ),
+  );
 }

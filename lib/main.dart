@@ -9,18 +9,19 @@ import 'package:project_lambda_dental/View/basics/LandingScreen.dart';
 import 'package:project_lambda_dental/View/basics/Register.dart';
 import 'package:project_lambda_dental/View/basics/settings.dart';
 import 'package:project_lambda_dental/View/basics/verify_screen.dart';
-import 'package:project_lambda_dental/View/order/AddOrderScreen.dart';
+import 'package:project_lambda_dental/View/case/AddOrderScreen.dart';
 import 'package:project_lambda_dental/View/basics/LoginScreen.dart';
 import 'package:get/get.dart';
 import 'package:project_lambda_dental/View/bill/bill_details.dart';
 import 'package:project_lambda_dental/View/bill/bills.dart';
+import 'package:project_lambda_dental/View/case/CaseList.dart';
 import 'package:project_lambda_dental/locale/dictionary.dart';
 
 import 'Services/Firebase/firebase_api.dart';
 import 'Services/Firebase/firebase_options.dart';
-import 'View/order/OrderDetailsScreen.dart';
-import 'View/order/OrderListScreen.dart';
-import 'View/order/TeethSelectionScreen.dart';
+import 'View/case/OrderDetailsScreen.dart';
+import 'View/case/CaseList.dart';
+import 'View/case/TeethSelectionScreen.dart';
 import 'locale/LocaleController.dart';
 
 void main() async {
@@ -86,7 +87,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/home', page: () => LandingScreen()),
         GetPage(name: '/settings', page: () => Settings()),
         GetPage(name: '/register', page: () => Register()),
-        GetPage(name: '/orderlist', page: () => OrderListScreen()),
+        GetPage(name: '/orderlist', page: () => CaseList()),
         GetPage(name: '/addorder', page: () => AddOrderScreen()),
         GetPage(name: '/orderdetails', page: () => OrderDetailsScreen()),
         GetPage(name: '/bills', page: () => Bills()),

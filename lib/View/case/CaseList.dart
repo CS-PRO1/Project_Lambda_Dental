@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:project_lambda_dental/shared/component/components.dart';
 import 'package:project_lambda_dental/shared/component/constants.dart';
 
-class OrderListScreen extends GetView {
-  const OrderListScreen({super.key});
+class CaseList extends GetView {
+  const CaseList({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,24 +23,39 @@ class OrderListScreen extends GetView {
       ),
       body: Padding(
         padding: const EdgeInsets.all(10),
-        child: ListView.separated(
-            physics: BouncingScrollPhysics(),
-            shrinkWrap: true,
-            itemBuilder: (BuildContext context, int index) =>
-                catItemBuilder(context, index),
-            itemCount: 40,
-            separatorBuilder: (BuildContext context, int index) => Container(
-                  height: 1,
-                  color: Colors.grey,
-                )),
+        child: Stack(
+          children: [
+            ListView.separated(
+                physics: BouncingScrollPhysics(),
+                shrinkWrap: true,
+                itemBuilder: (BuildContext context, int index) =>
+                    catItemBuilder(context, index),
+                itemCount: 40,
+                separatorBuilder: (BuildContext context, int index) =>
+                    Container(
+                      height: 1,
+                      color: Colors.grey,
+                    )),
+            Positioned(
+              bottom: 60,
+              right: 20.0, // or whatever
+              child: MyFloatButton(
+                onTap: () {
+                  Get.toNamed('/addorder');
+                },
+              ),
+            )
+          ],
+        ),
       ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: cyan200,
-        child: Icon(Icons.add),
-        onPressed: () {
-          Get.toNamed('/addorder');
-        },
-      ),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      // floatingActionButton: FloatingActionButton(
+      //   backgroundColor: cyan200,
+      //   child: Icon(Icons.add),
+      //   onPressed: () {
+      //     Get.toNamed('/addorder');
+      //   },
+      // ),
     );
   }
 

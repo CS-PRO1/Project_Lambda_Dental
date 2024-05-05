@@ -150,34 +150,47 @@ class Register extends GetView {
                                         const SizedBox(
                                           height: 30,
                                         ),
-                                        TextButton(
-                                          onPressed: () {
-                                            // if (formkey.currentState!
-                                            //     .validate()) {
-                                            //   controller.requestLogin(
-                                            //       emailcontroller.text,
-                                            //       passwordcontroller.text);
-                                            // }
-                                            Get.offAndToNamed('/orderlist');
+                                        // TextButton(
+                                        //   onPressed: () {
+                                        //     // if (formkey.currentState!
+                                        //     //     .validate()) {
+                                        //     //   controller.requestLogin(
+                                        //     //       emailcontroller.text,
+                                        //     //       passwordcontroller.text);
+                                        //     // }
+                                        //     Get.offAndToNamed('/orderlist');
+                                        //   },
+                                        //   child: Container(
+                                        //     decoration: BoxDecoration(
+                                        //       color: Theme.of(context)
+                                        //           .primaryColor,
+                                        //       borderRadius:
+                                        //           BorderRadius.circular(30.0),
+                                        //     ),
+                                        //     //height: 60,
+                                        //     width: 150,
+                                        //     padding: const EdgeInsets.all(15),
+                                        //     child: Text(
+                                        //       'Register'.tr,
+                                        //       textAlign: TextAlign.center,
+                                        //       style: TextStyle(
+                                        //           fontSize: 16,
+                                        //           color: Colors.white),
+                                        //     ),
+                                        //   ),
+                                        // ),
+                                        defaultButton(
+                                          text: 'Register',
+                                          textsize: 16,
+                                          function: () {
+                                            if (formkey.currentState!
+                                                .validate()) {
+                                              controller.requestLogin(
+                                                  emailcontroller.text,
+                                                  passwordcontroller.text);
+                                            }
+                                            Get.offAndToNamed('/home');
                                           },
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                              color: Theme.of(context)
-                                                  .primaryColor,
-                                              borderRadius:
-                                                  BorderRadius.circular(30.0),
-                                            ),
-                                            //height: 60,
-                                            width: 150,
-                                            padding: const EdgeInsets.all(15),
-                                            child: Text(
-                                              'Register'.tr,
-                                              textAlign: TextAlign.center,
-                                              style: TextStyle(
-                                                  fontSize: 16,
-                                                  color: Colors.white),
-                                            ),
-                                          ),
                                         ),
                                         SizedBox(
                                           height: 25,
@@ -187,9 +200,10 @@ class Register extends GetView {
                                               MainAxisAlignment.center,
                                           children: [
                                             Text(
-                                              'Already had an account ?'.tr,
+                                              'Already had an account?'.tr,
                                               style: TextStyle(
-                                                  fontSize: 15,
+                                                  color: Colors.grey[600],
+                                                  fontSize: 16,
                                                   fontWeight: FontWeight.w700),
                                             ),
                                             TextButton(
@@ -199,9 +213,10 @@ class Register extends GetView {
                                               child: Text(
                                                 'Login'.tr,
                                                 style: TextStyle(
-                                                    fontSize: 15,
+                                                    color: cyan400,
+                                                    fontSize: 16,
                                                     fontWeight:
-                                                        FontWeight.w700),
+                                                        FontWeight.w900),
                                               ),
                                             )
                                           ],

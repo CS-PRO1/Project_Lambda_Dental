@@ -75,6 +75,7 @@ flutter:
     - assets/images/login/email-verify.png
     - assets/teeth.svg
     - assets/chart.jpg
+    - assets/logo_v2.png
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

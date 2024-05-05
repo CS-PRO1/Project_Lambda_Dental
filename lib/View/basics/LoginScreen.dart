@@ -189,21 +189,47 @@ class LoginScreen extends GetView {
                           ),
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 150, left: 50),
+                      Center(
+                        heightFactor: 1.4,
                         child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Icon(
-                              CupertinoIcons.tortoise_fill,
-                              size: 50,
-                              color: Colors.white,
+                            // Icon(
+                            //   CupertinoIcons.tortoise_fill,
+                            //   size: 50,
+                            //   color: Colors.white,
+                            // ),
+                            SizedBox(
+                              height: 250,
+                              width: 250,
+                              child: Card(
+                                  color: bglight.withAlpha(160),
+                                  //shadowColor: cyan600,
+                                  //surfaceTintColor: cyan100,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(30))),
+                                  elevation: 0,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(15.0),
+                                    child: Image(
+                                      image: AssetImage('assets/logo_v2.png'),
+                                    ),
+                                  )),
                             ),
                             Text(
                               'Login'.tr,
                               style: TextStyle(
-                                  fontSize: 35,
+                                  fontSize: 50,
+                                  shadows: [
+                                    Shadow(
+                                        color: Colors.black54,
+                                        blurRadius: 10,
+                                        offset: Offset(-1, 1))
+                                  ],
                                   fontWeight: FontWeight.w700,
-                                  color: Colors.white),
+                                  color: bglight),
                             ),
                           ],
                         ),

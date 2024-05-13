@@ -198,8 +198,10 @@ Widget myTextField(TextEditingController controller, BuildContext context,
     Widget? postfixicon,
     bool obscureText = false,
     String? Function(String?)? validator,
-    TextInputType? keyboardType}) {
+    TextInputType? keyboardType,
+    bool autofocus = false}) {
   return TextFormField(
+    autofocus: autofocus,
     minLines: height,
     maxLines: maxLines,
     controller: controller,
@@ -275,7 +277,7 @@ Widget orderdetailsCard({
   );
 }
 
-Widget NumInput(BuildContext context) {
+Widget NumInput(BuildContext context, {autofocus = false}) {
   return SizedBox(
     width: 35,
     height: 70,

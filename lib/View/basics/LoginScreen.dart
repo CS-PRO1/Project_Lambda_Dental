@@ -1,6 +1,7 @@
 // ignore: file_names
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:project_lambda_dental/Controller/login_controller.dart';
 import 'package:get/get.dart';
 import 'package:project_lambda_dental/shared/component/components.dart';
@@ -11,6 +12,8 @@ class LoginScreen extends GetView {
   var formkey = GlobalKey<FormState>();
   var emailcontroller = TextEditingController();
   var passwordcontroller = TextEditingController();
+  var resetpasscontroller = TextEditingController();
+  var resetpassconfirmcontroller = TextEditingController();
 
   LoginScreen({super.key});
   @override
@@ -159,6 +162,7 @@ class LoginScreen extends GetView {
                                             TextButton(
                                                 onPressed: () {
                                                   showModalBottomSheet(
+                                                      isScrollControlled: true,
                                                       context: context,
                                                       isDismissible: true,
                                                       shape: RoundedRectangleBorder(
@@ -171,8 +175,12 @@ class LoginScreen extends GetView {
                                                                       .circular(
                                                                           50))),
                                                       builder: (context) =>
-                                                          forgotPasswordEmailBuilder(
-                                                              context));
+                                                          SingleChildScrollView(
+                                                            child:
+                                                                forgotPasswordEmailBuilder(
+                                                                    controller,
+                                                                    context),
+                                                          ));
                                                 },
                                                 child: Text(
                                                   'Forgot Password ? '.tr,
@@ -256,115 +264,209 @@ class LoginScreen extends GetView {
         });
   }
 
-  Widget forgotPasswordEmailBuilder(context) {
-    return Container(
-      height: 400,
-      width: double.infinity,
-      child: Padding(
-        padding: EdgeInsets.all(30),
-        child: Column(
-          children: [
-            Text(
-              'Forgot Password?',
-              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(
-              height: 30,
-            ),
-            Text(
-              'Enter your email for the verification process, \nwe will send a 6 digit code to your email',
-              style: TextStyle(color: Colors.grey[600], fontSize: 16),
-            ),
-            SizedBox(
-              height: 35,
-            ),
-            myTextField(
-              emailcontroller,
-              context,
-              'Email',
-              Icon(Icons.mail_lock),
-            ),
-            SizedBox(
-              height: 45,
-            ),
-            defaultButton(
-                text: 'Continue',
-                function: () {
-                  Navigator.pop(context);
+  Widget forgotPasswordEmailBuilder(controller, context) {
+    return Padding(
+      padding: MediaQuery.of(context).viewInsets,
+      child: Container(
+        height: 400,
+        width: double.infinity,
+        child: Padding(
+          padding: EdgeInsets.all(30),
+          child: Column(
+            //mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                'Forgot Password?',
+                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              Text(
+                'Enter your email for the verification process, \nwe will send a 6 digit code to your email',
+                style: TextStyle(color: Colors.grey[600], fontSize: 16),
+              ),
+              SizedBox(
+                height: 35,
+              ),
+              myTextField(
+                emailcontroller,
+                context,
+                'Email',
+                Icon(Icons.mail_lock),
+                autofocus: true,
+              ),
+              SizedBox(
+                height: 45,
+              ),
+              defaultButton(
+                  text: 'Continue',
+                  function: () {
+                    Navigator.pop(context);
 
-                  showModalBottomSheet(
-                      context: context,
-                      builder: (context) => forgotPasswordCodeBuilder(context));
-                })
-          ],
+                    showModalBottomSheet(
+                        isScrollControlled: true,
+                        context: context,
+                        builder: (context) =>
+                            forgotPasswordCodeBuilder(controller, context));
+                  })
+            ],
+          ),
         ),
       ),
     );
   }
 
-  Widget forgotPasswordCodeBuilder(context) {
-    return Container(
-      height: 400,
-      width: double.infinity,
-      child: Padding(
-        padding: EdgeInsets.all(30),
-        child: Column(
-          children: [
-            Text(
-              'Enter 6-Digit Code',
-              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(
-              height: 30,
-            ),
-            Text(
-              'Enter the 6-Digit code that you\'ve received on your Email.',
-              style: TextStyle(color: Colors.grey[600], fontSize: 16),
-            ),
-            SizedBox(
-              height: 35,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                NumInput(context),
-                SizedBox(
-                  width: 10,
-                ),
-                NumInput(context),
-                SizedBox(
-                  width: 10,
-                ),
-                NumInput(context),
-                SizedBox(
-                  width: 10,
-                ),
-                NumInput(context),
-                SizedBox(
-                  width: 10,
-                ),
-                NumInput(context),
-                SizedBox(
-                  width: 10,
-                ),
-                NumInput(context),
-              ],
-            ),
-            SizedBox(
-              height: 45,
-            ),
-            defaultButton(
-                text: 'Continue',
-                function: () {
-                  Navigator.pop(context);
+  Widget forgotPasswordCodeBuilder(controller, context) {
+    return Padding(
+      padding: MediaQuery.of(context).viewInsets,
+      child: Container(
+        height: 400,
+        width: double.infinity,
+        child: Padding(
+          padding: EdgeInsets.all(30),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                'Enter 6-Digit Code',
+                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              Text(
+                'Enter the 6-Digit code that you\'ve received on your Email.',
+                style: TextStyle(color: Colors.grey[600], fontSize: 16),
+              ),
+              SizedBox(
+                height: 35,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  NumInput(context, autofocus: true),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  NumInput(context),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  NumInput(context),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  NumInput(context),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  NumInput(context),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  NumInput(context),
+                ],
+              ),
+              SizedBox(
+                height: 45,
+              ),
+              defaultButton(
+                  text: 'Continue',
+                  function: () {
+                    Navigator.pop(context);
 
-                  showModalBottomSheet(
-                      context: context,
-                      builder: (context) {
-                        return Container();
-                      });
-                })
-          ],
+                    showModalBottomSheet(
+                        isScrollControlled: true,
+                        context: context,
+                        builder: (context) {
+                          return ResetPasswordBuilder(controller, context);
+                        });
+                  })
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget ResetPasswordBuilder(controller, context) {
+    return Padding(
+      padding: MediaQuery.of(context).viewInsets,
+      child: Container(
+        height: 400,
+        width: double.infinity,
+        child: Padding(
+          padding: const EdgeInsets.all(30.0),
+          child: Column(
+            children: [
+              Text(
+                'Reset Password',
+                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Text(
+                'Set the new password to your account.',
+                style: TextStyle(color: Colors.grey[600], fontSize: 16),
+              ),
+              SizedBox(
+                height: 25,
+              ),
+              myTextField(
+                resetpasscontroller,
+                context,
+                'New Password',
+                Icon(Icons.password),
+                obscureText: !controller.showpassword,
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Please Enter your password'.tr;
+                  }
+                  return null;
+                },
+                keyboardType: TextInputType.visiblePassword,
+                postfixicon: IconButton(
+                  icon: controller.passeyeicon,
+                  onPressed: () {
+                    controller.controlPassword();
+                  },
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              myTextField(
+                resetpassconfirmcontroller,
+                context,
+                'Confirm New Password',
+                Icon(Icons.lock_reset_rounded),
+                obscureText: !controller.showpassword,
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Please confirm your new password'.tr;
+                  }
+                  return null;
+                },
+                keyboardType: TextInputType.visiblePassword,
+                postfixicon: IconButton(
+                  icon: controller.passeyeicon,
+                  onPressed: () {
+                    controller.controlPassword();
+                  },
+                ),
+              ),
+              SizedBox(
+                height: 25,
+              ),
+              defaultButton(
+                  text: 'Continue',
+                  function: () {
+                    Navigator.pop(context);
+                  })
+            ],
+          ),
         ),
       ),
     );

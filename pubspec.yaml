@@ -47,6 +47,7 @@ dependencies:
   awesome_notifications:
   firebase_core:
   firebase_messaging:
+  flutter_native_splash: ^2.2.16
 
 dev_dependencies:
   flutter_test:

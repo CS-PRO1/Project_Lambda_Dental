@@ -19,6 +19,7 @@ import 'package:project_lambda_dental/locale/dictionary.dart';
 
 import 'Services/Firebase/firebase_api.dart';
 import 'Services/Firebase/firebase_options.dart';
+import 'View/basics/WelcomeScreen.dart';
 import 'View/case/OrderDetailsScreen.dart';
 import 'View/case/CaseList.dart';
 import 'View/case/TeethSelectionScreen.dart';
@@ -51,11 +52,24 @@ void main() async {
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
-  runApp(const MyApp());
+  var token = CacheHelper.get('token') ?? '';
+  var on_board = CacheHelper.get('on_board') ?? false;
+  Widget widget;
+  if (!on_board) {
+    widget = WelcomeScreen();
+  } else if (token == '') {
+    widget = LoginScreen();
+  } else {
+    widget = LandingScreen();
+  }
+  runApp(MyApp(widget));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  dynamic widget;
+  MyApp(widget) {
+    this.widget = widget;
+  }
 
   String adultIdToString(int id) {
     final (up, left, number) = switch (id) {
@@ -73,6 +87,7 @@ class MyApp extends StatelessWidget {
     LocaleController localeController = Get.put(LocaleController());
 
     return GetMaterialApp(
+      home: widget,
       debugShowCheckedModeBanner: false,
       title: 'Project Lambda',
       locale: localeController.initialLocale,
@@ -94,6 +109,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/billdetails', page: () => BillDetails()),
         GetPage(name: '/verify-email', page: () => VerifyScreen()),
         GetPage(name: '/about', page: () => About()),
+        GetPage(name: '/welcome', page: () => WelcomeScreen()),
         GetPage(
             name: '/teethselect',
             page: () => TeethSelectionScreen(

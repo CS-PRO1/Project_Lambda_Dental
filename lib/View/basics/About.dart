@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -9,36 +10,94 @@ class About extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: MyAppBar(title: 'About'),
-      body: SingleChildScrollView(
-        child: Container(
-          decoration: BoxDecoration(
-            color: Theme.of(context).scaffoldBackgroundColor,
-            // image: DecorationImage(
-            //   image: AssetImage("images/login_image.jpg"),
-            //   fit: BoxFit.fitHeight,
-            // ),
-          ),
-          child: Center(
-            child: Container(
-              height: 900,
-              child: SingleChildScrollView(
-                scrollDirection: Axis.vertical,
-                child: Padding(
-                  padding:
-                      const EdgeInsets.only(left: 40.0, right: 40.0, top: 400),
-                  child: Container(
-                    child: Text(
-                      'This app is special for you........................... ',
-                      style: TextStyle(color: Theme.of(context).primaryColor),
-                    ),
-                    height: 200,
-                  ),
-                ),
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [cyan600, cyan100, cyan500],
+        ),
+      ),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+            title: Text(
+              'About',
+              style: TextStyle(color: white),
+            ),
+            centerTitle: true,
+            backgroundColor: Colors.transparent,
+            leading: IconButton(
+              icon: Icon(
+                Icons.arrow_back,
+                color: white,
               ),
+              onPressed: () {
+                Get.back();
+              },
+            )),
+        body: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Padding(
+            padding: const EdgeInsets.only(top: 250),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Image(
+                  image: AssetImage(
+                    'assets/logo_v2.png',
+                  ),
+                  width: 150,
+                  height: 150,
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  '1.0.0',
+                  style: TextStyle(color: cyan500),
+                ),
+                SizedBox(
+                  height: 140,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    IconButton(
+                      icon: Icon(
+                        CupertinoIcons.phone_circle_fill,
+                        color: cyan100,
+                      ),
+                      onPressed: () {},
+                    ),
+                    Text(
+                      'contact us'.tr,
+                      style: TextStyle(color: white),
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    IconButton(
+                      icon: Icon(
+                        Icons.facebook,
+                        color: cyan100,
+                      ),
+                      onPressed: () {},
+                    ),
+                    Text(
+                      'Follow us on facebook'.tr,
+                      style: TextStyle(color: white),
+                    ),
+                  ],
+                ),
+              ],
             ),
           ),
+          //height: 200,
         ),
       ),
     );

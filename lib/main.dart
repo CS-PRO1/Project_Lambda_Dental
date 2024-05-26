@@ -6,6 +6,8 @@ import 'package:project_lambda_dental/Cache/CacheHelper.dart';
 import 'package:project_lambda_dental/Services/theme/dio.dart';
 import 'package:project_lambda_dental/View/basics/About.dart';
 import 'package:project_lambda_dental/View/basics/LandingScreen.dart';
+import 'package:project_lambda_dental/View/basics/ProfileEditScreen.dart';
+import 'package:project_lambda_dental/View/basics/ProfileScreen.dart';
 import 'package:project_lambda_dental/View/basics/Register.dart';
 import 'package:project_lambda_dental/View/basics/settings.dart';
 import 'package:project_lambda_dental/View/basics/verify_screen.dart';
@@ -101,6 +103,8 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/', page: () => LoginScreen()),
         GetPage(name: '/home', page: () => LandingScreen()),
         GetPage(name: '/settings', page: () => Settings()),
+        GetPage(name: '/profile', page: () => ProfileScreen()),
+        GetPage(name: '/profile_edit', page: () => ProfileEditScreen()),
         GetPage(name: '/register', page: () => Register()),
         GetPage(name: '/orderlist', page: () => CaseList()),
         GetPage(name: '/addorder', page: () => AddOrderScreen()),

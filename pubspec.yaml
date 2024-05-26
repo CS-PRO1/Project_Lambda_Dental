@@ -48,6 +48,7 @@ dependencies:
   firebase_core:
   firebase_messaging:
   smooth_page_indicator:
+  buildcondition:
 
 dev_dependencies:
   flutter_test:
@@ -78,6 +79,7 @@ flutter:
     - assets/chart.jpg
     - assets/logo_v2.png
     #- images/welcome/dental-pattern.png
+    - assets/images/fallback/user_default.jpg
     - assets/images/welcome/dental-pattern.png
     - assets/images/welcome/finance-pattern.png
   #   - images/a_dot_burr.jpeg

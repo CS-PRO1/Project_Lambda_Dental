@@ -47,6 +47,7 @@ dependencies:
   awesome_notifications:
   firebase_core:
   firebase_messaging:
+  flutter_native_splash: ^2.2.16
   smooth_page_indicator:
   buildcondition:
 

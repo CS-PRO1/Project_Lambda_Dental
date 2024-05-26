@@ -2,6 +2,7 @@ import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:project_lambda_dental/Cache/CacheHelper.dart';
 import 'package:project_lambda_dental/Services/theme/dio.dart';
 import 'package:project_lambda_dental/View/basics/About.dart';
@@ -28,7 +29,9 @@ import 'View/case/TeethSelectionScreen.dart';
 import 'locale/LocaleController.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  //WidgetsFlutterBinding.ensureInitialized();
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   await CacheHelper.init();
   await Firebase.initializeApp(
     name: 'LambdaDent',

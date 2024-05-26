@@ -26,22 +26,33 @@ class _SettingsState extends State<Settings> {
   @override
   Widget build(BuildContext context) {
     // MyLocalController controllerlang = Get.find();
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        //backgroundColor:Theme.of(context).scaffoldBackgroundColor,
-        backgroundColor: cyan100,
-        title: Text(
-          "Settings".tr,
-          style: TextStyle(
-              fontWeight: FontWeight.bold,
-              color: Theme.of(context).primaryColor),
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [cyan600, cyan100, cyan500],
         ),
-        centerTitle: true,
       ),
-      body: Container(
-        color: Theme.of(context).scaffoldBackgroundColor,
-        child: Padding(
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+            title: Text(
+              'Settings',
+              style: TextStyle(color: white),
+            ),
+            centerTitle: true,
+            backgroundColor: Colors.transparent,
+            leading: IconButton(
+              icon: Icon(
+                Icons.arrow_back,
+                color: white,
+              ),
+              onPressed: () {
+                Get.back();
+              },
+            )),
+        body: Padding(
           padding: const EdgeInsets.only(left: 40, right: 40),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -53,6 +64,9 @@ class _SettingsState extends State<Settings> {
                   fontSize: 15,
                   fontWeight: FontWeight.bold,
                 ),
+              ),
+              SizedBox(
+                height: 20,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -98,7 +112,7 @@ class _SettingsState extends State<Settings> {
               Divider(
                 color: cyan500,
                 thickness: 2,
-                height: 60,
+                height: 90,
               ),
               SwitchListTile(
                   title: Text(
@@ -120,7 +134,7 @@ class _SettingsState extends State<Settings> {
               Divider(
                 color: cyan500,
                 thickness: 2,
-                height: 60,
+                height: 90,
               ),
               defaultButton(
                 width: double.infinity,

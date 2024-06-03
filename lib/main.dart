@@ -67,6 +67,9 @@ void main() async {
   } else {
     widget = LandingScreen();
   }
+
+
+  FlutterNativeSplash.remove();
   runApp(MyApp(widget));
 }
 

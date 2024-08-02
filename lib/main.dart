@@ -78,16 +78,24 @@ class MyApp extends StatelessWidget {
     this.widget = widget;
   }
 
-  String adultIdToString(int id) {
-    final (up, left, number) = switch (id) {
-      < 8 => (true, false, 8 - id),
-      < 16 => (true, true, id - 8 + 1),
-      < 24 => (false, true, 24 - id),
-      < 31 => (false, false, id - 24 + 1),
-      _ => (false, false, id),
-    };
-    return '${up ? 'up' : 'down'} ${left ? 'left' : 'right'} #$number';
-  }
+  // int generateToothId(int id) {
+  //   // final (up, left, number) = switch (id) {
+  //   //   < 8 => (true, false, 8 - id),
+  //   //   < 16 => (true, true, id - 8 + 1),
+  //   //   < 24 => (false, true, 24 - id),
+  //   //   < 31 => (false, false, id - 24 + 1),
+  //   //   _ => (false, false, id),
+  //   // };
+  //   //return number;
+  //   int number = switch(id) {
+  //     < 8 => 8-id,
+  //     < 16 => id - 8 + 1,
+  //     < 24 => 24-id,
+  //     <31 => id-24 + 1,
+  //     _ => id
+  //   };
+  //   return number;
+  // }
 
   // This widget is the root of your application.
   @override
@@ -124,7 +132,7 @@ class MyApp extends StatelessWidget {
             name: '/teethselect',
             page: () => TeethSelectionScreen(
                   asset: 'assets/teeth.svg',
-                  idToString: adultIdToString,
+                  //idToString: generateToothId,
                 )),
       ],
     );

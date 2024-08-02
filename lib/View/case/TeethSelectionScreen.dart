@@ -15,10 +15,10 @@ class TeethSelectionScreen extends StatefulWidget {
   const TeethSelectionScreen({
     super.key,
     required this.asset,
-    required this.idToString,
+    //required this.generateToothId,
   });
   final String asset;
-  final String Function(int id) idToString;
+  //final int Function(int id) generateToothId;
 
   @override
   State<TeethSelectionScreen> createState() => _TeethState();
@@ -35,17 +35,21 @@ class _TeethState extends State<TeethSelectionScreen> {
     });
   }
 
+  Set<Tooth> getSelectedTeeth() {
+    return data.teeth.values.where((tooth) => tooth.selected).toSet();
+  }
+
   void _showAlertDialog(BuildContext context, Tooth tooth) {
     showCupertinoModalPopup<void>(
       context: context,
       builder: (BuildContext context) => CupertinoAlertDialog(
-        //title: const Text('Alert'),
         content: Text('Choose the treatment'.tr),
         actions: <CupertinoDialogAction>[
           CupertinoDialogAction(
             isDefaultAction: true,
             onPressed: () {
               Navigator.pop(context);
+              tooth.treatment = 'Crown';
               _showAlertDialog2(context, tooth);
             },
             child: Text('Crown'.tr),
@@ -54,6 +58,7 @@ class _TeethState extends State<TeethSelectionScreen> {
             isDefaultAction: true,
             onPressed: () {
               Navigator.pop(context);
+              tooth.treatment = 'Pontic';
               _showAlertDialog2(context, tooth);
             },
             child: Text('Pontic'.tr),
@@ -62,6 +67,7 @@ class _TeethState extends State<TeethSelectionScreen> {
             isDefaultAction: true,
             onPressed: () {
               Navigator.pop(context);
+              tooth.treatment = 'Implant';
               _showAlertDialog2(context, tooth);
             },
             child: Text('Implant'.tr),
@@ -70,6 +76,7 @@ class _TeethState extends State<TeethSelectionScreen> {
             isDefaultAction: true,
             onPressed: () {
               Navigator.pop(context);
+              tooth.treatment = 'Veneer';
               _showAlertDialog2(context, tooth);
             },
             child: Text('Veneer'.tr),
@@ -78,6 +85,7 @@ class _TeethState extends State<TeethSelectionScreen> {
             isDefaultAction: true,
             onPressed: () {
               Navigator.pop(context);
+              tooth.treatment = 'Inlay';
               _showAlertDialog2(context, tooth);
             },
             child: Text('Inlay'.tr),
@@ -86,6 +94,7 @@ class _TeethState extends State<TeethSelectionScreen> {
             isDefaultAction: true,
             onPressed: () {
               Navigator.pop(context);
+              tooth.treatment = 'Denture';
               _showAlertDialog2(context, tooth);
             },
             child: Text('Denture'.tr),
@@ -105,6 +114,7 @@ class _TeethState extends State<TeethSelectionScreen> {
             isDefaultAction: true,
             onPressed: () {
               Navigator.pop(context);
+              tooth.material = 'Zircon';
               setState(() => tooth.selected = !tooth.selected);
             },
             child: Text('Zircon'.tr),
@@ -113,6 +123,7 @@ class _TeethState extends State<TeethSelectionScreen> {
             isDefaultAction: true,
             onPressed: () {
               Navigator.pop(context);
+              tooth.material = 'Metal';
               setState(() => tooth.selected = !tooth.selected);
             },
             child: Text('Metal'.tr),
@@ -121,6 +132,7 @@ class _TeethState extends State<TeethSelectionScreen> {
             isDefaultAction: true,
             onPressed: () {
               Navigator.pop(context);
+              tooth.material = 'Wax';
               setState(() => tooth.selected = !tooth.selected);
             },
             child: Text('Wax'.tr),
@@ -129,17 +141,12 @@ class _TeethState extends State<TeethSelectionScreen> {
             isDefaultAction: true,
             onPressed: () {
               Navigator.pop(context);
+              tooth.material = 'Acrylic PMMA';
               setState(() => tooth.selected = !tooth.selected);
+              tooth.PrintToothDeets();
             },
             child: Text('Acrylic PMMA'.tr),
           ),
-          // CupertinoDialogAction(
-          //   isDestructiveAction: true,
-          //   onPressed: () {
-          //     Get.offAndToNamed('/');
-          //   },
-          //   child: const Text('Done'),
-          // ),
         ],
       ),
     );
@@ -156,6 +163,8 @@ class _TeethState extends State<TeethSelectionScreen> {
                     isDefaultAction: true,
                     onPressed: () {
                       Navigator.pop(context);
+                      tooth.treatment = null;
+                      tooth.material = null;
                       setState(() => tooth.selected = !tooth.selected);
                     },
                     child: const Text('Clear Tooth',
@@ -228,7 +237,7 @@ class _TeethState extends State<TeethSelectionScreen> {
                       Positioned.fromRect(
                         rect: tooth.rect,
                         child: Tooltip(
-                          message: 'tooth\n${widget.idToString(key)}',
+                          message: 'tooth\n${tooth.id}',
                           textAlign: TextAlign.center,
                           preferBelow: false,
                           decoration: const BoxDecoration(
@@ -268,8 +277,7 @@ class _TeethState extends State<TeethSelectionScreen> {
                                     } else
                                       _showClearDialog(context, tooth);
                                   }
-                                  print(
-                                      'tooth ${widget.idToString(key)} pressed (id $key)');
+                                  print('tooth ${tooth.id} pressed (id $key)');
                                 },
                               ),
                             ),
@@ -312,7 +320,18 @@ class _TeethState extends State<TeethSelectionScreen> {
                 ),
               ),
             ),
-            defaultButton(text: 'Send', function: () {})
+            defaultButton(
+                text: 'Send',
+                function: () {
+                  final selectedTeeth = getSelectedTeeth();
+                  for (Tooth t in selectedTeeth) {
+                    print(t.id.toString() +
+                        '\n' +
+                        t.material! +
+                        '\n' +
+                        t.treatment!);
+                  }
+                })
           ],
         ),
       ),
@@ -328,27 +347,37 @@ class _TeethState extends State<TeethSelectionScreen> {
     final h = double.parse(viewBox[3]);
 
     final teeth = doc.rootElement.findAllElements('path');
-    //print('loaded ${teeth.length} paths');
     return (
       size: Size(w, h),
       teeth: <int, Tooth>{
         for (final tooth in teeth)
-          int.parse(tooth.getAttribute('id')!):
-              Tooth(parseSvgPathData(tooth.getAttribute('i  d')!)),
+          int.parse(tooth.getAttribute('id')!): Tooth(
+            generateToothId(int.parse(tooth.getAttribute('id')!)),
+            parseSvgPathData(tooth.getAttribute('d')!),
+          ),
       },
     );
   }
 }
 
 class Tooth {
-  Tooth(Path originalPath) {
+  Tooth(this.id, Path originalPath) {
     rect = originalPath.getBounds();
     path = originalPath.shift(-rect.topLeft);
   }
 
+  final int id;
   late final Path path;
   late final Rect rect;
   bool selected = false;
+  String? treatment;
+  String? material;
+
+  void PrintToothDeets() {
+    print('id = ' + id.toString());
+    print('treatment = ' + treatment!);
+    print('material = ' + material!);
+  }
 }
 
 class ToothBorder extends ShapeBorder {
@@ -379,4 +408,15 @@ class ToothBorder extends ShapeBorder {
 
   @override
   ShapeBorder scale(double t) => this;
+}
+
+int generateToothId(int id) {
+  int number = switch (id) {
+    < 8 => 8 - id + 10,
+    < 16 => id - 8 + 1 + 20,
+    < 24 => 24 - id + 30,
+    < 31 => id - 24 + 1 + 40,
+    _ => id
+  };
+  return number;
 }

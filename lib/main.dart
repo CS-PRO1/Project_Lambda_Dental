@@ -68,7 +68,6 @@ void main() async {
     widget = LandingScreen();
   }
 
-
   FlutterNativeSplash.remove();
   runApp(MyApp(widget));
 }
@@ -84,7 +83,8 @@ class MyApp extends StatelessWidget {
       < 8 => (true, false, 8 - id),
       < 16 => (true, true, id - 8 + 1),
       < 24 => (false, true, 24 - id),
-      _ => (false, false, id - 24 + 1),
+      < 31 => (false, false, id - 24 + 1),
+      _ => (false, false, id),
     };
     return '${up ? 'up' : 'down'} ${left ? 'left' : 'right'} #$number';
   }

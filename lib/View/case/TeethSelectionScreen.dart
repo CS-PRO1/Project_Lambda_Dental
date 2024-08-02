@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:path_drawing/path_drawing.dart';
 import 'package:project_lambda_dental/shared/component/components.dart';
@@ -236,7 +237,7 @@ class _TeethState extends State<TeethSelectionScreen> {
                                 horizontal: BorderSide(color: Colors.white54)),
                           ),
                           child: AnimatedContainer(
-                            duration: const Duration(milliseconds: 750),
+                            duration: const Duration(milliseconds: 250),
                             clipBehavior: Clip.antiAlias,
                             decoration: ShapeDecoration(
                               color: tooth.selected
@@ -255,14 +256,18 @@ class _TeethState extends State<TeethSelectionScreen> {
                               child: InkWell(
                                 splashColor: tooth.selected
                                     ? Colors.white
-                                    : Colors.teal.shade400,
+                                    : Colors.teal.shade100,
                                 highlightColor: Colors.transparent,
                                 onTap: () {
-                                  if (!tooth.selected)
-                                    _showAlertDialog(context, tooth);
-                                  else
-                                    _showClearDialog(context, tooth);
-
+                                  if (key >= 100) {
+                                    setState(
+                                        () => tooth.selected = !tooth.selected);
+                                  } else {
+                                    if (!tooth.selected) {
+                                      _showAlertDialog(context, tooth);
+                                    } else
+                                      _showClearDialog(context, tooth);
+                                  }
                                   print(
                                       'tooth ${widget.idToString(key)} pressed (id $key)');
                                 },
@@ -272,37 +277,37 @@ class _TeethState extends State<TeethSelectionScreen> {
                         ),
                       ),
                     // selected teeth list
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 125, vertical: 150),
-                      child: Center(
-                        child: Builder(builder: (context) {
-                          final selected = data.teeth.entries
-                              .where((e) => e.value.selected)
-                              .map((e) => Text(widget.idToString(e.key)))
-                              .toList();
-                          return DefaultTextStyle(
-                            style: Theme.of(context).textTheme.headlineMedium!,
-                            textAlign: TextAlign.center,
-                            child: AnimatedOpacity(
-                              duration: const Duration(milliseconds: 500),
-                              opacity: selected.isNotEmpty ? 1 : 0,
-                              child: DecoratedBox(
-                                decoration: const BoxDecoration(
-                                  border: Border.symmetric(
-                                      horizontal: BorderSide(
-                                          width: 3, color: Colors.black26)),
-                                ),
-                                // child: ListView(
-                                //   shrinkWrap: true,
-                                //   children: selected,
-                                // ),
-                              ),
-                            ),
-                          );
-                        }),
-                      ),
-                    ),
+                    // Padding(
+                    //   padding: const EdgeInsets.symmetric(
+                    //       horizontal: 125, vertical: 150),
+                    //   child: Center(
+                    //     child: Builder(builder: (context) {
+                    //       final selected = data.teeth.entries
+                    //           .where((e) => e.value.selected)
+                    //           .map((e) => Text(widget.idToString(e.key)))
+                    //           .toList();
+                    //       return DefaultTextStyle(
+                    //         style: Theme.of(context).textTheme.headlineMedium!,
+                    //         textAlign: TextAlign.center,
+                    //         child: AnimatedOpacity(
+                    //           duration: const Duration(milliseconds: 500),
+                    //           opacity: selected.isNotEmpty ? 1 : 0,
+                    //           child: DecoratedBox(
+                    //             decoration: const BoxDecoration(
+                    //               border: Border.symmetric(
+                    //                   horizontal: BorderSide(
+                    //                       width: 3, color: Colors.black26)),
+                    //             ),
+                    // child: ListView(
+                    //   shrinkWrap: true,
+                    //   children: selected,
+                    // ),
+                    //           ),
+                    //         ),
+                    //       );
+                    //     }),
+                    //   ),
+                    // ),
                   ],
                 ),
               ),
@@ -329,7 +334,7 @@ class _TeethState extends State<TeethSelectionScreen> {
       teeth: <int, Tooth>{
         for (final tooth in teeth)
           int.parse(tooth.getAttribute('id')!):
-              Tooth(parseSvgPathData(tooth.getAttribute('d')!)),
+              Tooth(parseSvgPathData(tooth.getAttribute('i  d')!)),
       },
     );
   }

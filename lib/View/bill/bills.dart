@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:project_lambda_dental/Controller/Bills/BillsController.dart';
 import 'package:project_lambda_dental/shared/component/components.dart';
 
 class Bills extends GetView {
@@ -7,39 +8,37 @@ class Bills extends GetView {
 
   @override
   Widget build(BuildContext context) {
-    //var cubit = AppCubit().get(context);
-    //cubit.getCategory();
-    // return BlocConsumer<AppCubit, AppStates>(
-    //   listener: (context, state) {},
-    //   builder: (context, state) => Scaffold(
-    return Scaffold(
-      appBar: MyAppBar(
-        title: 'Bills',
-        leading: AppBarPopupMenu(),
-        actions: [
-          IconButton(onPressed: () {}, icon: Icon(Icons.search_rounded))
-        ],
+    return GetBuilder(
+      init: BillsController(),
+      builder: (controller) => Scaffold(
+        appBar: MyAppBar(
+          title: 'Bills',
+          leading: AppBarPopupMenu(),
+          actions: [
+            IconButton(onPressed: () {}, icon: Icon(Icons.search_rounded))
+          ],
+        ),
+        body: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: ListView.separated(
+              physics: BouncingScrollPhysics(),
+              shrinkWrap: true,
+              itemBuilder: (BuildContext context, int index) =>
+                  catItemBuilder(context, index),
+              itemCount: 40,
+              separatorBuilder: (BuildContext context, int index) => Container(
+                    height: 1,
+                    color: Colors.grey,
+                  )),
+        ),
+        // floatingActionButton: FloatingActionButton(
+        //   backgroundColor: Colors.cyan[200],
+        //   child: Icon(Icons.add),
+        //   onPressed: () {
+        //     Get.toNamed('/bills');
+        //   },
+        // ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: ListView.separated(
-            physics: BouncingScrollPhysics(),
-            shrinkWrap: true,
-            itemBuilder: (BuildContext context, int index) =>
-                catItemBuilder(context, index),
-            itemCount: 40,
-            separatorBuilder: (BuildContext context, int index) => Container(
-                  height: 1,
-                  color: Colors.grey,
-                )),
-      ),
-      // floatingActionButton: FloatingActionButton(
-      //   backgroundColor: Colors.cyan[200],
-      //   child: Icon(Icons.add),
-      //   onPressed: () {
-      //     Get.toNamed('/bills');
-      //   },
-      // ),
     );
   }
 

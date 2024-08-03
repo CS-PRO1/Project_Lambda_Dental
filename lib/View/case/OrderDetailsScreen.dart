@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:path_drawing/path_drawing.dart';
 import 'package:project_lambda_dental/Controller/Cases/CasesController.dart';
+import 'package:project_lambda_dental/View/case/TeethChart.dart';
 import 'package:project_lambda_dental/View/case/TeethSelectionScreen.dart';
 import 'package:project_lambda_dental/shared/component/components.dart';
 import 'package:project_lambda_dental/shared/component/constants.dart';
@@ -37,23 +38,6 @@ const _orderdetailsicons = [
   Icon(Icons.abc),
   Icon(Icons.abc),
 ];
-
-Data exampleData = (
-  size: Size(300, 300),
-  teeth: {
-    1: Tooth(1, parseSvgPathData('M10 10 H 90 V 90 H 10 L 10 10')),
-    2: Tooth(2, parseSvgPathData('M110 10 H 190 V 90 H 110 L 110 10')),
-  },
-  connections: {
-    100: ToothConnection(
-      100,
-      1,
-      2,
-      Rect.fromLTWH(50, 50, 100, 10),
-      parseSvgPathData('M50 50 H 150 V 60 H 50 L 50 50'),
-    ),
-  },
-);
 
 class OrderDetailsScreen extends GetView {
   const OrderDetailsScreen({super.key});
@@ -94,14 +78,6 @@ class OrderDetailsScreen extends GetView {
                     //   ),
                     // ),
 
-                    Center(
-                      child: TeethChart(
-                        data: exampleData,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
                     SizedBox(
                       height: 10,
                     ),
@@ -118,6 +94,16 @@ class OrderDetailsScreen extends GetView {
                                   title: _orderdetailstitles[index],
                                   description: _orderdetailsinfo[index],
                                 ))),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Center(
+                      child: Container(
+                        child: TeethDisplayWidget(
+                          asset: 'assets/teeth.svg',
+                        ),
+                      ),
+                    ),
                     SizedBox(
                       height: 10,
                     ),
@@ -337,70 +323,6 @@ class OrderDetailsScreen extends GetView {
               ),
             ],
           ),
-        ),
-      ),
-    );
-  }
-}
-
-class TeethChart extends StatelessWidget {
-  final Data data;
-
-  const TeethChart({Key? key, required this.data}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return FittedBox(
-      child: SizedBox.fromSize(
-        size: data.size,
-        child: Stack(
-          children: [
-            // Display teeth
-            for (final MapEntry<int, Tooth> entry in data.teeth.entries)
-              Positioned.fromRect(
-                rect: entry.value.rect,
-                child: Stack(
-                  children: [
-                    AnimatedContainer(
-                      duration: const Duration(milliseconds: 250),
-                      decoration: ShapeDecoration(
-                        color: entry.value.selected
-                            ? entry.value.color
-                            : Colors.white,
-                        shape: ToothBorder(entry.value.path),
-                      ),
-                    ),
-                    Positioned.fill(
-                      child: Center(
-                        child: Text(
-                          '${entry.value.id}',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            // Display connections
-            for (final MapEntry<int, ToothConnection> entry
-                in data.connections.entries)
-              Positioned.fromRect(
-                rect: entry.value.rect,
-                child: AnimatedContainer(
-                  duration: const Duration(milliseconds: 250),
-                  decoration: ShapeDecoration(
-                    color: entry.value.selected
-                        ? Colors.teal.shade400
-                        : Colors.white,
-                    shape: ToothBorder(entry.value.path!),
-                  ),
-                ),
-              ),
-          ],
         ),
       ),
     );

@@ -77,27 +77,7 @@ class MyApp extends StatelessWidget {
   MyApp(widget) {
     this.widget = widget;
   }
-
-  // int generateToothId(int id) {
-  //   // final (up, left, number) = switch (id) {
-  //   //   < 8 => (true, false, 8 - id),
-  //   //   < 16 => (true, true, id - 8 + 1),
-  //   //   < 24 => (false, true, 24 - id),
-  //   //   < 31 => (false, false, id - 24 + 1),
-  //   //   _ => (false, false, id),
-  //   // };
-  //   //return number;
-  //   int number = switch(id) {
-  //     < 8 => 8-id,
-  //     < 16 => id - 8 + 1,
-  //     < 24 => 24-id,
-  //     <31 => id-24 + 1,
-  //     _ => id
-  //   };
-  //   return number;
-  // }
-
-  // This widget is the root of your application.
+  
   @override
   Widget build(BuildContext context) {
     LocaleController localeController = Get.put(LocaleController());

@@ -2,7 +2,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:project_lambda_dental/Controller/login_controller.dart';
+import 'package:project_lambda_dental/Controller/User/Auth_controller.dart';
 import 'package:get/get.dart';
 import 'package:project_lambda_dental/shared/component/components.dart';
 import 'package:project_lambda_dental/shared/component/constants.dart';
@@ -19,7 +19,7 @@ class LoginScreen extends GetView {
   @override
   Widget build(BuildContext context) {
     return GetBuilder(
-        init: LoginController(),
+        init: AuthController(),
         builder: (controller) {
           controller.allow_notifications();
           return Scaffold(

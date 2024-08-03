@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:project_lambda_dental/shared/component/constants.dart';
@@ -403,4 +404,15 @@ Widget MyFloatButton({VoidCallback? onTap}) {
       ),
     ),
   );
+}
+
+toast(String msg) {
+  return Fluttertoast.showToast(
+      msg: msg,
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.BOTTOM,
+      timeInSecForIosWeb: 1,
+      backgroundColor: cyan400,
+      textColor: Colors.white,
+      fontSize: 16.0);
 }

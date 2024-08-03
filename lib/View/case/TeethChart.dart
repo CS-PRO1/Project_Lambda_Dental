@@ -1,9 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:path_drawing/path_drawing.dart';
 import 'package:project_lambda_dental/Controller/Cases/TeethController.dart';
-import 'package:project_lambda_dental/shared/component/constants.dart';
 
 class TeethDisplayWidget extends StatelessWidget {
   TeethDisplayWidget({

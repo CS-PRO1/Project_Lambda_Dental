@@ -191,7 +191,7 @@ class LoginScreen extends GetView {
                                                 )),
                                             TextButton(
                                               onPressed: () {
-                                                Get.toNamed('/register');
+                                                Get.offAndToNamed('/register');
                                               },
                                               child: Text(
                                                 'Register'.tr,

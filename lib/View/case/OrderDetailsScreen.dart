@@ -1,11 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:path_drawing/path_drawing.dart';
 import 'package:project_lambda_dental/Controller/Cases/CasesController.dart';
 import 'package:project_lambda_dental/View/case/TeethChart.dart';
-import 'package:project_lambda_dental/View/case/TeethSelectionScreen.dart';
 import 'package:project_lambda_dental/shared/component/components.dart';
 import 'package:project_lambda_dental/shared/component/constants.dart';
 

@@ -5,26 +5,25 @@ import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:project_lambda_dental/Cache/CacheHelper.dart';
 import 'package:project_lambda_dental/Services/theme/dio.dart';
-import 'package:project_lambda_dental/View/basics/About.dart';
+import 'package:project_lambda_dental/View/basics/AboutScreen.dart';
 import 'package:project_lambda_dental/View/basics/LandingScreen.dart';
 import 'package:project_lambda_dental/View/basics/ProfileEditScreen.dart';
 import 'package:project_lambda_dental/View/basics/ProfileScreen.dart';
-import 'package:project_lambda_dental/View/basics/Register.dart';
-import 'package:project_lambda_dental/View/basics/settings.dart';
-import 'package:project_lambda_dental/View/basics/verify_screen.dart';
+import 'package:project_lambda_dental/View/basics/RegisterScreen.dart';
+import 'package:project_lambda_dental/View/basics/SettingsScreen.dart';
+import 'package:project_lambda_dental/View/basics/EmailVerificationScreen.dart';
 import 'package:project_lambda_dental/View/case/AddOrderScreen.dart';
 import 'package:project_lambda_dental/View/basics/LoginScreen.dart';
 import 'package:get/get.dart';
-import 'package:project_lambda_dental/View/bill/bill_details.dart';
-import 'package:project_lambda_dental/View/bill/bills.dart';
-import 'package:project_lambda_dental/View/case/CaseList.dart';
+import 'package:project_lambda_dental/View/bill/BillDetailsScreen.dart';
+import 'package:project_lambda_dental/View/bill/BillsListScreen.dart';
+import 'package:project_lambda_dental/View/case/CaseListScreen.dart';
 import 'package:project_lambda_dental/locale/dictionary.dart';
 
 import 'Services/Firebase/firebase_api.dart';
 import 'Services/Firebase/firebase_options.dart';
 import 'View/basics/WelcomeScreen.dart';
 import 'View/case/OrderDetailsScreen.dart';
-import 'View/case/CaseList.dart';
 import 'View/case/TeethSelectionScreen.dart';
 import 'locale/LocaleController.dart';
 
@@ -99,13 +98,13 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/settings', page: () => Settings()),
         GetPage(name: '/profile', page: () => ProfileScreen()),
         GetPage(name: '/profile_edit', page: () => ProfileEditScreen()),
-        GetPage(name: '/register', page: () => Register()),
-        GetPage(name: '/orderlist', page: () => CaseList()),
+        GetPage(name: '/register', page: () => RegisterScreen()),
+        GetPage(name: '/orderlist', page: () => CaseListScreen()),
         GetPage(name: '/addorder', page: () => AddOrderScreen()),
         GetPage(name: '/orderdetails', page: () => OrderDetailsScreen()),
-        GetPage(name: '/bills', page: () => Bills()),
-        GetPage(name: '/billdetails', page: () => BillDetails()),
-        GetPage(name: '/verify-email', page: () => VerifyScreen()),
+        GetPage(name: '/bills', page: () => BillsListScreen()),
+        GetPage(name: '/billdetails', page: () => BillDetailsScreen()),
+        GetPage(name: '/verify-email', page: () => EmailVerificationScreen()),
         GetPage(name: '/about', page: () => About()),
         GetPage(name: '/welcome', page: () => WelcomeScreen()),
         GetPage(

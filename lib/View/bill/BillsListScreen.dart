@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:project_lambda_dental/Controller/Bills/BillsController.dart';
 import 'package:project_lambda_dental/shared/component/components.dart';
 
-class Bills extends GetView {
-  const Bills({super.key});
+class BillsListScreen extends GetView {
+  const BillsListScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

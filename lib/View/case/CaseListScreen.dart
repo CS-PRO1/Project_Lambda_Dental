@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:project_lambda_dental/Controller/Cases/CasesController.dart';
 import 'package:project_lambda_dental/shared/component/components.dart';
-import 'package:project_lambda_dental/shared/component/constants.dart';
 
-class CaseList extends GetView {
-  const CaseList({super.key});
+class CaseListScreen extends GetView {
+  const CaseListScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,9 @@ class CaseList extends GetView {
     // return BlocConsumer<AppCubit, AppStates>(
     //   listener: (context, state) {},
     //   builder: (context, state) => Scaffold(
-    return Scaffold(
+        return GetBuilder(
+      init: CasesController(),
+      builder: (controller) =>  Scaffold(
       appBar: MyAppBar(
         title: 'Cases',
         leading: AppBarPopupMenu(),
@@ -56,7 +58,7 @@ class CaseList extends GetView {
       //     Get.toNamed('/addorder');
       //   },
       // ),
-    );
+        ));
   }
 
   catItemBuilder(context, index) {

@@ -1,6 +1,7 @@
 import 'package:buildcondition/buildcondition.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:project_lambda_dental/Controller/User/Profile_controller.dart';
 import 'package:project_lambda_dental/shared/component/components.dart';
 
 import '../../shared/component/constants.dart';
@@ -80,94 +81,97 @@ class ProfileEditScreen extends StatelessWidget {
     //     'icon': Icons.credit_card,
     //   },
     //];
-    return Scaffold(
-      backgroundColor: bglight,
-      appBar: MyAppBar(title: 'Edit Profile'),
-      body: BuildCondition(
-          fallback: (context) => Center(child: CircularProgressIndicator()),
-          //condition: cubit.userModel?.data != null,
-          condition: true,
-          builder: (context) {
-            return SingleChildScrollView(
-                physics: BouncingScrollPhysics(),
-                child: Padding(
-                    padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
-                    child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Center(
-                            child: Padding(
-                                padding: const EdgeInsets.all(20.0),
-                                child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      CircleAvatar(
-                                          radius: 80,
-                                          backgroundImage: NetworkImage(
-                                              'https://media.istockphoto.com/id/1371009338/photo/portrait-of-confident-a-young-dentist-working-in-his-consulting-room.jpg?s=612x612&w=0&k=20&c=I212vN7lPpAOwGKRoEY9kYWunJaMj9vH2g-8YBGc2MI='),
-                                          onBackgroundImageError: (exception,
-                                                  stackTrace) =>
-                                              Image.asset(
-                                                  'images/fallback/user_default.jpg')),
-                                      SizedBox(height: 20),
-                                      Form(
-                                        key: formkey,
-                                        child: ListView.builder(
-                                            physics: BouncingScrollPhysics(),
-                                            shrinkWrap: true,
-                                            itemBuilder: (context, index) =>
-                                                itemBuilder(info[index]),
-                                            itemCount: info.length),
-                                      ),
-                                      SizedBox(
-                                        height: 20,
-                                      ),
-                                      defaultButton(
-                                          text: 'Save',
-                                          function: () {
-                                            Get.offAndToNamed('/home');
-                                          })
-                                      // TextButton(
-                                      //     onPressed: () {
-                                      //       // cubit.updateProfile(
-                                      //       //     userNameController.text,
-                                      //       //     emailController.text,
-                                      //       //     phoneNumberController.text,
-                                      //       //     passwordController.text);
-                                      //       Get.offAndToNamed('/profile');
-                                      //     },
-                                      //     child: Container(
-                                      //         decoration: BoxDecoration(
-                                      //             color: Theme.of(context)
-                                      //                 .primaryColor,
-                                      //             borderRadius:
-                                      //                 BorderRadius.circular(
-                                      //                     30)),
-                                      //         width: double.infinity,
-                                      //         padding: EdgeInsets.all(15),
-                                      //         child:
-                                      //             // state
-                                      //             //         is! AppProfileUpdateLoadingState
-                                      //             //     ?
-                                      //             Text(
-                                      //           'Save Changes',
-                                      //           textAlign: TextAlign.center,
-                                      //           style: TextStyle(
-                                      //               fontSize: 20,
-                                      //               color: Colors.white),
-                                      //         )
-                                      // : Center(
-                                      //     child:
-                                      //         CircularProgressIndicator(
-                                      //       color: Colors.white,
-                                      //     ),
-                                      //   )
-                                      //)),
-                                    ])),
-                          )
-                        ])));
-          }),
+    return GetBuilder(
+      init: ProfileController(),
+      builder: (controller) => Scaffold(
+        backgroundColor: bglight,
+        appBar: MyAppBar(title: 'Edit Profile'),
+        body: BuildCondition(
+            fallback: (context) => Center(child: CircularProgressIndicator()),
+            //condition: cubit.userModel?.data != null,
+            condition: true,
+            builder: (context) {
+              return SingleChildScrollView(
+                  physics: BouncingScrollPhysics(),
+                  child: Padding(
+                      padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Center(
+                              child: Padding(
+                                  padding: const EdgeInsets.all(20.0),
+                                  child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        CircleAvatar(
+                                            radius: 80,
+                                            backgroundImage: NetworkImage(
+                                                'https://media.istockphoto.com/id/1371009338/photo/portrait-of-confident-a-young-dentist-working-in-his-consulting-room.jpg?s=612x612&w=0&k=20&c=I212vN7lPpAOwGKRoEY9kYWunJaMj9vH2g-8YBGc2MI='),
+                                            onBackgroundImageError: (exception,
+                                                    stackTrace) =>
+                                                Image.asset(
+                                                    'images/fallback/user_default.jpg')),
+                                        SizedBox(height: 20),
+                                        Form(
+                                          key: formkey,
+                                          child: ListView.builder(
+                                              physics: BouncingScrollPhysics(),
+                                              shrinkWrap: true,
+                                              itemBuilder: (context, index) =>
+                                                  itemBuilder(info[index]),
+                                              itemCount: info.length),
+                                        ),
+                                        SizedBox(
+                                          height: 20,
+                                        ),
+                                        defaultButton(
+                                            text: 'Save',
+                                            function: () {
+                                              Get.offAndToNamed('/home');
+                                            })
+                                        // TextButton(
+                                        //     onPressed: () {
+                                        //       // cubit.updateProfile(
+                                        //       //     userNameController.text,
+                                        //       //     emailController.text,
+                                        //       //     phoneNumberController.text,
+                                        //       //     passwordController.text);
+                                        //       Get.offAndToNamed('/profile');
+                                        //     },
+                                        //     child: Container(
+                                        //         decoration: BoxDecoration(
+                                        //             color: Theme.of(context)
+                                        //                 .primaryColor,
+                                        //             borderRadius:
+                                        //                 BorderRadius.circular(
+                                        //                     30)),
+                                        //         width: double.infinity,
+                                        //         padding: EdgeInsets.all(15),
+                                        //         child:
+                                        //             // state
+                                        //             //         is! AppProfileUpdateLoadingState
+                                        //             //     ?
+                                        //             Text(
+                                        //           'Save Changes',
+                                        //           textAlign: TextAlign.center,
+                                        //           style: TextStyle(
+                                        //               fontSize: 20,
+                                        //               color: Colors.white),
+                                        //         )
+                                        // : Center(
+                                        //     child:
+                                        //         CircularProgressIndicator(
+                                        //       color: Colors.white,
+                                        //     ),
+                                        //   )
+                                        //)),
+                                      ])),
+                            )
+                          ])));
+            }),
+      ),
     );
   }
 }

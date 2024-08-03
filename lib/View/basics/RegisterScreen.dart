@@ -7,7 +7,7 @@ import 'package:project_lambda_dental/shared/component/components.dart';
 import 'package:project_lambda_dental/shared/component/constants.dart';
 
 // ignore: must_be_immutable
-class Register extends GetView {
+class RegisterScreen extends GetView {
   var formkey = GlobalKey<FormState>();
 
   var usernamecontroller = TextEditingController();
@@ -17,7 +17,7 @@ class Register extends GetView {
   var addresscontroller = TextEditingController();
   var confirmpasswordcontroller = TextEditingController();
 
-  Register({super.key});
+  RegisterScreen({super.key});
   @override
   Widget build(BuildContext context) {
     return GetBuilder(
@@ -208,7 +208,7 @@ class Register extends GetView {
                                             ),
                                             TextButton(
                                               onPressed: () {
-                                                Get.toNamed('/');
+                                                Get.offAndToNamed('/');
                                               },
                                               child: Text(
                                                 'Login'.tr,

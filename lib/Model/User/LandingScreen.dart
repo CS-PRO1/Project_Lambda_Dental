@@ -7,7 +7,7 @@ import 'package:project_lambda_dental/View/bill/BillsListScreen.dart';
 import 'package:project_lambda_dental/View/case/CaseListScreen.dart';
 import 'package:project_lambda_dental/shared/component/constants.dart';
 
-import 'ProfileScreen.dart';
+import '../../View/basics/ProfileScreen.dart';
 
 class LandingScreen extends GetView {
   LandingScreen({super.key});

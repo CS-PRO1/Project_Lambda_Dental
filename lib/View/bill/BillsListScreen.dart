@@ -31,13 +31,6 @@ class BillsListScreen extends GetView {
                     color: Colors.grey,
                   )),
         ),
-        // floatingActionButton: FloatingActionButton(
-        //   backgroundColor: Colors.cyan[200],
-        //   child: Icon(Icons.add),
-        //   onPressed: () {
-        //     Get.toNamed('/bills');
-        //   },
-        // ),
       ),
     );
   }
@@ -46,7 +39,7 @@ class BillsListScreen extends GetView {
     return Padding(
       padding: const EdgeInsets.all(15.0),
       child: InkWell(
-        onTap: () => Get.toNamed('billdetails'),
+        onTap: () => Get.toNamed('billdetails', arguments: {'id': index}),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

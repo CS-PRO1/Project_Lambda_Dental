@@ -4,9 +4,10 @@ import 'package:project_lambda_dental/Controller/User/Auth_controller.dart';
 import 'package:project_lambda_dental/shared/component/components.dart';
 import 'package:project_lambda_dental/shared/component/constants.dart';
 
-class EmailVerificationScreen extends StatelessWidget {
-  const EmailVerificationScreen({super.key});
+class EmailVerificationScreen extends GetView {
+  EmailVerificationScreen({super.key});
 
+  TextEditingController codecontroller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return GetBuilder(
@@ -47,7 +48,7 @@ class EmailVerificationScreen extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      NumInput(context),
+                      NumInput(context, controller: codecontroller),
                       SizedBox(
                         width: 10,
                       ),
@@ -85,7 +86,9 @@ class EmailVerificationScreen extends StatelessWidget {
                   SizedBox(
                     height: 15,
                   ),
-                  defaultButton(text: 'Confirm', function: () {}),
+                  defaultButton(text: 'Confirm', function: () {
+                    controller.emailverification('email', codecontroller.text);
+                  }),
                   SizedBox(
                     height: 15,
                   ),

@@ -23,7 +23,7 @@ import 'package:project_lambda_dental/locale/dictionary.dart';
 import 'Services/Firebase/firebase_api.dart';
 import 'Services/Firebase/firebase_options.dart';
 import 'View/basics/WelcomeScreen.dart';
-import 'View/case/OrderDetailsScreen.dart';
+import 'View/case/CaseDetailsScreen.dart';
 import 'View/case/TeethSelectionScreen.dart';
 import 'locale/LocaleController.dart';
 
@@ -101,7 +101,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/register', page: () => RegisterScreen()),
         GetPage(name: '/orderlist', page: () => CaseListScreen()),
         GetPage(name: '/addorder', page: () => AddOrderScreen()),
-        GetPage(name: '/orderdetails', page: () => OrderDetailsScreen()),
+        GetPage(name: '/orderdetails', page: () => CaseDetailsScreen()),
         GetPage(name: '/bills', page: () => BillsListScreen()),
         GetPage(name: '/billdetails', page: () => BillDetailsScreen()),
         GetPage(name: '/verify-email', page: () => EmailVerificationScreen()),

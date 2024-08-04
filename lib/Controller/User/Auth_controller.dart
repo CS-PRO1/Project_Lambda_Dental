@@ -87,47 +87,47 @@ class AuthController extends GetxController {
       print(error.toString());
     });
   }
-}
-
+  
 void forgotpassword(String email) {
-  DioHelper.postData('forgot_password', {'email': email})
-      .then((value) {
-        if (value?.data['status'] == true) {
-          // TODO handle response data in Model
-        }
-      })
-      .then((value) {})
-      .catchError((error) {
-        print(error.toString());
-      });
-}
+    DioHelper.postData('forgot_password', {'email': email})
+        .then((value) {
+          if (value?.data['status'] == true) {
+            // TODO handle response data in Model
+          }
+        })
+        .then((value) {})
+        .catchError((error) {
+          print(error.toString());
+        });
+  }
 
-void resetpassword(String email, String otp, String password) {
-  DioHelper.postData(
-          'reset_password', {'email': email, 'otp': otp, 'password': password})
-      .then((value) {
-    if (value?.data['status'] == true) {
-      // TODO handle response data in Model
-    }
-  }).catchError((error) {
-    print(error.toString());
-  });
-}
-
-void emailverification(String email, String otp) {
-  DioHelper.postData('email', {'email': email, 'otp': otp}).then((value) {
-    if (value?.data['status'] == true) {
-      // TODO handle response data in Model
-    }
-  }).catchError((error) {
-    print(error.toString());
-  });
-}
-
-void logout() {
-  DioHelper.getData('logout', token: CacheHelper.get('token')).then((value) {
-    CacheHelper.removeString('token').catchError((error) {
+  void resetpassword(String email, String otp, String password) {
+    DioHelper.postData('reset_password',
+        {'email': email, 'otp': otp, 'password': password}).then((value) {
+      if (value?.data['status'] == true) {
+        // TODO handle response data in Model
+      }
+    }).catchError((error) {
       print(error.toString());
     });
-  });
+  }
+
+  void emailverification(String email, String otp) {
+    DioHelper.postData('email', {'email': email, 'otp': otp}).then((value) {
+      if (value?.data['status'] == true) {
+        // TODO handle response data in Model
+      }
+    }).catchError((error) {
+      print(error.toString());
+    });
+  }
+
+  void logout() {
+    DioHelper.getData('logout', token: CacheHelper.get('token')).then((value) {
+      CacheHelper.removeString('token').catchError((error) {
+        print(error.toString());
+      });
+    });
+  }
+
 }

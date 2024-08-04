@@ -4,15 +4,11 @@ import 'package:project_lambda_dental/Controller/Bills/BillsController.dart';
 import 'package:project_lambda_dental/shared/component/constants.dart';
 
 class BillDetailsScreen extends GetView {
-  const BillDetailsScreen({super.key});
+  BillDetailsScreen({super.key});
+  int id = Get.arguments['id'];
 
   @override
   Widget build(BuildContext context) {
-    //var cubit = AppCubit().get(context);
-    //cubit.getCategory();
-    // return BlocConsumer<AppCubit, AppStates>(
-    //   listener: (context, state) {},
-    //   builder: (context, state) => Scaffold(
     return GetBuilder(
       init: BillsController(),
       builder: (controller) => Scaffold(
@@ -20,7 +16,7 @@ class BillDetailsScreen extends GetView {
           backgroundColor: Colors.white,
           foregroundColor: Colors.black,
           centerTitle: true,
-          title: Text('Bill'.tr + '001'),
+          title: Text('Bill'.tr + id.toString()),
         ),
         body: SingleChildScrollView(
           child: Padding(
@@ -61,7 +57,7 @@ class BillDetailsScreen extends GetView {
   catItemBuilder(context, index) {
     return InkWell(
       onTap: () {
-        Get.toNamed('/orderdetails');
+        Get.toNamed('/orderdetails', arguments: {'id' : index});
       },
       child: Padding(
         padding: const EdgeInsets.all(15.0),

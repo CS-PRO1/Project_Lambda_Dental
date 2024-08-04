@@ -8,11 +8,6 @@ class CaseListScreen extends GetView {
 
   @override
   Widget build(BuildContext context) {
-    //var cubit = AppCubit().get(context);
-    //cubit.getCategory();
-    // return BlocConsumer<AppCubit, AppStates>(
-    //   listener: (context, state) {},
-    //   builder: (context, state) => Scaffold(
         return GetBuilder(
       init: CasesController(),
       builder: (controller) =>  Scaffold(
@@ -63,7 +58,7 @@ class CaseListScreen extends GetView {
 
   catItemBuilder(context, index) {
     return InkWell(
-      onTap: () => Get.toNamed('/orderdetails'),
+      onTap: () => Get.toNamed('/orderdetails', arguments: {'id' : index}),
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         child: Padding(

@@ -276,7 +276,7 @@ Widget orderdetailsCard({
   );
 }
 
-Widget NumInput(BuildContext context, {autofocus = false}) {
+Widget NumInput(BuildContext context, {autofocus = false, TextEditingController? controller}) {
   return SizedBox(
     width: 35,
     height: 70,
@@ -301,7 +301,9 @@ Widget NumInput(BuildContext context, {autofocus = false}) {
           borderRadius: BorderRadius.circular(10.0),
         ),
       ),
-      onChanged: (value) => nextFocus(context),
+      onChanged: (value) {
+        nextFocus(context);},
+      
     ),
   );
 }

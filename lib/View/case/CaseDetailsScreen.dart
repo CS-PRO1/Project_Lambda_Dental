@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project_lambda_dental/Controller/Cases/CasesController.dart';
+import 'package:project_lambda_dental/Model/Cases/CaseDetailsModel.dart';
 import 'package:project_lambda_dental/View/case/TeethChart.dart';
 import 'package:project_lambda_dental/shared/component/components.dart';
 import 'package:project_lambda_dental/shared/component/constants.dart';
@@ -35,15 +36,18 @@ const _orderdetailsicons = [
   Icon(Icons.abc),
 ];
 
-class OrderDetailsScreen extends GetView {
-  const OrderDetailsScreen({super.key});
+class CaseDetailsScreen extends GetView {
+  CaseDetailsScreen({super.key});
+  @override
+  final CasesController controller = Get.put(CasesController());
+  final int id = Get.arguments['id'];
 
   @override
   Widget build(BuildContext context) {
+    controller.getCaseDetails(id);
     return GetBuilder(
-      init: CasesController(),
+      init: controller,
       builder: (controller) => Scaffold(
-        //backgroundColor: bgdark,
         appBar: AppBar(
           elevation: 0,
           scrolledUnderElevation: 0,

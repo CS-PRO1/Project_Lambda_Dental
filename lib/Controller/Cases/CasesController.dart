@@ -9,7 +9,7 @@ class CasesController extends GetxController {
     String token = CacheHelper.get('token');
     DioHelper.getData('all_cases', token: token).then((value) {
       if (value?.data['status']) {
-// TODO handle data
+      // TODO handle data
       }
     }).catchError((error) {
       print(error.toString());

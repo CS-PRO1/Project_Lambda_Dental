@@ -10,11 +10,11 @@ import 'package:project_lambda_dental/shared/component/constants.dart';
 class RegisterScreen extends GetView {
   var formkey = GlobalKey<FormState>();
 
-  var usernamecontroller = TextEditingController();
+  var firstnamecontroller = TextEditingController();
+  var lastnamecontroller = TextEditingController();
   var emailcontroller = TextEditingController();
   var passwordcontroller = TextEditingController();
   var phonenumbercontroller = TextEditingController();
-  var addresscontroller = TextEditingController();
   var confirmpasswordcontroller = TextEditingController();
 
   RegisterScreen({super.key});
@@ -66,8 +66,16 @@ class RegisterScreen extends GetView {
                                         horizontal: 10.0),
                                     child: Column(
                                       children: [
-                                        myTextField(usernamecontroller, context,
-                                            'User Name'.tr, Icon(Icons.person)),
+                                        myTextField(firstnamecontroller, context,
+                                            'First Name'.tr, Icon(Icons.person)),
+                                        const SizedBox(
+                                          height: 25,
+                                        ),
+                                        myTextField(
+                                            lastnamecontroller,
+                                            context,
+                                            'Last Name'.tr,
+                                            Icon(Icons.person)),
                                         const SizedBox(
                                           height: 25,
                                         ),
@@ -80,13 +88,6 @@ class RegisterScreen extends GetView {
                                         const SizedBox(
                                           height: 25,
                                         ),
-                                        myTextField(
-                                            addresscontroller,
-                                            context,
-                                            'Address'.tr,
-                                            Icon(Icons.pin_drop_rounded),
-                                            keyboardType:
-                                                TextInputType.streetAddress),
                                         const SizedBox(
                                           height: 25,
                                         ),
@@ -185,7 +186,10 @@ class RegisterScreen extends GetView {
                                           function: () {
                                             if (formkey.currentState!
                                                 .validate()) {
-                                              controller.requestLogin(
+                                              controller.register(
+                                                firstnamecontroller.text,
+                                                lastnamecontroller.text,
+                                                phonenumbercontroller.text,
                                                   emailcontroller.text,
                                                   passwordcontroller.text);
                                             }

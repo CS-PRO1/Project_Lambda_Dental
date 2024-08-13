@@ -6,7 +6,7 @@ class LoginModel {
   LoginModel.fromJson(Map<String, dynamic> response) {
     status = response['status'];
     message = response['message'];
-    data = response['data'] != null ? Data.fromJson(response['data']) : null;
+    data = response['Data'] != null ? Data.fromJson(response['data']) : null;
   }
 }
 

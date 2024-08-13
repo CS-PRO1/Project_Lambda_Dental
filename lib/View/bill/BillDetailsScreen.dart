@@ -5,7 +5,7 @@ import 'package:project_lambda_dental/shared/component/constants.dart';
 
 class BillDetailsScreen extends GetView {
   BillDetailsScreen({super.key});
-  int id = Get.arguments['id'];
+  final int id = Get.arguments['id'];
 
   @override
   Widget build(BuildContext context) {

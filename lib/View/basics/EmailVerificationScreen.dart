@@ -7,7 +7,7 @@ import 'package:project_lambda_dental/shared/component/constants.dart';
 class EmailVerificationScreen extends GetView {
   EmailVerificationScreen({super.key});
 
-  TextEditingController codecontroller = TextEditingController();
+  final TextEditingController codecontroller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return GetBuilder(

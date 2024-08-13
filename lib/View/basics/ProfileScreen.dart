@@ -63,6 +63,24 @@ class ProfileScreen extends StatelessWidget {
             //condition: cubit.userModel?.data != null,
             builder: (context) {
               //var userData = cubit.userModel?.data;
+      
+              List userInfo = [
+                {
+                  'title': 'Name: ',
+                  'info': controller.profileModel!.firstName + controller.profileModel!.lastName,
+                  'icon': Icons.person,
+                },
+                {
+                  'title': 'Phone:',
+                  'info': controller.profileModel!.phoneNumber,
+                  'icon': CupertinoIcons.phone_circle_fill,
+                },
+                {
+                  'title': 'Credit: ',
+                  'info': controller.profileModel!.wallet,
+                  'icon': Icons.credit_card_rounded,
+                },
+              ];
               return SingleChildScrollView(
                   physics: BouncingScrollPhysics(),
                   child: Padding(
@@ -81,26 +99,18 @@ class ProfileScreen extends StatelessWidget {
                                         CircleAvatar(
                                           radius: 80,
                                           backgroundImage: NetworkImage(
-                                              'https://media.istockphoto.com/id/1371009338/photo/portrait-of-confident-a-young-dentist-working-in-his-consulting-room.jpg?s=612x612&w=0&k=20&c=I212vN7lPpAOwGKRoEY9kYWunJaMj9vH2g-8YBGc2MI=`'),
+                                              ''),
                                           onBackgroundImageError: (exception,
                                                   stackTrace) =>
                                               Image.asset(
                                                   'assets/images/fallback/user_default.jpg'),
-                                        ),
-                                        SizedBox(height: 10),
-                                        Text(
-                                          //userData.name!,
-                                          'Dr. Kuzcko',
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .headline3,
                                         ),
                                         SizedBox(height: 20),
                                         ListView.separated(
                                             physics: BouncingScrollPhysics(),
                                             shrinkWrap: true,
                                             itemBuilder: (context, index) =>
-                                                itemBuilder(),
+                                                itemBuilder(userInfo[index]),
                                             separatorBuilder: (context, index) =>
                                                 Container(
                                                   height: 1,

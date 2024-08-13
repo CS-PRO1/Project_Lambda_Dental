@@ -15,14 +15,11 @@ const todoColor = Color(0xffd1d2d7);
 const _processes = [
   'Ordered',
   'Confirmed',
-  'In Progress',
-  'Trial',
-  'Ready',
   'Delivered',
 ];
 
-Widget processTimeline(BuildContext context) {
-  int _processIndex = 2;
+Widget processTimeline(BuildContext context, int index) {
+  int _processIndex = index;
 
   Color getColor(int index) {
     if (index == _processIndex) {

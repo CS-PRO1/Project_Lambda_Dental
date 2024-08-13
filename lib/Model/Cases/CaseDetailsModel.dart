@@ -1,44 +1,46 @@
 class CaseDetailsModel {
-  int? id;
-  int? userId;
-  String? patientName;
-  int? age;
-  String? gender;
-  bool? needTrial;
-  bool? repeat;
-  String? notes;
-  String? shade;
-  String? expectDeliveryTime;
-  int? rate;
-  bool? status;
-  bool? confirmDelivery;
-  String? createdAt;
-  int? treatmentId;
-  int? materialId;
-  int? toothNumber;
-  bool? bridge;
-  List<int>? teethNumber;
+  final int id;
+  final int userId;
+  final String patientName;
+  final int age;
+  final String gender;
+  final bool needTrial;
+  final bool repeat;
+  final String notes;
+  final String shade;
+  final DateTime expectDeliveryTime;
+  final dynamic rate;
+  final bool status;
+  final bool confirmDelivery;
+  final DateTime createdAt;
+  final DateTime updatedAt;
+  final int treatmentId;
+  final int materialId;
+  final int toothNumber;
+  final int bridge;
+  final List<int> teethNumber;
 
   CaseDetailsModel({
-    this.id,
-    this.userId,
-    this.patientName,
-    this.age,
-    this.gender,
-    this.needTrial,
-    this.repeat,
-    this.notes,
-    this.shade,
-    this.expectDeliveryTime,
+    required this.id,
+    required this.userId,
+    required this.patientName,
+    required this.age,
+    required this.gender,
+    required this.needTrial,
+    required this.repeat,
+    required this.notes,
+    required this.shade,
+    required this.expectDeliveryTime,
     this.rate,
-    this.status,
-    this.confirmDelivery,
-    this.createdAt,
-    this.treatmentId,
-    this.materialId,
-    this.toothNumber,
-    this.bridge,
-    this.teethNumber,
+    required this.status,
+    required this.confirmDelivery,
+    required this.createdAt,
+    required this.updatedAt,
+    required this.treatmentId,
+    required this.materialId,
+    required this.toothNumber,
+    required this.bridge,
+    required this.teethNumber,
   });
 
   factory CaseDetailsModel.fromJson(Map<String, dynamic> json) {
@@ -52,40 +54,46 @@ class CaseDetailsModel {
       repeat: json['repeat'],
       notes: json['notes'],
       shade: json['shade'],
-      expectDeliveryTime: json['expect_delivery_time'],
+      expectDeliveryTime: DateTime.parse(json['expect_delivery_time']),
       rate: json['rate'],
       status: json['status'],
       confirmDelivery: json['confirm_delivery'],
-      createdAt: json['created_at'],
+      createdAt: DateTime.parse(json['created_at']),
+      updatedAt: DateTime.parse(json['updated_at']),
       treatmentId: json['treatment_id'],
       materialId: json['material_id'],
       toothNumber: json['tooth_number'],
       bridge: json['bridge'],
-      teethNumber: json['teeth_number'] != null ? List<int>.from(json['teeth_number']) : null,
+      teethNumber:
+          (json['teeth_number'] as List<dynamic>).map((e) => e as int).toList(),
     );
   }
+}
 
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'user_id': userId,
-      'patient_name': patientName,
-      'age': age,
-      'gender': gender,
-      'need_trial': needTrial,
-      'repeat': repeat,
-      'notes': notes,
-      'shade': shade,
-      'expect_delivery_time': expectDeliveryTime,
-      'rate': rate,
-      'status': status,
-      'confirm_delivery': confirmDelivery,
-      'created_at': createdAt,
-      'treatment_id': treatmentId,
-      'material_id': materialId,
-      'tooth_number': toothNumber,
-      'bridge': bridge,
-      'teeth_number': teethNumber,
-    };
+class CaseResponse {
+  final List<CaseDetailsModel> caseDetails;
+  final List<String> image;
+  final DateTime createdAt;
+  final DateTime updatedAt;
+  final int status;
+
+  CaseResponse({
+    required this.caseDetails,
+    required this.image,
+    required this.createdAt,
+    required this.updatedAt,
+    required this.status,
+  });
+
+  factory CaseResponse.fromJson(Map<String, dynamic> json) {
+    return CaseResponse(
+      caseDetails: (json['case_details'] as List<dynamic>)
+          .map((e) => CaseDetailsModel.fromJson(e))
+          .toList(),
+      image: (json['image'] as List<dynamic>).map((e) => e as String).toList(),
+      createdAt: DateTime.parse(json['created_at']),
+      updatedAt: DateTime.parse(json['updated_at']),
+      status: json['status'],
+    );
   }
 }

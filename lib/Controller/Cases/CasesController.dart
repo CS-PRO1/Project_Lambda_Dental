@@ -2,17 +2,24 @@ import 'dart:io';
 
 import 'package:get/get.dart';
 import 'package:project_lambda_dental/Cache/CacheHelper.dart';
+import 'package:project_lambda_dental/Model/Cases/CaseDetailsModel.dart';
+import 'package:project_lambda_dental/Model/Cases/CaseListModel.dart';
+import 'package:project_lambda_dental/Model/Cases/CommentsModel.dart';
 import 'package:project_lambda_dental/Services/theme/dio.dart';
+import 'package:project_lambda_dental/shared/component/components.dart';
 
 class CasesController extends GetxController {
+  CaseResponse? caseDetailsModel;
+  CaseListModel? caseListModel;
   void getAllCases() {
     String token = CacheHelper.get('token');
     DioHelper.getData('all_cases', token: token).then((value) {
       if (value?.data['status']) {
-      // TODO handle data
+        caseListModel = CaseListModel.fromJson(value?.data);
       }
     }).catchError((error) {
       print(error.toString());
+      toast(error);
     });
   }
 
@@ -21,11 +28,12 @@ class CasesController extends GetxController {
     DioHelper.postData('case_details', {'case_id': case_id}, token: token).then(
       (value) {
         if (value?.data['status']) {
-          //TODO handle data
+          caseDetailsModel = CaseResponse.fromJson(value?.data);
         }
       },
     ).catchError((error) {
       print(error.toString());
+      toast(error);
     });
   }
 
@@ -35,7 +43,7 @@ class CasesController extends GetxController {
         .then(
       (value) {
         if (value?.data['status']) {
-          //TODO handle data
+          caseDetailsModel = CaseResponse.fromJson(value?.data);
         }
       },
     ).catchError((error) {
@@ -67,11 +75,14 @@ class CasesController extends GetxController {
     });
   }
 
-  void getComments() {
+  CommentsModel? commentsModel;
+
+  void getComments(int) {
     String token = CacheHelper.get('token');
     DioHelper.getData('all_comments', token: token).then((value) {
       if (value?.data['status']) {
-// TODO handle data
+        commentsModel = CommentsModel.fromJson(value?.data);
+
       }
     }).catchError((error) {
       print(error.toString());

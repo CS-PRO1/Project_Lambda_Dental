@@ -23,43 +23,6 @@ class TeethSelectionScreen extends StatelessWidget {
     return Scaffold(
       appBar: 
             MyAppBar(title: 'Tooth Selection'),
-
-      // AppBar(
-      //   leading: PopupMenuButton(
-      //     icon: const Icon(Icons.menu),
-      //     itemBuilder: (context) => [
-      //       PopupMenuItem(
-      //         child: Row(
-      //           children: [
-      //             Icon(Icons.account_circle, color: Colors.black),
-      //             SizedBox(width: 10),
-      //             Text(
-      //               "Modify profile",
-      //               style: TextStyle(
-      //                 fontWeight: FontWeight.bold,
-      //                 fontSize: 19,
-      //               ),
-      //             ),
-      //           ],
-      //         ),
-      //         onTap: () => (),
-      //       ),
-      //     ],
-      //   ),
-      //   elevation: 0,
-      //   backgroundColor: cyan200,
-      //   title: Text(
-      //     'New Order'.tr,
-      //     style: TextStyle(fontWeight: FontWeight.bold),
-      //   ),
-      //   centerTitle: true,
-      //   actions: [
-      //     IconButton(
-      //       onPressed: () => Navigator.of(context).pop(),
-      //       icon: Icon(Icons.arrow_back),
-      //     )
-      //   ],
-      // ),
       body: GetBuilder<TeethController>(
         builder: (controller) {
           if (controller.data.value.size == Size.zero) {

@@ -9,7 +9,7 @@ class ProfileController extends GetxController {
     DioHelper.getData('profile', token: CacheHelper.get('token')).then((value) {
       profileModel = ProfileModel.fromJson(value?.data);
       if (value?.data['status']) {
-        //TODO Handle response to Model
+        profileModel = ProfileModel.fromJson(value?.data);
       }
     }).catchError((error) {
       print(error.toString());

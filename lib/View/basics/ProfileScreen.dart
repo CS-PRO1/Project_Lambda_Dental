@@ -63,29 +63,6 @@ class ProfileScreen extends StatelessWidget {
             //condition: cubit.userModel?.data != null,
             builder: (context) {
               //var userData = cubit.userModel?.data;
-      
-              List userInfo = [
-                {
-                  'title': 'Email: ',
-                  'info': 'myemail@example.com',
-                  'icon': Icons.email_rounded,
-                },
-                {
-                  'title': 'Phone:',
-                  'info': '+963 937 438 298',
-                  'icon': CupertinoIcons.phone_circle_fill,
-                },
-                {
-                  'title': 'Address: ',
-                  'info': 'Damascus, Jibbeh',
-                  'icon': Icons.location_on_sharp,
-                },
-                {
-                  'title': 'Credit: ',
-                  'info': -555530,
-                  'icon': Icons.credit_card_rounded,
-                },
-              ];
               return SingleChildScrollView(
                   physics: BouncingScrollPhysics(),
                   child: Padding(
@@ -123,7 +100,7 @@ class ProfileScreen extends StatelessWidget {
                                             physics: BouncingScrollPhysics(),
                                             shrinkWrap: true,
                                             itemBuilder: (context, index) =>
-                                                itemBuilder(userInfo[index]),
+                                                itemBuilder(),
                                             separatorBuilder: (context, index) =>
                                                 Container(
                                                   height: 1,

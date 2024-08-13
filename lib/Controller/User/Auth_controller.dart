@@ -63,11 +63,6 @@ class AuthController extends GetxController {
 
   void register(
       String fname, String lname, String phone, String email, String password) {
-    print(fname);
-    print(lname);
-    print(phone);
-    print(email);
-    print(password);
     DioHelper.postData('register_user', {
       'first_name': fname,
       'last_name': lname,

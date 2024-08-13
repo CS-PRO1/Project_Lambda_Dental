@@ -68,16 +68,6 @@ class CaseDetailsScreen extends GetView {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     //TODO
-                    // Center(
-                    //   child: Padding(
-                    //     padding: const EdgeInsets.all(8.0),
-                    //     child: Container(
-                    //         height: 300,
-                    //         width: 300,
-                    //         child: Image.asset('assets/chart.jpg')),
-                    //   ),
-                    // ),
-
                     SizedBox(
                       height: 10,
                     ),

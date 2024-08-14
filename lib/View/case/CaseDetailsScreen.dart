@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project_lambda_dental/Controller/Cases/CasesController.dart';
-import 'package:project_lambda_dental/Model/Cases/CaseDetailsModel.dart';
 import 'package:project_lambda_dental/Model/Cases/CommentsModel.dart';
 import 'package:project_lambda_dental/View/case/TeethChart.dart';
 import 'package:project_lambda_dental/shared/component/components.dart';
@@ -9,6 +8,7 @@ import 'package:project_lambda_dental/shared/component/constants.dart';
 
 import '../../shared/component/ProcessTimeline.dart';
 
+// ignore: must_be_immutable
 class CaseDetailsScreen extends GetView {
   CaseDetailsScreen({super.key});
   @override

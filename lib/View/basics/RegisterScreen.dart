@@ -193,7 +193,8 @@ class RegisterScreen extends GetView {
                                                   emailcontroller.text,
                                                   passwordcontroller.text);
                                             }
-                                            Get.offAndToNamed('/home');
+                                            //Get.offAndToNamed('/home');
+                                            Get.to('/verify-email', arguments: emailcontroller.text);
                                           },
                                         ),
                                         SizedBox(

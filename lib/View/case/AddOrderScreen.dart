@@ -176,6 +176,8 @@ class AddOrderScreen extends GetView {
                   width: 150,
                   text: 'Next'.tr,
                   function: () {
+                    //controller.addCase(patient, age, gender, nt, re, note, shade, date, images)
+                    
                     Get.toNamed('/teethselect');
                   },
                   heigh: 50)

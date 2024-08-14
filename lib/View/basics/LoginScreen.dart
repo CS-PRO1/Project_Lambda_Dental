@@ -447,6 +447,9 @@ class LoginScreen extends GetView {
                   if (value!.isEmpty) {
                     return 'Please confirm your new password'.tr;
                   }
+                  if (value != resetpasscontroller.text) {
+                    return 'The passwords do not match, Please try again'.tr;
+                  }
                   return null;
                 },
                 keyboardType: TextInputType.visiblePassword,

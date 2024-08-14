@@ -18,8 +18,8 @@ class CasesController extends GetxController {
         caseListModel = CaseListModel.fromJson(value?.data);
       }
     }).catchError((error) {
-      print(error.toString());
-      toast(error);
+      toast(commentsModel!.message);
+      //toast(error);
     });
   }
 
@@ -32,8 +32,8 @@ class CasesController extends GetxController {
         }
       },
     ).catchError((error) {
-      print(error.toString());
-      toast(error);
+      toast(commentsModel!.message);
+      //toast(error);
     });
   }
 
@@ -47,7 +47,7 @@ class CasesController extends GetxController {
         }
       },
     ).catchError((error) {
-      print(error.toString());
+      toast(commentsModel!.message);
     });
   }
 
@@ -82,7 +82,6 @@ class CasesController extends GetxController {
     DioHelper.getData('all_comments', token: token).then((value) {
       if (value?.data['status']) {
         commentsModel = CommentsModel.fromJson(value?.data);
-
       }
     }).catchError((error) {
       print(error.toString());
@@ -96,11 +95,12 @@ class CasesController extends GetxController {
         .then(
       (value) {
         if (value?.data['status']) {
-          //TODO handle data
+          commentsModel = CommentsModel.fromJson(value?.data);
+          toast(commentsModel!.message);
         }
       },
     ).catchError((error) {
-      print(error.toString());
+      toast(commentsModel!.message);
     });
   }
 
@@ -117,11 +117,12 @@ class CasesController extends GetxController {
         .then(
       (value) {
         if (value?.data['status']) {
-          //TODO handle data
+          commentsModel = CommentsModel.fromJson(value?.data);
+          toast(commentsModel!.message);
         }
       },
     ).catchError((error) {
-      print(error.toString());
+      toast(commentsModel!.message);
     });
   }
 
@@ -133,11 +134,12 @@ class CasesController extends GetxController {
         .then(
       (value) {
         if (value?.data['status']) {
-          //TODO handle data
+          commentsModel = CommentsModel.fromJson(value?.data);
+          toast(commentsModel!.message);
         }
       },
     ).catchError((error) {
-      print(error.toString());
+      toast(commentsModel!.message);
     });
   }
 }

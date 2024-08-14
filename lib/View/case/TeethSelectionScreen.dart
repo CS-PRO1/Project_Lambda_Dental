@@ -21,8 +21,7 @@ class TeethSelectionScreen extends StatelessWidget {
     controller.loadTeeth(asset);
 
     return Scaffold(
-      appBar: 
-            MyAppBar(title: 'Tooth Selection'),
+      appBar: MyAppBar(title: 'Tooth Selection'),
       body: GetBuilder<TeethController>(
         builder: (controller) {
           if (controller.data.value.size == Size.zero) {
@@ -171,6 +170,7 @@ class TeethSelectionScreen extends StatelessWidget {
                     for (ToothConnection c in selectedConnections) {
                       print('${c.id}\n${c.tooth1Id}\n${c.tooth2Id}');
                     }
+                    controller.sendTeeth();
                   },
                 )
               ],

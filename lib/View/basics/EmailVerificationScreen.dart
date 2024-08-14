@@ -4,10 +4,12 @@ import 'package:project_lambda_dental/Controller/User/Auth_controller.dart';
 import 'package:project_lambda_dental/shared/component/components.dart';
 import 'package:project_lambda_dental/shared/component/constants.dart';
 
+// ignore: must_be_immutable
 class EmailVerificationScreen extends GetView {
   EmailVerificationScreen({super.key});
 
   final TextEditingController codecontroller = TextEditingController();
+  String email = Get.arguments;
   @override
   Widget build(BuildContext context) {
     return GetBuilder(
@@ -41,7 +43,7 @@ class EmailVerificationScreen extends GetView {
                     height: 15,
                   ),
                   Text('Please enter the 6 digit code sent to'),
-                  Text('blabla@blablaleen.com'),
+                  Text(email),
                   SizedBox(
                     height: 30,
                   ),

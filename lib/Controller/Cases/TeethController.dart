@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:project_lambda_dental/Cache/CacheHelper.dart';
+import 'package:project_lambda_dental/Services/theme/dio.dart';
 import 'package:project_lambda_dental/View/case/TeethSelectionScreen.dart';
-
 
 import '../../shared/component/constants.dart';
 
@@ -11,11 +12,8 @@ typedef Data = ({
   Map<int, ToothConnection> connections
 });
 
-
-
 class TeethController extends GetxController {
   Rx<Data> data = Rx<Data>((size: Size.zero, teeth: {}, connections: {}));
-
 
   void loadTeeth(String asset) async {
     data.value = await loadTeethData(asset);
@@ -77,6 +75,52 @@ class TeethController extends GetxController {
       }
     }
     update();
+  }
+
+  Map<String, dynamic> convertSelectedTeethToApiFormat(
+      Set<Tooth> selectedTeeth, Set<ToothConnection> selectedConnections) {
+    // Define the order of treatments and materials as they appear in the popup menu
+    const treatments = [
+      'Crown',
+      'Pontic',
+      'Implant',
+      'Veneer',
+      'Inlay',
+      'Denture'
+    ];
+    const materials = ['Zircon', 'Metal', 'Wax', 'Acrylic PMMA'];
+
+    // Create the tooth_number array
+    List<List<int>> toothNumber = selectedTeeth.map((tooth) {
+      int treatmentIndex = treatments.indexOf(tooth.treatment!) + 1;
+      int materialIndex = materials.indexOf(tooth.material!) + 1;
+      return [tooth.id, treatmentIndex, materialIndex];
+    }).toList();
+
+    // Create the bridge array
+    List<int> bridge = selectedTeeth.map((tooth) {
+      bool isConnected = selectedConnections.any((connection) =>
+          connection.tooth1Id == tooth.id || connection.tooth2Id == tooth.id);
+      return isConnected ? 1 : 0;
+    }).toList();
+
+    // Create the final map to be sent to the API
+    Map<String, dynamic> apiData = {
+      "case_id": 1, // You can replace this with the actual case_id
+      "tooth_number": toothNumber,
+      "bridge": bridge,
+    };
+
+    return apiData;
+  }
+
+  void sendTeeth() {
+    final selectedTeeth = getSelectedTeeth();
+    final selectedConnections = getSelectedConnections();
+    final apiData =
+        convertSelectedTeethToApiFormat(selectedTeeth, selectedConnections);
+    String token = CacheHelper.get('token');
+    DioHelper.postData('add-teeth', apiData, token: token);
   }
 }
 
@@ -197,4 +241,3 @@ int generateToothId(int id) {
   };
   return (id1, id2);
 }
-

@@ -9,7 +9,6 @@ class BillsController extends GetxController {
       if (value?.data['status']) {
 //TODO handle response
       }
-      {}
     }).catchError((error) {
       print(error.toString());
     });

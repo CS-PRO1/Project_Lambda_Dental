@@ -97,7 +97,6 @@ class check extends State<statefull> {
                 checked = value!;
               });
             }),
-        //Text(text.tr, style: TextStyle(color: Theme.of(context).primaryColor)),
       ],
     );
   }

@@ -71,6 +71,7 @@ void main() async {
   runApp(MyApp(widget));
 }
 
+// ignore: must_be_immutable
 class MyApp extends StatelessWidget {
   dynamic widget;
   MyApp(widget) {

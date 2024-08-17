@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:buildcondition/buildcondition.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -6,52 +8,53 @@ import 'package:project_lambda_dental/shared/component/components.dart';
 
 import '../../shared/component/constants.dart';
 
-class ProfileEditScreen extends StatelessWidget {
-  const ProfileEditScreen({super.key});
+class ProfileEditScreen extends GetView {
+  ProfileEditScreen({super.key});
+  ProfileController controller = Get.put(ProfileController());
 
   @override
   Widget build(BuildContext context) {
     final formkey = GlobalKey<FormState>();
 
-    var userNameController = TextEditingController();
-    var emailController = TextEditingController();
-    var passwordController = TextEditingController();
-    var addressController = TextEditingController();
+    var firstNameController = TextEditingController();
+    var lastNameController = TextEditingController();
+    //var passwordController = TextEditingController();
+    //var addressController = TextEditingController();
     var phoneNumberController = TextEditingController();
     List info = [
       {
-        'text': 'Username',
+        'text': 'First Name',
         'icon': Icons.person,
-        'controller': userNameController,
+        'controller': firstNameController,
       },
       {
-        'text': 'E-Mail',
-        'icon': Icons.email,
-        'controller': emailController,
+        'text': 'Last Name',
+        'icon': Icons.person_2,
+        'controller': lastNameController,
       },
       {
         'text': 'Phone Number',
         'icon': Icons.phone,
         'controller': phoneNumberController,
       },
-      {
-        'text': 'Address',
-        'icon': Icons.location_on_sharp,
-        'controller': addressController,
-      },
-      {
-        'text': 'New Password',
-        'hint': 'Leave empty to keep the current password',
-        'icon': Icons.password,
-        'controller': passwordController,
-      },
+      // {
+      //   'text': 'Address',
+      //   'icon': Icons.location_on_sharp,
+      //   'controller': addressController,
+      // },
+      // {
+      //   'text': 'New Password',
+      //   'hint': 'Leave empty to keep the current password',
+      //   'icon': Icons.password,
+      //   'controller': passwordController,
+      // },
     ];
 
-    userNameController.text = 'Dr. Kuzcko';
-    emailController.text = 'myemail@example.com';
-    addressController.text = 'Damascus, Jibbeh';
-    phoneNumberController.text = '+963 937 438 298';
+    firstNameController.text = controller.profileModel!.firstName;
+    lastNameController.text = controller.profileModel!.lastName;
+    phoneNumberController.text = controller.profileModel!.phoneNumber;
 
+    //addressController.text = 'Damascus, Jibbeh';
     // userNameController.text = cubit.userModel?.data?.name as String;
     // emailController.text = cubit.userModel?.data?.email as String;
     // phoneNumberController.text = cubit.userModel?.data?.phone as String;
@@ -82,6 +85,7 @@ class ProfileEditScreen extends StatelessWidget {
     //   },
     //];
     return GetBuilder(
+      
       init: ProfileController(),
       builder: (controller) => Scaffold(
         backgroundColor: bglight,
@@ -129,6 +133,12 @@ class ProfileEditScreen extends StatelessWidget {
                                         defaultButton(
                                             text: 'Save',
                                             function: () {
+                                              controller.updateProfile(
+                                                  firstNameController.text,
+                                                  lastNameController.text,
+                                                  phoneNumberController.text);
+                                                  controller.getProfile();
+                                                  sleep(Duration(seconds: 3));
                                               Get.offAndToNamed('/home');
                                             })
                                         // TextButton(

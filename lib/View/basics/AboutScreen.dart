@@ -39,7 +39,7 @@ class About extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.only(top: 250),
             child: Column(
-              mainAxisSize: MainAxisSize.min,
+             mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [

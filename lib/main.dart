@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:project_lambda_dental/Cache/CacheHelper.dart';
-import 'package:project_lambda_dental/Services/theme/dio.dart';
+import 'package:project_lambda_dental/Services/dio.dart';
 import 'package:project_lambda_dental/View/basics/AboutScreen.dart';
 import 'package:project_lambda_dental/View/basics/LandingScreen.dart';
 import 'package:project_lambda_dental/View/basics/ProfileEditScreen.dart';
@@ -29,6 +29,7 @@ import 'locale/LocaleController.dart';
 
 void main() async {
   //WidgetsFlutterBinding.ensureInitialized();
+
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   await CacheHelper.init();
@@ -71,12 +72,13 @@ void main() async {
   runApp(MyApp(widget));
 }
 
+// ignore: must_be_immutable
 class MyApp extends StatelessWidget {
   dynamic widget;
   MyApp(widget) {
     this.widget = widget;
   }
-  
+
   @override
   Widget build(BuildContext context) {
     LocaleController localeController = Get.put(LocaleController());

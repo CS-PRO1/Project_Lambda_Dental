@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 
 import 'package:project_lambda_dental/Cache/CacheHelper.dart';
 import 'package:project_lambda_dental/Model/User/LoginModel.dart';
-import 'package:project_lambda_dental/Services/theme/dio.dart';
+import 'package:project_lambda_dental/Services/dio.dart';
 import 'package:project_lambda_dental/shared/component/components.dart';
 
 class AuthController extends GetxController {
@@ -26,18 +26,16 @@ class AuthController extends GetxController {
   }
 
   void requestLogin(String email, String password) {
-    DioHelper.postData('login', {'email': email, 'password': password})
+    DioHelper.postData('login_user', {'email': email, 'password': password})
         .then((value) {
-      loginModel = LoginModel.fromJson(value?.data);
-      if (value?.data['status'] == true) {
-        CacheHelper.setString('token', loginModel!.data!.token!);
+      
+        print('your token is ' + value?.data['token']);
+        CacheHelper.setString('token', value?.data['token']);
+        print('cached token is ' + CacheHelper.get('token'));
         CacheHelper.setString('password', password);
-        Fluttertoast.showToast(msg: loginModel!.message!);
         loginsuccess = true;
         update();
-      } else {
-        Fluttertoast.showToast(msg: loginModel!.message!);
-      }
+      
     }).catchError((error) {
       Fluttertoast.showToast(msg: error.toString());
     });
@@ -63,11 +61,6 @@ class AuthController extends GetxController {
 
   void register(
       String fname, String lname, String phone, String email, String password) {
-    print(fname);
-    print(lname);
-    print(phone);
-    print(email);
-    print(password);
     DioHelper.postData('register_user', {
       'first_name': fname,
       'last_name': lname,
@@ -75,20 +68,23 @@ class AuthController extends GetxController {
       'email': email,
       'password': password
     }).then((value) {
-      if (value?.data['status'] == true) {
-        loginModel = LoginModel.fromJson(value?.data);
-        CacheHelper.setString('token', loginModel!.data!.token!);
-        CacheHelper.setString('password', password);
+      if (value?.data['status'] == 200) {
+        //loginModel = LoginModel.fromJson(value?.data);
+        CacheHelper.setString('token', value?.data['token']);
+        print(value?.data['token']);
+        //CacheHelper.setString('password', password);
+        print(value?.data['message']);
         toast(value?.data['message']);
       } else {
+        print(value?.data['message']);
         toast(value?.data['message']);
       }
     }).catchError((error) {
       print(error.toString());
     });
   }
-  
-void forgotpassword(String email) {
+
+  void forgotpassword(String email) {
     DioHelper.postData('forgot_password', {'email': email})
         .then((value) {
           if (value?.data['status'] == true) {
@@ -129,5 +125,4 @@ void forgotpassword(String email) {
       });
     });
   }
-
 }

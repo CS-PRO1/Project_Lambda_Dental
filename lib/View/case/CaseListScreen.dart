@@ -1,64 +1,71 @@
+import 'package:buildcondition/buildcondition.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project_lambda_dental/Controller/Cases/CasesController.dart';
 import 'package:project_lambda_dental/shared/component/components.dart';
 
 class CaseListScreen extends GetView {
-  const CaseListScreen({super.key});
+  CaseListScreen({super.key});
+  @override
+  CasesController controller = Get.put(CasesController());
 
   @override
   Widget build(BuildContext context) {
-        return GetBuilder(
-      init: CasesController(),
-      builder: (controller) =>  Scaffold(
-      appBar: MyAppBar(
-        title: 'Cases',
-        leading: AppBarPopupMenu(),
-        actions: [
-          IconButton(onPressed: () {}, icon: Icon(Icons.search_rounded))
-        ],
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(10),
-        child: Stack(
-          children: [
-            ListView.separated(
-                physics: BouncingScrollPhysics(),
-                shrinkWrap: true,
-                itemBuilder: (BuildContext context, int index) =>
-                    catItemBuilder(context, index),
-                itemCount: 40,
-                separatorBuilder: (BuildContext context, int index) =>
-                    Container(
-                      height: 1,
-                      color: Colors.grey,
-                    )),
-            Positioned(
-              bottom: 60,
-              right: 20.0, // or whatever
-              child: MyFloatButton(
-                onTap: () {
-                  Get.toNamed('/addorder');
-                },
+    controller.getAllCases();
+    return GetBuilder(
+        init: controller,
+        builder: (controller) => BuildCondition(
+              condition: controller.caseListModel != null,
+              fallback: (context) => Center(child: CircularProgressIndicator()),
+              builder: (context) => Scaffold(
+                appBar: MyAppBar(
+                  title: 'Cases',
+                  leading: AppBarPopupMenu(),
+                  actions: [
+                    IconButton(
+                        onPressed: () {}, icon: Icon(Icons.search_rounded))
+                  ],
+                ),
+                body: Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: Column(
+                    children: [
+                      Expanded(
+                        child: Stack(
+                          children: [
+                            ListView.separated(
+                                physics: BouncingScrollPhysics(),
+                                shrinkWrap: true,
+                                itemBuilder: (BuildContext context, int index) =>
+                                    catItemBuilder(context, index),
+                                itemCount: controller.caseListModel!.data.length,
+                                separatorBuilder: (BuildContext context, int index) =>
+                                    Container(
+                                      height: 1,
+                                      color: Colors.grey,
+                                    )),
+                            Positioned(
+                              bottom: 60,
+                              right: 20.0, // or whatever
+                              child: MyFloatButton(
+                                onTap: () {
+                                  Get.toNamed('/addorder');
+                                },
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ),
-            )
-          ],
-        ),
-      ),
-      // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      // floatingActionButton: FloatingActionButton(
-      //   backgroundColor: cyan200,
-      //   child: Icon(Icons.add),
-      //   onPressed: () {
-      //     Get.toNamed('/addorder');
-      //   },
-      // ),
-        ));
+            ));
   }
 
   catItemBuilder(context, index) {
     return InkWell(
-      onTap: () => Get.toNamed('/orderdetails', arguments: {'id' : index}),
+      onTap: () => Get.toNamed('/orderdetails', arguments: {'id': index}),
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         child: Padding(
@@ -68,15 +75,20 @@ class CaseListScreen extends GetView {
             children: [
               Flexible(
                 child: Text(
-                  'Patient Name'.tr,
+                  controller.caseListModel!.data[index].patient_name!,
                   style: Theme.of(context).textTheme.headline6,
                   overflow: TextOverflow.ellipsis,
                 ),
               ),
               Column(
                 children: [
-                  Text('2024/12/9'.tr),
-                  Text('Status: Ready'.tr),
+                  Text('${controller.caseListModel!.data[index].created_at}'
+                      .substring(0, 10)),
+                  Text('Status'.tr +
+                      ': ' +
+                      (controller.caseListModel!.data[index].status == 0
+                          ? 'Unconfirmed'
+                          : 'Confirmed')),
                 ],
               ),
               Icon(Icons.arrow_forward_ios_rounded),

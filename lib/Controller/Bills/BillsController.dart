@@ -12,7 +12,6 @@ class BillsController extends GetxController {
       if (value?.data['status']) {
         billsListModel = BillsListModel.fromJson(value?.data);
       }
-      {}
     }).catchError((error) {
       print(error.toString());
     });

@@ -66,16 +66,16 @@ class RegisterScreen extends GetView {
                                         horizontal: 10.0),
                                     child: Column(
                                       children: [
-                                        myTextField(firstnamecontroller, context,
-                                            'First Name'.tr, Icon(Icons.person)),
+                                        myTextField(
+                                            firstnamecontroller,
+                                            context,
+                                            'First Name'.tr,
+                                            Icon(Icons.person)),
                                         const SizedBox(
                                           height: 25,
                                         ),
-                                        myTextField(
-                                            lastnamecontroller,
-                                            context,
-                                            'Last Name'.tr,
-                                            Icon(Icons.person)),
+                                        myTextField(lastnamecontroller, context,
+                                            'Last Name'.tr, Icon(Icons.person)),
                                         const SizedBox(
                                           height: 25,
                                         ),
@@ -187,13 +187,15 @@ class RegisterScreen extends GetView {
                                             if (formkey.currentState!
                                                 .validate()) {
                                               controller.register(
-                                                firstnamecontroller.text,
-                                                lastnamecontroller.text,
-                                                phonenumbercontroller.text,
+                                                  firstnamecontroller.text,
+                                                  lastnamecontroller.text,
+                                                  phonenumbercontroller.text,
                                                   emailcontroller.text,
                                                   passwordcontroller.text);
+                                                  //print(firstnamecontroller.text);
+                                              Get.offAndToNamed('/home');
                                             }
-                                            Get.offAndToNamed('/home');
+                                            //Get.to('/verify-email', arguments: emailcontroller.text);
                                           },
                                         ),
                                         SizedBox(

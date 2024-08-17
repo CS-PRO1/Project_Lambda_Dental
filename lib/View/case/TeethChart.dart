@@ -30,7 +30,7 @@ class TeethDisplayWidget extends StatelessWidget {
                   child: Stack(
                     children: [
                       // teeth
-                      for (final MapEntry(key: key, value: tooth)
+                      for (final MapEntry(value: tooth)
                           in controller.data.value.teeth.entries)
                         Positioned.fromRect(
                           rect: tooth.rect,
@@ -69,7 +69,7 @@ class TeethDisplayWidget extends StatelessWidget {
                           ),
                         ),
                       // connections
-                      for (final MapEntry(key: key, value: connection)
+                      for (final MapEntry(value: connection)
                           in controller.data.value.connections.entries)
                         Positioned.fromRect(
                           rect: connection.rect,

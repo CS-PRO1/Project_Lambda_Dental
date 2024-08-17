@@ -1,4 +1,6 @@
 // ignore: file_names
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -149,7 +151,9 @@ class LoginScreen extends GetView {
                                                   emailcontroller.text,
                                                   passwordcontroller.text);
                                             }
-                                            Get.offAndToNamed('/home');
+                                            sleep(Duration(seconds: 5));
+                                              Get.offAndToNamed('/home');
+                                            
                                           },
                                         ),
                                         SizedBox(
@@ -446,6 +450,9 @@ class LoginScreen extends GetView {
                 validator: (value) {
                   if (value!.isEmpty) {
                     return 'Please confirm your new password'.tr;
+                  }
+                  if (value != resetpasscontroller.text) {
+                    return 'The passwords do not match, Please try again'.tr;
                   }
                   return null;
                 },

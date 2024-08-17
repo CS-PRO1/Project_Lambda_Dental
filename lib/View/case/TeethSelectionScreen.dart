@@ -21,45 +21,7 @@ class TeethSelectionScreen extends StatelessWidget {
     controller.loadTeeth(asset);
 
     return Scaffold(
-      appBar: 
-            MyAppBar(title: 'Tooth Selection'),
-
-      // AppBar(
-      //   leading: PopupMenuButton(
-      //     icon: const Icon(Icons.menu),
-      //     itemBuilder: (context) => [
-      //       PopupMenuItem(
-      //         child: Row(
-      //           children: [
-      //             Icon(Icons.account_circle, color: Colors.black),
-      //             SizedBox(width: 10),
-      //             Text(
-      //               "Modify profile",
-      //               style: TextStyle(
-      //                 fontWeight: FontWeight.bold,
-      //                 fontSize: 19,
-      //               ),
-      //             ),
-      //           ],
-      //         ),
-      //         onTap: () => (),
-      //       ),
-      //     ],
-      //   ),
-      //   elevation: 0,
-      //   backgroundColor: cyan200,
-      //   title: Text(
-      //     'New Order'.tr,
-      //     style: TextStyle(fontWeight: FontWeight.bold),
-      //   ),
-      //   centerTitle: true,
-      //   actions: [
-      //     IconButton(
-      //       onPressed: () => Navigator.of(context).pop(),
-      //       icon: Icon(Icons.arrow_back),
-      //     )
-      //   ],
-      // ),
+      appBar: MyAppBar(title: 'Tooth Selection'),
       body: GetBuilder<TeethController>(
         builder: (controller) {
           if (controller.data.value.size == Size.zero) {
@@ -208,6 +170,8 @@ class TeethSelectionScreen extends StatelessWidget {
                     for (ToothConnection c in selectedConnections) {
                       print('${c.id}\n${c.tooth1Id}\n${c.tooth2Id}');
                     }
+                    controller.sendTeeth();
+                    Get.offAndToNamed('/home');
                   },
                 )
               ],

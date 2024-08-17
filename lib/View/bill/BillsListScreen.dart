@@ -2,6 +2,7 @@ import 'package:buildcondition/buildcondition.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project_lambda_dental/Controller/Bills/BillsController.dart';
+import 'package:project_lambda_dental/View/bill/BillsSearchScreen.dart';
 import 'package:project_lambda_dental/shared/component/components.dart';
 
 class BillsListScreen extends GetView {
@@ -18,7 +19,9 @@ class BillsListScreen extends GetView {
           title: 'Bills',
           leading: AppBarPopupMenu(),
           actions: [
-            IconButton(onPressed: () {}, icon: Icon(Icons.search_rounded))
+            IconButton(onPressed: () {
+              Get.to(BillsSearchScreen());
+            }, icon: Icon(Icons.search_rounded))
           ],
         ),
         body: BuildCondition(

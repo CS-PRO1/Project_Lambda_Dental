@@ -82,7 +82,6 @@ class CasesController extends GetxController {
     String token = CacheHelper.get('token');
     print(data.toString());
     DioHelper.postData('add_case', data, token: token).then((value) {
-      toast('sending case');
       print('sent data success');
       print(value?.data['message']);
     }).catchError((error) {

@@ -36,8 +36,9 @@ class _CaseDetailsScreenState extends State<CaseDetailsScreen> {
     controller.caseDetailsModel!.caseDetails![0].age,
     controller.caseDetailsModel!.caseDetails![0].gender,
     controller.caseDetailsModel!.caseDetails![0].shade,
-    controller.caseDetailsModel!.caseDetails![0].createdAt,
-    controller.caseDetailsModel!.caseDetails![0].expectDeliveryTime,
+    controller.caseDetailsModel!.caseDetails![0].createdAt!.substring(0, 10),
+    controller.caseDetailsModel!.caseDetails![0].expectDeliveryTime!
+        .substring(0, 10),
     controller.caseDetailsModel!.caseDetails![0].repeate,
     controller.caseDetailsModel!.caseDetails![0].needTrial,
   ];

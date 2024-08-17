@@ -3,9 +3,15 @@ class BillsListModel {
   List<Bill> data = [];
 
   BillsListModel.fromJson(Map<String, dynamic> json) {
+    if(json['Bills'] != null)
     json['Bills'].forEach((element) {
       data.add(Bill.fromJson(element));
     });
+    else{
+          json['All bills'].forEach((element) {
+        data.add(Bill.fromJson(element));
+      });
+    }
   }
 }
 

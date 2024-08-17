@@ -2,11 +2,12 @@ import 'package:buildcondition/buildcondition.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project_lambda_dental/Controller/Bills/BillsController.dart';
+import 'package:project_lambda_dental/shared/component/components.dart';
 import 'package:project_lambda_dental/shared/component/constants.dart';
 
 class BillDetailsScreen extends GetView {
   BillDetailsScreen({super.key});
-  final int id = Get.arguments['id'];
+  //final int id = Get.arguments['id'];
   BillsController controller = Get.put(BillsController());
 
   @override
@@ -15,11 +16,12 @@ class BillDetailsScreen extends GetView {
     return GetBuilder(
       init: BillsController(),
       builder: (controller) => Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          foregroundColor: Colors.black,
-          centerTitle: true,
-          title: Text('Bill'.tr + id.toString()),
+        appBar: MyAppBar(
+          title: 'Bills',
+          actions: [
+            IconButton(onPressed: () {}, icon: Icon(Icons.search_rounded)),
+          ],
+          leading: AppBarPopupMenu(),
         ),
         body: BuildCondition(
           condition: controller.billsListModel != null,
@@ -34,25 +36,12 @@ class BillDetailsScreen extends GetView {
                       shrinkWrap: true,
                       itemBuilder: (BuildContext context, int index) =>
                           catItemBuilder(context, index),
-                      itemCount: 14,
+                      itemCount: controller.billsListModel!.data.length,
                       separatorBuilder: (BuildContext context, int index) =>
                           Container(
                             height: 1,
                             color: Colors.grey,
                           )),
-                  Container(
-                    color: Colors.grey[200],
-                    width: double.infinity,
-                    height: 60,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text('Final Bill'.tr),
-                        // Text(controller.billDetailsController!.data!.total_price
-                        //     .toString()),
-                      ],
-                    ),
-                  )
                 ],
               ),
             ),
@@ -88,10 +77,11 @@ class BillDetailsScreen extends GetView {
                 Text('Date:'.tr +
                     ' ' +
                     controller.billsListModel!.data[index].created_at
-                        .toString()),
+                        .toString()
+                        .substring(0, 10)),
               ],
             ),
-            Text('Total Bill:' +
+            Text('Total Bill: ' +
                 controller.billsListModel!.data[index].total_price.toString()),
             //style: TextStyle(fontSize: 22, color: cyan400),
           ],

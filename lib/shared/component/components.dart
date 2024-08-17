@@ -41,153 +41,151 @@ Widget defaultButton({
     ),
   );
 }
-
-Widget genderRadio({
-  bool isMale = true,
-}) =>
-    Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text(
-          'Male'.tr,
-          style: TextStyle(color: cyan300),
-        ),
-        Radio(
-            activeColor: cyan400,
-            value: (true),
-            groupValue: isMale,
-            onChanged: (val) {
-              isMale = val!;
-            }),
-        SizedBox(
-          width: 10.0,
-        ),
-        Text(
-          'Female'.tr,
-          style: TextStyle(color: Colors.purpleAccent),
-        ),
-        Radio(
-            activeColor: Colors.purple,
-            value: (false),
-            groupValue: isMale,
-            onChanged: (val) {
-              isMale = val!;
-            })
-      ],
+Widget genderRadio(bool isMale) => StatefulBuilder(
+      builder: (context, setState) {
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'Male'.tr,
+              style: TextStyle(color: cyan300),
+            ),
+            Radio(
+                activeColor: cyan400,
+                value: true,
+                groupValue: isMale,
+                onChanged: (val) {
+                  setState(() {
+                    isMale = val!;
+                  });
+                }),
+            SizedBox(
+              width: 10.0,
+            ),
+            Text(
+              'Female'.tr,
+              style: TextStyle(color: Colors.purpleAccent),
+            ),
+            Radio(
+                activeColor: Colors.purple,
+                value: false,
+                groupValue: isMale,
+                onChanged: (val) {
+                  setState(() {
+                    isMale = val!;
+                  });
+                })
+          ],
+        );
+      },
     );
 
-class statefull extends StatefulWidget {
-  const statefull({super.key});
-
-  @override
-  State<statefull> createState() => check();
-}
-
-class check extends State<statefull> {
-  bool checked = false;
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Checkbox(
-            activeColor: cyan400,
-            value: checked,
-            onChanged: (value) {
-              setState(() {
-                checked = value!;
-              });
-            }),
-      ],
-    );
-  }
-}
-
-Widget checkBox(BuildContext context, {var checked, required String text}) =>
-    Row(
-      children: [
-        Checkbox(
-            activeColor: Colors.deepPurple,
-            value: checked,
-            onChanged: (value) {
-              //setState(() {});
-            }),
-        Text(text.tr, style: TextStyle(color: Theme.of(context).primaryColor)),
-      ],
+Widget statefull(bool check, {required Function(bool) onChanged}) => StatefulBuilder(
+      builder: (context, setState) {
+        return Checkbox(
+          activeColor: cyan400,
+          value: check,
+          onChanged: (value) {
+            setState(() {
+              check = value!;
+              onChanged(value);
+            });
+          },
+        );
+      },
     );
 
-Widget datePicker(BuildContext context) {
-  DateTime _dateTime = DateTime.now();
-  void _showDatePicker() {
-    showDatePicker(
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(2000),
-      lastDate: DateTime(2050),
-    ).then((value) {
-      _dateTime = value!;
-    });
-  }
-
-  return SizedBox(
-    width: 200,
-    child: Card(
-      color: bglight,
-      elevation: 1,
-      shape: LinearBorder.bottom(side: BorderSide(color: cyan400, width: 2)),
-      child: InkWell(
-        onTap: _showDatePicker,
-        child: Padding(
-          padding: EdgeInsets.all(10),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                _dateTime.year.toString() +
-                    '/' +
-                    _dateTime.month.toString() +
-                    '/' +
-                    _dateTime.day.toString(),
-                style: TextStyle(fontSize: 20),
+     Widget datePicker(DateTime expectedDeliveryDate, BuildContext context) {
+  return StatefulBuilder(
+    builder: (context, setState) {
+      return SizedBox(
+        width: 200,
+        child: Card(
+          color: bglight,
+          elevation: 1,
+          shape:
+              LinearBorder.bottom(side: BorderSide(color: cyan400, width: 2)),
+          child: InkWell(
+            onTap: () async {
+              DateTime? pickedDate = await showDatePicker(
+                context: context,
+                initialDate: DateTime.now(),
+                firstDate: DateTime(2000),
+                lastDate: DateTime(2050),
+              );
+              if (pickedDate != null) {
+                setState(() {
+                  expectedDeliveryDate = pickedDate;
+                });
+              }
+            },
+            child: Padding(
+              padding: EdgeInsets.all(10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "${expectedDeliveryDate.year}/${expectedDeliveryDate.month}/${expectedDeliveryDate.day}",
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  Icon(Icons.calendar_month_outlined),
+                ],
               ),
-              Icon(Icons.calendar_month_outlined),
-            ],
+            ),
           ),
         ),
-      ),
-    ),
+      );
+    },
   );
 }
 
-Widget imagePicker() {
-  File? image;
-  File? imageTemporary;
 
-  Future pickImage(ImageSource source) async {
-    try {
-      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
-      if (image == null) return;
-      final imageTemporary = File(image.path);
-      //this.image = imageTemporary;
-    } on PlatformException catch (e) {
-      print('Faild to pick image: $e');
-    }
+  Widget imagePicker(List images) {
+    return StatefulBuilder(
+      builder: (context, setState) {
+        return Column(
+          children: [
+            ElevatedButton(
+              onPressed: () async {
+                final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
+                if (pickedFile != null) {
+                  setState(() {
+                    images.add(File(pickedFile.path));
+                  });
+                }
+              },
+              child: Text('Pick Image from Gallery'),
+            ),
+            ElevatedButton(
+              onPressed: () async {
+                final pickedFile = await ImagePicker().pickImage(source: ImageSource.camera);
+                if (pickedFile != null) {
+                  setState(() {
+                    images.add(File(pickedFile.path));
+                  });
+                }
+              },
+              child: Text('Take Photo'),
+            ),
+            SizedBox(height: 10),
+            Wrap(
+              children: images.map((image) {
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Image.file(
+                    image,
+                    width: 100,
+                    height: 100,
+                    fit: BoxFit.cover,
+                  ),
+                );
+              }).toList(),
+            ),
+          ],
+        );
+      },
+    );
   }
-
-  return ElevatedButton(
-    onPressed: () => pickImage(ImageSource.camera),
-    child: Text(
-      'Add Images'.tr,
-      style: TextStyle(
-        fontWeight: FontWeight.bold,
-        color: Colors.white,
-      ),
-    ),
-    style: ElevatedButton.styleFrom(
-      backgroundColor: cyan400,
-      shape: StadiumBorder(),
-    ),
-  );
-}
 
 Widget myTextField(TextEditingController controller, BuildContext context,
     String label, Icon prefixIcon,

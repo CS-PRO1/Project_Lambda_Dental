@@ -171,6 +171,7 @@ class TeethSelectionScreen extends StatelessWidget {
                       print('${c.id}\n${c.tooth1Id}\n${c.tooth2Id}');
                     }
                     controller.sendTeeth();
+                    Get.offAndToNamed('/home');
                   },
                 )
               ],

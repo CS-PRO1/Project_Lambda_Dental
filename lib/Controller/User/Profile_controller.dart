@@ -1,15 +1,19 @@
 import 'package:get/get.dart';
 import 'package:project_lambda_dental/Cache/CacheHelper.dart';
 import 'package:project_lambda_dental/Model/User/ProfileModel.dart';
-import 'package:project_lambda_dental/Services/theme/dio.dart';
+import 'package:project_lambda_dental/Services/dio.dart';
+import 'package:project_lambda_dental/shared/component/components.dart';
 
 class ProfileController extends GetxController {
   ProfileModel? profileModel;
   void getProfile() {
-    DioHelper.getData('profile', token: CacheHelper.get('token')).then((value) {
-      profileModel = ProfileModel.fromJson(value?.data);
-      if (value?.data['status']) {
+    var token = CacheHelper.get('token');
+    DioHelper.getData('profile_user', token: token)
+        .then((value) {
+      //profileModel = ProfileModel.fromJson(value?.data);
+      if (value?.data != null) {
         profileModel = ProfileModel.fromJson(value?.data);
+        //toast(profileModel!.firstName);
       }
     }).catchError((error) {
       print(error.toString());

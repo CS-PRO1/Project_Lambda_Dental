@@ -1,40 +1,42 @@
 import 'dart:io';
 
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:project_lambda_dental/Cache/CacheHelper.dart';
 import 'package:project_lambda_dental/Model/Cases/CaseDetailsModel.dart';
 import 'package:project_lambda_dental/Model/Cases/CaseListModel.dart';
 import 'package:project_lambda_dental/Model/Cases/CommentsModel.dart';
-import 'package:project_lambda_dental/Services/theme/dio.dart';
+import 'package:project_lambda_dental/Services/dio.dart';
 import 'package:project_lambda_dental/shared/component/components.dart';
 
 class CasesController extends GetxController {
-  CaseResponse? caseDetailsModel;
   CaseListModel? caseListModel;
   void getAllCases() {
+    print('Getting cases');
     String token = CacheHelper.get('token');
     DioHelper.getData('all_cases', token: token).then((value) {
-      if (value?.data['status']) {
-        caseListModel = CaseListModel.fromJson(value?.data);
-      }
+      caseListModel = CaseListModel.fromJson(value?.data);
+      print(caseListModel.toString());
+      update();
     }).catchError((error) {
-      toast(commentsModel!.message);
-      //toast(error);
+      print('error: ' + error.toString());
     });
+    update();
   }
 
+  CaseDetailsResponse? caseDetailsModel;
   void getCaseDetails(int case_id) {
     String token = CacheHelper.get('token');
     DioHelper.postData('case_details', {'case_id': case_id}, token: token).then(
       (value) {
-        if (value?.data['status']) {
-          caseDetailsModel = CaseResponse.fromJson(value?.data);
-        }
+        caseDetailsModel = CaseDetailsResponse.fromJson(value?.data);
+        update();
       },
     ).catchError((error) {
       toast(commentsModel!.message);
-      //toast(error);
     });
+    update();
   }
 
   void searchCase(String pname) {
@@ -43,7 +45,7 @@ class CasesController extends GetxController {
         .then(
       (value) {
         if (value?.data['status']) {
-          caseDetailsModel = CaseResponse.fromJson(value?.data);
+          caseDetailsModel = CaseDetailsResponse.fromJson(value?.data);
         }
       },
     ).catchError((error) {
@@ -51,25 +53,38 @@ class CasesController extends GetxController {
     });
   }
 
-  void addCase(String pname, int age, String gender, bool nt, bool re,
-      String note, String shade, DateTime date, Set<File> images) {
+  var patientName = ''.obs;
+  var age = 0.obs;
+  var gender = 'male'.obs;
+  var needTrial = false.obs;
+  var repeat = false.obs;
+  var notes = ''.obs;
+  var shade = 'A1'.obs;
+  var expectedDeliveryDate = DateTime.now().obs;
+  var images = <File>[].obs;
+
+  void pickImage(ImageSource source) async {
+    try {
+      final pickedFile = await ImagePicker().pickImage(source: source);
+      if (pickedFile != null) {
+        images.add(File(pickedFile.path));
+      }
+    } on PlatformException catch (e) {
+      print('Failed to pick image: $e');
+    }
+  }
+
+  void setDate(DateTime date) {
+    expectedDeliveryDate.value = date;
+  }
+
+  void addCase(var data) {
     String token = CacheHelper.get('token');
-    DioHelper.postData(
-            'add_case',
-            {
-              'patient_name': pname,
-              'age': age,
-              'gender': gender,
-              'need_trial': nt,
-              'repeat': re,
-              'notes': note,
-              'shade': shade,
-              'expect_delivery_time': date,
-              'images': images,
-            },
-            token: token)
-        .then((value) {
-      if (value?.data['status'] == true) {}
+    print(data.toString());
+    DioHelper.postData('add_case', data, token: token).then((value) {
+      toast('sending case');
+      print('sent data success');
+      print(value?.data['message']);
     }).catchError((error) {
       print(error.toString());
     });

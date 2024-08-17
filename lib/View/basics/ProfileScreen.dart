@@ -2,15 +2,20 @@ import 'package:buildcondition/buildcondition.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:project_lambda_dental/Cache/CacheHelper.dart';
 import 'package:project_lambda_dental/Controller/User/Profile_controller.dart';
 import 'package:project_lambda_dental/shared/component/components.dart';
 import 'package:project_lambda_dental/shared/component/constants.dart';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key});
+  ProfileScreen({super.key});
+  final ProfileController controller = Get.put(ProfileController());
 
   @override
   Widget build(BuildContext context) {
+    print(CacheHelper.get('token'));
+    controller.getProfile();
+    
     itemBuilder(model) {
       return Padding(
         padding: const EdgeInsets.all(12.0),
@@ -32,7 +37,7 @@ class ProfileScreen extends StatelessWidget {
                 style: TextStyle(
                     fontSize: 20,
                     color: model['title'] == 'Credit: '
-                        ? model['info'] < 0
+                        ? controller.profileModel!.wallet < 0
                             ? Colors.red
                             : Colors.green
                         : Colors.blueGrey[300]
@@ -44,7 +49,7 @@ class ProfileScreen extends StatelessWidget {
     }
 
     return GetBuilder(
-      init: ProfileController(),
+      init: controller,
       builder: (controller) => Scaffold(
         backgroundColor: bglight,
         appBar: MyAppBar(
@@ -58,16 +63,14 @@ class ProfileScreen extends StatelessWidget {
           ],
         ),
         body: BuildCondition(
-            condition: true,
-            //fallback: (context) => Center(child: CircularProgressIndicator()),
-            //condition: cubit.userModel?.data != null,
+            condition: controller.profileModel?.firstName != null,
+            fallback: (context) => Center(child: CircularProgressIndicator()),
             builder: (context) {
-              //var userData = cubit.userModel?.data;
-      
               List userInfo = [
                 {
                   'title': 'Name: ',
-                  'info': controller.profileModel!.firstName + controller.profileModel!.lastName,
+                  'info': controller.profileModel!.firstName +
+                      controller.profileModel!.lastName,
                   'icon': Icons.person,
                 },
                 {
@@ -98,8 +101,7 @@ class ProfileScreen extends StatelessWidget {
                                       children: [
                                         CircleAvatar(
                                           radius: 80,
-                                          backgroundImage: NetworkImage(
-                                              ''),
+                                          backgroundImage: NetworkImage(''),
                                           onBackgroundImageError: (exception,
                                                   stackTrace) =>
                                               Image.asset(
@@ -111,11 +113,11 @@ class ProfileScreen extends StatelessWidget {
                                             shrinkWrap: true,
                                             itemBuilder: (context, index) =>
                                                 itemBuilder(userInfo[index]),
-                                            separatorBuilder: (context, index) =>
-                                                Container(
-                                                  height: 1,
-                                                  color: Colors.grey,
-                                                ),
+                                            separatorBuilder:
+                                                (context, index) => Container(
+                                                      height: 1,
+                                                      color: Colors.grey,
+                                                    ),
                                             itemCount: userInfo.length),
                                         SizedBox(
                                           height: 20,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project_lambda_dental/Cache/CacheHelper.dart';
-import 'package:project_lambda_dental/Services/theme/dio.dart';
+import 'package:project_lambda_dental/Services/dio.dart';
 import 'package:project_lambda_dental/View/case/TeethSelectionScreen.dart';
 
 import '../../shared/component/constants.dart';
@@ -90,15 +90,18 @@ class TeethController extends GetxController {
     ];
     const materials = ['Zircon', 'Metal', 'Wax', 'Acrylic PMMA'];
 
-    // Create the tooth_number array
+    int count = 0;
+    // Create the tcooth_number array
     List<List<int>> toothNumber = selectedTeeth.map((tooth) {
       int treatmentIndex = treatments.indexOf(tooth.treatment!) + 1;
       int materialIndex = materials.indexOf(tooth.material!) + 1;
+      count++;
       return [tooth.id, treatmentIndex, materialIndex];
     }).toList();
 
     // Create the bridge array
     List<int> bridge = selectedTeeth.map((tooth) {
+      count;
       bool isConnected = selectedConnections.any((connection) =>
           connection.tooth1Id == tooth.id || connection.tooth2Id == tooth.id);
       return isConnected ? 1 : 0;
@@ -106,7 +109,6 @@ class TeethController extends GetxController {
 
     // Create the final map to be sent to the API
     Map<String, dynamic> apiData = {
-      "case_id": 1, // You can replace this with the actual case_id
       "tooth_number": toothNumber,
       "bridge": bridge,
     };
@@ -119,8 +121,13 @@ class TeethController extends GetxController {
     final selectedConnections = getSelectedConnections();
     final apiData =
         convertSelectedTeethToApiFormat(selectedTeeth, selectedConnections);
+    print(apiData.toString());
     String token = CacheHelper.get('token');
-    DioHelper.postData('add-teeth', apiData, token: token);
+    DioHelper.postData('add_teeth', apiData, token: token).then((value) {
+      print('message: ' + value?.data['message']);
+    }).catchError((error) {
+      print('error: ' + error.toString());
+    });
   }
 }
 

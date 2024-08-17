@@ -17,6 +17,7 @@ class Settings extends StatefulWidget {
   State<Settings> createState() => _SettingsState();
 }
 
+
 class _SettingsState extends State<Settings> {
   var emailController = TextEditingController();
   LocaleController localeController = Get.find();
@@ -143,6 +144,7 @@ class _SettingsState extends State<Settings> {
                 function: () {
                   print(emailController.text);
                   print(passwordController.text);
+                  
                 },
               ),
             ],

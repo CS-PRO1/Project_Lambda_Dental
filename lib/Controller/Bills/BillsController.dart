@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:project_lambda_dental/Cache/CacheHelper.dart';
-import 'package:project_lambda_dental/Services/theme/dio.dart';
+import 'package:project_lambda_dental/Services/dio.dart';
 
 class BillsController extends GetxController {
   void getAllBills() {

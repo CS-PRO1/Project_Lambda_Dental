@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project_lambda_dental/Controller/landing_page_controller.dart';
+import 'package:project_lambda_dental/View/bill/BillDetailsScreen.dart';
 import 'package:project_lambda_dental/View/bill/BillsListScreen.dart';
 import 'package:project_lambda_dental/View/case/CaseListScreen.dart';
 import 'package:project_lambda_dental/shared/component/constants.dart';
@@ -29,7 +30,7 @@ class LandingScreen extends GetView {
                       index: controller.tabIndex.value,
                       children: [
                         CaseListScreen(),
-                        BillsListScreen(),
+                        BillDetailsScreen(),
                         ProfileScreen(),
                       ],
                     )),

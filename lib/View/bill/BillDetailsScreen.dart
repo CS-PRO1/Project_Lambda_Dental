@@ -42,7 +42,8 @@ class BillDetailsScreen extends GetView {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text('Final Bill'.tr),
-                      Text('16.000.000 '),
+                      Text(controller.billDetailsModel!.data!.total_price
+                          .toString()),
                     ],
                   ),
                 )
@@ -57,7 +58,7 @@ class BillDetailsScreen extends GetView {
   catItemBuilder(context, index) {
     return InkWell(
       onTap: () {
-        Get.toNamed('/orderdetails', arguments: {'id' : index});
+        Get.toNamed('/orderdetails', arguments: {'id': index});
       },
       child: Padding(
         padding: const EdgeInsets.all(15.0),
@@ -66,15 +67,19 @@ class BillDetailsScreen extends GetView {
           children: [
             Flexible(
               child: Text(
-                '#001',
+                controller.billDetailsModel!.data!.case_id,
                 style: TextStyle(fontSize: 18, color: cyan600),
                 overflow: TextOverflow.ellipsis,
               ),
             ),
             Column(
               children: [
-                Text('Patient Name:'.tr + ' ' + 'Sali'.tr),
-                Text('Date:'.tr + ' ' + '5/4/2024'),
+                Text('Patient Name:'.tr +
+                    ' ' +
+                    controller.billDetailsModel!.data!.patient_name.toString()),
+                Text('Date:'.tr +
+                    ' ' +
+                    controller.billDetailsModel!.data!.created_at.toString()),
               ],
             ),
             Text(

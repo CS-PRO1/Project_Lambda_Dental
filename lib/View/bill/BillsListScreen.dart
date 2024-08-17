@@ -4,12 +4,12 @@ import 'package:project_lambda_dental/Controller/Bills/BillsController.dart';
 import 'package:project_lambda_dental/shared/component/components.dart';
 
 class BillsListScreen extends GetView {
-  const BillsListScreen({super.key});
-
+  BillsListScreen({super.key});
+  final BillsController controller = Get.put(BillsController());
   @override
   Widget build(BuildContext context) {
     return GetBuilder(
-      init: BillsController(),
+      init: controller,
       builder: (controller) => Scaffold(
         appBar: MyAppBar(
           title: 'Bills',
@@ -45,14 +45,15 @@ class BillsListScreen extends GetView {
           children: [
             Flexible(
               child: Text(
-                'Bill'.tr + ' 001',
+                'Bill'.tr + controller.billsListModel!.data!.case_id.toString(),
                 style: Theme.of(context).textTheme.headline6,
                 overflow: TextOverflow.ellipsis,
               ),
             ),
             Column(
               children: [
-                Text('date from:' + ' 18/4/2024'),
+                Text('date from:' +
+                    controller.billsListModel!.data!.created_at.toString()),
                 Text('date to:' + ' 20/4/2024'),
               ],
             ),

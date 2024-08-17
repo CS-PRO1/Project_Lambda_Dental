@@ -53,7 +53,6 @@ class BillsListScreen extends GetView {
     return Padding(
       padding: const EdgeInsets.all(15.0),
       child: InkWell(
-        onTap: () => Get.toNamed('billdetails', arguments: {'id': index}),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

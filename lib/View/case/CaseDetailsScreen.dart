@@ -9,10 +9,14 @@ import 'package:project_lambda_dental/shared/component/constants.dart';
 
 import '../../shared/component/ProcessTimeline.dart';
 
-// ignore: must_be_immutable
-class CaseDetailsScreen extends GetView {
+class CaseDetailsScreen extends StatefulWidget {
   CaseDetailsScreen({super.key});
+
   @override
+  _CaseDetailsScreenState createState() => _CaseDetailsScreenState();
+}
+
+class _CaseDetailsScreenState extends State<CaseDetailsScreen> {
   final CasesController controller = Get.put(CasesController());
   final int id = Get.arguments['id'];
 
@@ -38,34 +42,44 @@ class CaseDetailsScreen extends GetView {
     controller.caseDetailsModel!.caseDetails![0].needTrial,
   ];
 
-  late List<Comment> comments;
+  final orderdetailsicons = [
+    Icon(Icons.abc),
+    Icon(Icons.abc),
+    Icon(Icons.abc),
+  ];
+
+  // late List<Comment> comments = controller.commentsModel!.comments
+  //     .where((element) => element.caseId == id)
+  //     .toList();
+
+  @override
+  void initState() {
+    super.initState();
+    controller.getCaseDetails(id);
+  }
 
   @override
   Widget build(BuildContext context) {
-    controller.getCaseDetails(id);
-    comments = controller.commentsModel!.comments
-        .where((element) => element.caseId == id)
-        .toList();
     return GetBuilder(
       init: controller,
-      builder: (controller) => Scaffold(
-        appBar: AppBar(
-          elevation: 0,
-          scrolledUnderElevation: 0,
-          title: Text(
-              // 'Case #'.tr +
-              //     controller.caseDetailsModel!.caseDetails![0].id.toString(),
-              'Case details'),
-          backgroundColor: cyan200,
-          centerTitle: true,
-        ),
-        body: BuildCondition(
-          condition: controller.caseDetailsModel != null,
-          fallback: (context) => Container(
-              child: Center(
-            child: CircularProgressIndicator(),
-          )),
-          builder: (context) => SingleChildScrollView(
+      builder: (controller) => BuildCondition(
+        condition: controller.caseDetailsModel != null,
+        fallback: (context) => Scaffold(
+            body: Center(
+          child: CircularProgressIndicator(),
+        )),
+        builder: (context) => Scaffold(
+          appBar: AppBar(
+            elevation: 0,
+            scrolledUnderElevation: 0,
+            title: Text(
+              'Case #'.tr +
+                  controller.caseDetailsModel!.caseDetails![0].id.toString(),
+            ),
+            backgroundColor: cyan200,
+            centerTitle: true,
+          ),
+          body: SingleChildScrollView(
             physics: BouncingScrollPhysics(),
             child: Column(
               children: [
@@ -160,8 +174,8 @@ class CaseDetailsScreen extends GetView {
     return Card(
       child: Column(
         children: [
-          Text('${comments[index].comment}'),
-          Text('${comments[index].createdAt.toString().substring(0, 10)}'),
+          // Text('${comments[index].comment}'),
+          // Text('${comments[index].createdAt.toString().substring(0, 10)}'),
         ],
       ),
     );

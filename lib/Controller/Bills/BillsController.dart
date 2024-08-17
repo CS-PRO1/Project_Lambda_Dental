@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 import 'package:project_lambda_dental/Cache/CacheHelper.dart';
-import 'package:project_lambda_dental/Model/Bills/BillDetailsModel.dart';
 import 'package:project_lambda_dental/Model/Bills/BillsListModel.dart';
 import 'package:project_lambda_dental/Services/dio.dart';
 
@@ -9,9 +8,8 @@ class BillsController extends GetxController {
   void getAllBills() {
     String token = CacheHelper.get('token');
     DioHelper.getData('all_bills', token: token).then((value) {
-      if (value?.data['status']) {
-        billsListModel = BillsListModel.fromJson(value?.data);
-      }
+      billsListModel = BillsListModel.fromJson(value?.data);
+      update();
     }).catchError((error) {
       print(error.toString());
     });
@@ -28,10 +26,4 @@ class BillsController extends GetxController {
     }).catchError((error) {
       print(error.toString());
     });
-  }
-
-  BillDetailsModel? billDetailsModel;
-  void getBillDetails() {
-    //TODO
-  }
-}
+  }}

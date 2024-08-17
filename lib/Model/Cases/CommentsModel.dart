@@ -1,47 +1,31 @@
 class CommentsModel {
-  final String message;
-  final List<Comment> comments;
-  final int status;
+  int? status;
+  String message = '';
+  List<Comment> data = [];
 
-  CommentsModel({
-    required this.message,
-    required this.comments,
-    required this.status,
-  });
-
-  factory CommentsModel.fromJson(Map<String, dynamic> json) {
-    return CommentsModel(
-      message: json['message'],
-      comments: (json['comment'] as List<dynamic>)
-          .map((e) => Comment.fromJson(e))
-          .toList(),
-      status: json['status'],
-    );
+  CommentsModel.fromJson(Map<String, dynamic> json) {
+    status = json['status'];
+    message = json['message'];
+    json['All Comments'].forEach((element) {
+      data.add(Comment.fromJson(element));
+    });
   }
 }
 
 class Comment {
-  final int id;
-  final int caseId;
-  final String comment;
-  final DateTime createdAt;
-  final DateTime updatedAt;
+  int? id;
+  int? case_id;
+  String? comment;
+  String? created_at;
+  String? updated_at;
 
-  Comment({
-    required this.id,
-    required this.caseId,
-    required this.comment,
-    required this.createdAt,
-    required this.updatedAt,
-  });
 
-  factory Comment.fromJson(Map<String, dynamic> json) {
-    return Comment(
-      id: json['id'],
-      caseId: json['case_id'],
-      comment: json['comment'],
-      createdAt: DateTime.parse(json['created_at']),
-      updatedAt: DateTime.parse(json['updated_at']),
-    );
+
+  Comment.fromJson(Map<String, dynamic> json) {
+    id = json['id'] ?? 0;
+    case_id = json['id'] ?? 0;
+    comment = json['comment'] ?? '';
+    created_at = json['created_at'] ?? '';
+    updated_at = json['updated_at'] ?? '';
   }
 }

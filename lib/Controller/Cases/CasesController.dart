@@ -22,7 +22,7 @@ class CasesController extends GetxController {
     }).catchError((error) {
       print('error: ' + error.toString());
     });
-    update();
+    //update();
   }
 
   CaseDetailsResponse? caseDetailsModel;
@@ -36,7 +36,7 @@ class CasesController extends GetxController {
     ).catchError((error) {
       toast(commentsModel!.message);
     });
-    update();
+    //update();
   }
 
   void searchCase(String pname) {
@@ -92,15 +92,19 @@ class CasesController extends GetxController {
 
   CommentsModel? commentsModel;
 
-  void getComments(int) {
+  void getComments() {
     String token = CacheHelper.get('token');
+    print('getting comments');
     DioHelper.getData('all_comments', token: token).then((value) {
-      if (value?.data['status']) {
-        commentsModel = CommentsModel.fromJson(value?.data);
-      }
+      print(value?.statusCode);
+      print(value?.statusMessage);
+      commentsModel = CommentsModel.fromJson(value?.data);
+      update();
+      print('got comments');
     }).catchError((error) {
       print(error.toString());
     });
+      update();
   }
 
   void addComment(int case_id, String comment) {

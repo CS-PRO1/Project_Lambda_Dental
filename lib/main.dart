@@ -15,7 +15,6 @@ import 'package:project_lambda_dental/View/basics/EmailVerificationScreen.dart';
 import 'package:project_lambda_dental/View/case/AddOrderScreen.dart';
 import 'package:project_lambda_dental/View/basics/LoginScreen.dart';
 import 'package:get/get.dart';
-import 'package:project_lambda_dental/View/bill/BillDetailsScreen.dart';
 import 'package:project_lambda_dental/View/bill/BillsListScreen.dart';
 import 'package:project_lambda_dental/View/case/CaseListScreen.dart';
 import 'package:project_lambda_dental/locale/dictionary.dart';
@@ -105,7 +104,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/addorder', page: () => AddOrderScreen()),
         GetPage(name: '/orderdetails', page: () => CaseDetailsScreen()),
         GetPage(name: '/bills', page: () => BillsListScreen()),
-        GetPage(name: '/billdetails', page: () => BillDetailsScreen()),
+        //GetPage(name: '/billdetails', page: () => BillDetailsScreen()),
         GetPage(name: '/verify-email', page: () => EmailVerificationScreen()),
         GetPage(name: '/about', page: () => About()),
         GetPage(name: '/welcome', page: () => WelcomeScreen()),

@@ -6,6 +6,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:project_lambda_dental/Cache/CacheHelper.dart';
 import 'package:project_lambda_dental/Model/Cases/CaseDetailsModel.dart';
 import 'package:project_lambda_dental/Model/Cases/CaseListModel.dart';
+import 'package:project_lambda_dental/Model/Cases/CaseSearchModel.dart';
 import 'package:project_lambda_dental/Model/Cases/CommentsModel.dart';
 import 'package:project_lambda_dental/Services/dio.dart';
 import 'package:project_lambda_dental/shared/component/components.dart';
@@ -14,6 +15,7 @@ class CasesController extends GetxController {
   CaseListModel? caseListModel;
   void getAllCases() {
     print('Getting cases');
+    print(CacheHelper.get('token'));
     String token = CacheHelper.get('token');
     DioHelper.getData('all_cases', token: token).then((value) {
       caseListModel = CaseListModel.fromJson(value?.data);
@@ -30,23 +32,25 @@ class CasesController extends GetxController {
     String token = CacheHelper.get('token');
     DioHelper.postData('case_details', {'case_id': case_id}, token: token).then(
       (value) {
+        print(value?.data);
         caseDetailsModel = CaseDetailsResponse.fromJson(value?.data);
         update();
       },
     ).catchError((error) {
-      toast(commentsModel!.message);
+      print(error);
     });
-    //update();
   }
+
+  CaseSearchModel? caseSearchModel;
 
   void searchCase(String pname) {
     String token = CacheHelper.get('token');
-    DioHelper.postData('case_details', {'patient_name': pname}, token: token)
+    DioHelper.postData('search_case', {'patient_name': pname}, token: token)
         .then(
       (value) {
-        if (value?.data['status']) {
-          caseDetailsModel = CaseDetailsResponse.fromJson(value?.data);
-        }
+        caseSearchModel = CaseSearchModel.fromJson(value?.data);
+        print(value?.data);
+        update();
       },
     ).catchError((error) {
       toast(commentsModel!.message);
@@ -84,6 +88,7 @@ class CasesController extends GetxController {
     DioHelper.postData('add_case', data, token: token).then((value) {
       print('sent data success');
       print(value?.data['message']);
+      CacheHelper.setInt('case_id', value?.data['case']['id']);
     }).catchError((error) {
       print(error.toString());
     });
@@ -103,7 +108,7 @@ class CasesController extends GetxController {
     }).catchError((error) {
       print(error.toString());
     });
-      update();
+    update();
   }
 
   void addComment(int case_id, String comment) {
@@ -158,6 +163,20 @@ class CasesController extends GetxController {
       },
     ).catchError((error) {
       toast(commentsModel!.message);
+    });
+  }
+
+  void confirmDelivery(int case_id) {
+    String token = CacheHelper.get('token');
+    DioHelper.postData('confirm_delivery',
+            {'case_id': case_id, 'confirm_delivery': 'true'},
+            token: token)
+        .then(
+      (value) {
+        toast(value?.data['message']);
+      },
+    ).catchError((error) {
+      toast(error.toString());
     });
   }
 }

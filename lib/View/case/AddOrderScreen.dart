@@ -6,16 +6,13 @@ import 'package:project_lambda_dental/shared/component/components.dart';
 import 'package:project_lambda_dental/shared/component/constants.dart';
 
 class AddOrderScreen extends StatefulWidget {
-
-
   AddOrderScreen({super.key});
-    
+
   @override
   State<AddOrderScreen> createState() => _AddOrderState();
 }
 
-  class _AddOrderState extends State<AddOrderScreen> {
-
+class _AddOrderState extends State<AddOrderScreen> {
   var patientnamecontroller = TextEditingController();
   var agecontroller = TextEditingController();
   var notecontroller = TextEditingController();
@@ -95,7 +92,8 @@ class AddOrderScreen extends StatefulWidget {
                     height: 30,
                   ),
                   myTextField(agecontroller, context, 'Age'.tr,
-                      Icon(Icons.hourglass_full_outlined), keyboardType: TextInputType.number),
+                      Icon(Icons.hourglass_full_outlined),
+                      keyboardType: TextInputType.number),
                   SizedBox(
                     height: 30,
                   ),
@@ -115,7 +113,8 @@ class AddOrderScreen extends StatefulWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text('Need Trial'.tr),
-                      statefull( needTrial,
+                      statefull(
+                        needTrial,
                         onChanged: (value) {
                           setState(() {
                             needTrial = value;
@@ -123,7 +122,8 @@ class AddOrderScreen extends StatefulWidget {
                         },
                       ),
                       Text('Repeat'.tr),
-                      statefull(repeat,
+                      statefull(
+                        repeat,
                         onChanged: (value) {
                           setState(() {
                             repeat = value;
@@ -189,7 +189,7 @@ class AddOrderScreen extends StatefulWidget {
                   SizedBox(
                     height: 10,
                   ),
-                  datePicker(expectedDeliveryDate,context),
+                  datePicker(expectedDeliveryDate, context),
                   SizedBox(
                     height: 30,
                   ),
@@ -215,13 +215,13 @@ class AddOrderScreen extends StatefulWidget {
                         "repeate": repeat ? 1 : 0,
                         "notes": notecontroller.text,
                         "shade": shade,
-                        "expect_delivery_time": expectedDeliveryDate.toIso8601String(),
+                        "expect_delivery_time":
+                            expectedDeliveryDate.toIso8601String(),
                         "images": images.map((image) => image.path).toList(),
                       };
                       // Send requestJson to the server
-                    controller.addCase(requestJson);
-                    Get.toNamed('/teethselect');
-                    
+                      controller.addCase(requestJson);
+                      Get.toNamed('/teethselect');
                     },
                     heigh: 50,
                   ),
@@ -233,5 +233,4 @@ class AddOrderScreen extends StatefulWidget {
       ),
     );
   }
-
 }

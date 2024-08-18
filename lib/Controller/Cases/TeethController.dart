@@ -109,6 +109,7 @@ class TeethController extends GetxController {
 
     // Create the final map to be sent to the API
     Map<String, dynamic> apiData = {
+      'case_id': CacheHelper.get('case_id'),
       "tooth_number": toothNumber,
       "bridge": bridge,
     };

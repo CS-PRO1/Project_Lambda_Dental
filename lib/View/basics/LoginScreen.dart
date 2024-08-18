@@ -151,7 +151,8 @@ class LoginScreen extends GetView {
                                                   emailcontroller.text,
                                                   passwordcontroller.text);
                                             }
-                                            sleep(Duration(seconds: 5));
+                                            sleep(Duration(seconds: 2));
+                                            if(controller.loginsuccess)
                                               Get.offAndToNamed('/home');
                                             
                                           },

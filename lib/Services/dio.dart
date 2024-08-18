@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 class DioHelper {
   static Dio? dio;
   static init() {
-    dio = Dio(BaseOptions(baseUrl: 'http://192.168.25.176:9090/api/', headers: {
+    dio = Dio(BaseOptions(baseUrl: 'http://192.168.25.230:9090/api/', headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
     }));

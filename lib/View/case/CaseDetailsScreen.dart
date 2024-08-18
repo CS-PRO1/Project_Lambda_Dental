@@ -43,12 +43,6 @@ class _CaseDetailsScreenState extends State<CaseDetailsScreen> {
     controller.caseDetailsModel!.caseDetails![0].needTrial,
   ];
 
-  final orderdetailsicons = [
-    Icon(Icons.abc),
-    Icon(Icons.abc),
-    Icon(Icons.abc),
-  ];
-
   // late List<Comment> comments = controller.commentsModel!.comments
   //     .where((element) => element.caseId == id)
   //     .toList();
@@ -71,6 +65,11 @@ class _CaseDetailsScreenState extends State<CaseDetailsScreen> {
         )),
         builder: (context) => Scaffold(
           appBar: AppBar(
+            leading: IconButton(
+                onPressed: () {
+                  Get.offAndToNamed('/home');
+                },
+                icon: Icon(Icons.arrow_back_ios)),
             elevation: 0,
             scrolledUnderElevation: 0,
             title: Text(
@@ -86,13 +85,13 @@ class _CaseDetailsScreenState extends State<CaseDetailsScreen> {
               children: [
                 processTimeline(
                     context,
-                    controller.caseDetailsModel!.caseDetails![0].status! == 1
-                        ? 1
+                    controller.caseDetailsModel!.caseDetails![0].status! == 0
+                        ? 0
                         : controller.caseDetailsModel!.caseDetails![0]
                                     .confirmDelivery ==
                                 1
                             ? 2
-                            : 0),
+                            : 1),
                 Padding(
                   padding: const EdgeInsets.all(15.0),
                   child: Column(
@@ -160,6 +159,17 @@ class _CaseDetailsScreenState extends State<CaseDetailsScreen> {
                                       )),
                         ),
                       ),
+                      BuildCondition(
+                        condition: controller
+                                .caseDetailsModel!.caseDetails![0].status ==
+                            1,
+                        builder: (context) => defaultButton(
+                            text: 'Confirm Delivery',
+                            function: () {
+                              controller.confirmDelivery(controller
+                                  .caseDetailsModel!.caseDetails![0].id!);
+                            }),
+                      )
                     ],
                   ),
                 ),

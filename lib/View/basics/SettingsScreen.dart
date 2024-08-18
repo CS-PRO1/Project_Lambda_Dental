@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:project_lambda_dental/Controller/User/Auth_controller.dart';
 import 'package:project_lambda_dental/Services/theme/theme_service.dart';
 import 'package:project_lambda_dental/locale/LocaleController.dart';
 import 'package:project_lambda_dental/shared/component/components.dart';
@@ -22,6 +23,7 @@ class _SettingsState extends State<Settings> {
   var emailController = TextEditingController();
   LocaleController localeController = Get.find();
   var passwordController = TextEditingController();
+  AuthController authController = Get.put(AuthController());
   bool notify = false;
   var language;
   @override
@@ -144,7 +146,8 @@ class _SettingsState extends State<Settings> {
                 function: () {
                   print(emailController.text);
                   print(passwordController.text);
-                  
+                  authController.logout();
+                  Get.offAllNamed('/');
                 },
               ),
             ],

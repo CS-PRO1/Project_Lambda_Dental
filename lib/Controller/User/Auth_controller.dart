@@ -42,7 +42,6 @@ class AuthController extends GetxController {
   }
 
   void allow_notifications() {
-    //TODO: Add this later to settings
     AwesomeNotifications().isNotificationAllowed().then((isAllowed) {
       if (!isAllowed) {
         AwesomeNotifications().requestPermissionToSendNotifications();

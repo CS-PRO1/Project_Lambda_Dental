@@ -14,6 +14,10 @@ class CacheHelper {
     return await sharedPreferences?.setString(key, value);
   }
 
+  static Future setInt(String key, int value) async {
+    return await sharedPreferences?.setInt(key, value);
+  }
+
   static Future removeString(String key) async {
     return await sharedPreferences?.remove(key);
   }
